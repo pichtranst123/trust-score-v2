@@ -1,7 +1,7 @@
 import React from "react";
 // @styled-components
 import { Layout } from "./ProfileUser.styled";
-import { BiUserCircle } from "react-icons/Bi";
+import { BiUserCircle } from "react-icons/bi";
 // @near
 import { logout } from "near/utils";
 
