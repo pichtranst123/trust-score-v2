@@ -25,7 +25,7 @@ const Spaceinfo = [
     description: "DAO Arbitrum",
     trustpoint: 20000,
     follower: "100,000 Followers",
-    connect: [{ icon: FaPlus, link: "#" }],
+    connect: [{ icon: FaPlus, link: "/thread" }],
   },
   {
     image: Image3,
@@ -33,7 +33,7 @@ const Spaceinfo = [
     description: "Pancake Swap Community",
     trustpoint: 10000,
     follower: "10,000 Followers",
-    connect: [{ icon: FaPlus, link: "#" }],
+    connect: [{ icon: FaPlus, link: "/thread" }],
   },
   {
     image: Image2,
@@ -42,7 +42,7 @@ const Spaceinfo = [
     trustpoint: 8000,
 
     follower: "70,000 Followers",
-    connect: [{ icon: FaPlus, link: "#" }],
+    connect: [{ icon: FaPlus, link: "/thread" }],
   },
   {
     image: Image6,
@@ -51,7 +51,7 @@ const Spaceinfo = [
     trustpoint: 18000,
 
     follower: "20,000 Followers",
-    connect: [{ icon: FaPlus, link: "#"}],
+    connect: [{ icon: FaPlus, link: "/thread"}],
   },
   {
     image: Image4,
@@ -60,7 +60,7 @@ const Spaceinfo = [
     trustpoint: 5000,
 
     follower: "50,000 Followers",
-    connect: [{ icon: FaPlus, link: "#" }],
+    connect: [{ icon: FaPlus, link: "/thread" }],
   },
   {
     image: Image5,
@@ -69,7 +69,7 @@ const Spaceinfo = [
     trustpoint: 2000,
 
     follower: "33,000 Followers",
-    connect: [{ icon: FaPlus, link: "#" }],
+    connect: [{ icon: FaPlus, link: "/thread" }],
   },
 ];
 // ----------------------------------------------------------
