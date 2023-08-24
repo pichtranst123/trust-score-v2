@@ -10,6 +10,9 @@ import {
   Row,
 } from "./Hero.styled";
 
+import bg from "assets/png/bg-hero.png";
+
+
 // @component
 import Container from "components/Container/Container";
 

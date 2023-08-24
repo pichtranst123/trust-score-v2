@@ -1,15 +1,14 @@
 import styled from "styled-components";
 
 // -----------------------------------------------------------
-export const ConnectButtonWidth = "180px"; // Giá trị width của button connect
-export const ConnectButtonHeight = "56px"; // Giá trị height của button connect
+import { ConnectButtonWidth, ConnectButtonHeight } from "./ConnectButton.styled"; // Import biến từ ConnectButton
 
 
 export const Layout = styled.div`
   position: relative;
-  border-radius: 24px;
   width: ${ConnectButtonWidth};
-  height: ${ConnectButtonHeight};
+  height: 50px;
+  border-radius: 0 0 12px 12px;
   border: 2px solid;
   background: white;
 
@@ -27,8 +26,9 @@ export const Layout = styled.div`
 
   :hover,
   :focus {
-    box-shadow: 0px 18px 24px rgba(0, 0, 0, 4); 
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 2); 
     background: linear-gradient(90deg, rgba(147,231,229,1) 0%, rgba(0,186,207,1) 42%, rgba(6,23,27,1) 100%);
+    color: black;
   }
 
   ::before {
@@ -47,6 +47,7 @@ export const Layout = styled.div`
     right: -10px;
     border: 10px solid transparent;
     transform: rotate(-45deg);
+    
   }
 
   @media screen and (max-width: 1024px) {
@@ -54,15 +55,21 @@ export const Layout = styled.div`
     height: 50px;
     font-size: 14px;
   }
+  @media screen and (max-width: 912px) {
+    width: 150px;
+    height: 34%;
+    font-size: 14px;
+  }
+  
 
   @media screen and (max-width: 768px) {
     width: 120px;
-    height: 50px;
+    height: 34%;
     font-size: 14px;
   }
 
   @media screen and (max-width: 425px) {
     width: 110px;
-    height: 45px;
+    height: 50px;
   }
 `;

@@ -16,9 +16,8 @@ const ScrollButtonWrapper = styled.div<ScrollButtonProps>`
   position: fixed;
   width: 50px;
   height: 50px;
-  border-radius:8px;
-  background: #7efefe;
-  color: black;
+  background: black;
+  color: white;
   text-transform: uppercase;
   text-align: center;
   bottom: 25px;
@@ -27,6 +26,9 @@ const ScrollButtonWrapper = styled.div<ScrollButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  :hover{
+  background: linear-gradient(135deg, black, white);
+  }
   cursor: pointer;
   opacity: ${({ showButton }) => (showButton ? 100 : 0)};
   transform: scale(${({ showButton }) => (showButton ? 1 : 0)});

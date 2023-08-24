@@ -13,8 +13,7 @@ export const Layout = styled.div`
   justify-content: center;
   align-items: center;
 
-  background: #728a8a;
-
+  background: white;
   padding-top: 10px;
 
   z-index: 2;
@@ -106,18 +105,18 @@ export const MenuItem = styled.a`
     position: absolute;
     content: "";
     height: 3px;
-    background-color: black;
+    background: linear-gradient(90deg, rgba(243,243,243,1) 0%, rgba(159,232,241,1) 12%, rgba(0,186,207,1) 42%, rgba(46,117,126,1) 83%, rgba(6,23,27,1) 100%);
     width: 100%;
     left: 0;
     bottom: -5px;
     transform: scaleX(0);
   }
 
-  :hover {
-    color: #7efefe;
-    ::after {
+  :hover {      color:#00bacf;
+
+     ::after {
       box-shadow: 0 8px 16px rgba(0, 0, 0, 10);
-      transform: scaleX(1);
+      background: linear-gradient(90deg, rgba(243,243,243,1) 0%, rgba(159,232,241,1) 12%, rgba(0,186,207,1) 42%, rgba(46,117,126,1) 83%, rgba(6,23,27,1) 100%);      transform: scaleX(1);
     }
   }
 `;
@@ -152,7 +151,7 @@ export const MenuButton = styled.div`
   height: 56px;
   margin-left: 10px;
 
-  background: #7efefe;
+  background: white;
   transition: all 0.2s ease-in-out;
 
   color: black;
@@ -167,6 +166,7 @@ export const MenuButton = styled.div`
 
   :hover,
   :focus {
+    background: linear-gradient(90deg, rgba(243,243,243,1) 0%, rgba(159,232,241,1) 12%, rgba(0,186,207,1) 42%, rgba(46,117,126,1) 83%, rgba(6,23,27,1) 100%);
     box-shadow: inset 180px 0 0 0 #7efefe;
     color: black;
   }
@@ -278,8 +278,8 @@ export const MobileMenuItem = styled.div`
 
   :hover,
   :focus {
-    background: #7efefe;
-    color: #black;
+    background: linear-gradient(90deg, rgba(243,243,243,1) 0%, rgba(159,232,241,1) 12%, rgba(0,186,207,1) 42%, rgba(46,117,126,1) 83%, rgba(6,23,27,1) 100%);
+    color: black;
   }
 
   &:first-child {

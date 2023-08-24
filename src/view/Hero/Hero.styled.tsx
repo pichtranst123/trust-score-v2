@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
 // -----------------------------------------------------------
+import bg from "assets/png/bg-hero.png";
+const backgroundImageUrl = bg.src;
+
 
 export const Layout = styled.div`
-  width: 100vw;
-
+  width: 100%;
+  background-image: url(${backgroundImageUrl});
+  background-size: cover;
+  background-position: center top;
   padding: 320px 0px 150px 0px;
 
   display: flex;
@@ -67,7 +72,7 @@ export const Button = styled.div`
   align-items: center;
 
   color: black;
-  background: #7efefe;
+  background: white;
   font-size: 20px;
 
   & > *:not(:last-child) {
@@ -80,8 +85,8 @@ export const Button = styled.div`
 
   :hover,
   :focus {
-    color:#7efefe;
-    background: black;
+    color: black;
+    background: linear-gradient(90deg, rgba(243,243,243,1) 0%, rgba(159,232,241,1) 12%, rgba(0,186,207,1) 42%, rgba(46,117,126,1) 83%, rgba(6,23,27,1) 100%);      transform: scaleX(1);
     box-shadow: 0 16px 20px rgba(0, 0, 0, 8);
 
   }
@@ -106,6 +111,9 @@ export const Button = styled.div`
   }
   @media screen and (max-width: 768px) {
     width: 100%;
+    background-image: url(${backgroundImageUrl});
+    background-size: cover;
+    background-position: center top;
   }
   @media screen and (max-width: 480px) {
     font-size: 18px;

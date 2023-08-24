@@ -1,4 +1,4 @@
-const CONTRACT_NAME = "pichtran.testnet";
+const CONTRACT_NAME = "trustcore.testnet";
 
 const getConfig = (env: string) => {
   switch (env) {
