@@ -87,7 +87,6 @@ export default function index() {
     const startUp = async () => {
       const isSignedIn = await wallet.startUp();
       const spacesData = await wallet.viewMethod({ method: "get_all_spaces",contractId});
-      
       const spaceArr = []
       spacesData.forEach(item => {
         spaceArr.push(  {

@@ -83,45 +83,6 @@ export const Title = styled.div`
   }
 `;
 
-const Spaceinfo = [
-  {
-    image: Image1,
-    endTime:"1 weeks",
-    contractName: "HelloNear333.testnet",
-    title: "Magic Square Community Validation: Temple Wallet on the Magic Store Voting",
-    description: "Welcome to the Magic Square Community Validation for Project Temple Wallet on the Magic Store Voting. As a platform dedicated to discovering, rating, and validating the finest Web3 projects, we require your input in determining if Project Temple Wallet meets the necessary criteria to be validated on the Magic Store, Web3 App Store.Temple is a non-custodial blockchain wallet that allows users to store, send, buy, stake, and sell their Tezos-built tokens and interact with dApps on the Tezos blockchain. Temple has a web extension version as well as Android and iOs apps. Temple has in-built top-up and stake features and is supported by the Tezos Foundation.",
-    trustpoint: 2000,
-  },
-  {
-    image: Image1,
-    endTime:"4 weeks",
-    contractName: "TroxSS.testnet",
-    title: "Magic Square Community Validation: League of Kingdoms on the Magic Store Voting",
-    description: "Temple is a non-custodial blockchain wallet that allows users to store, send, buy, stake, and sell their Tezos-built tokens and interact with dApps on the Tezos blockchain. Temple has a web extension version as well as Android and iOs apps. Temple has in-built top-up and stake features and is supported by the Tezos Foundation.",
-    trustpoint: 1000,
-  },
-  {
-    image: Image1,
-    endTime:"4 weeks",
-    contractName: "Jayces.testnet",
-    title: "Uni Swap",
-    description: "For further discussion on Project Temple Wallet validation, join our Discord Server to connect with fellow community members.",
-    trustpoint: 3000,
-    
-  },
-  {
-    image: Image1,
-    endTime:"2 weeks",
-    contractName: "pichtran.testnet",
-    title: "Magic Square Community Validation: Babbu City on the Magic Store Voting",
-    description: "Welcome to the Magic Square Community Validation for Project Temple Wallet on the Magic Store Voting. As a platform dedicated to discovering, rating, and validating the finest Web3 projects, we require your input in determining if Project Temple Wallet meets the necessary criteria to be validated on the Magic Store, Web3 App Store.Temple is a non-custodial blockchain wallet that allows users to store, send, buy, stake, and sell their Tezos-built tokens and interact with dApps on the Tezos blockchain. Temple has a web extension version as well as Android and iOs apps. Temple has in-built top-up and stake features and is supported by the Tezos Foundation.",
-    trustpoint: 5000,
-  },
-];
-// ----------------------------------------------------------
-
-Spaceinfo.sort((a, b) => b.trustpoint - a.trustpoint);
-
 
 // ...
 const ThreadPage: React.FC = () => {
@@ -135,12 +96,9 @@ const ThreadPage: React.FC = () => {
   useEffect(() => {
     const startUp = async () => {
       const isSignedIn = await wallet.startUp();
-      if (isSignedIn) {
         const threadsData = await wallet.viewMethod({ method: "get_all_threads_of_space_by_space_id",args:{"space_id": space_id},contractId});
-      
         const threadArr = []
         threadsData.forEach(async(item) => {
-          
           const threadDetail = await wallet.viewMethod({ method: "get_thread_metadata_by_thread_id",args:{"thread_id": item},contractId});
           console.log(threadDetail);
           threadArr.push({
@@ -150,10 +108,10 @@ const ThreadPage: React.FC = () => {
             title:threadDetail.title,
             description: threadDetail.title.content,
             trustpoint: threadDetail.init_point,
-          },)
+          })
         });
         setThreads(threadArr);
-      }
+      
   
      
     };
