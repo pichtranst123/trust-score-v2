@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import { BiCopy } from "react-icons/Bi";
-import {useEffect} from 'react';
+import { BiCopy } from "react-icons/bi";
 import Image1 from "assets/png/profile.png";
 import Space1 from "assets/png/educadao.webp";
 import Space2 from "assets/png/pancakeswap.png";

@@ -87,7 +87,7 @@ import Image1 from "assets/png/profile.webp";
 
 
 
-const Spaceinfo = [
+const Threadinfo = [
   {
     image: Image1,
     endTime:"1 weeks",
@@ -124,7 +124,7 @@ const Spaceinfo = [
 ];
 // ----------------------------------------------------------
 
-Spaceinfo.sort((a, b) => b.trustpoint - a.trustpoint);
+Threadinfo.sort((a, b) => b.trustpoint - a.trustpoint);
 import { useRouter } from 'next/router';
 
 
@@ -145,7 +145,7 @@ const ThreadPage: React.FC = () => {
           <br /><br />
           <Button type="submit" onClick={handleBackClick}>Create thread</Button>
           <MainLayout>
-            {Spaceinfo.map((item) => (
+            {Threadinfo.map((item) => (
                 <Threads data={item} />
             ))}
           </MainLayout>
