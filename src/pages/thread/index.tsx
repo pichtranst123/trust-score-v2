@@ -6,9 +6,11 @@ import styled from 'styled-components';
 const Button = styled.button`
   margin-bottom:30px;
   padding: 10px 20px;
-  border: 1px solid;
+  border: 2px solid;
   color: black;
-  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  background: none;
   border-radius: 13px;
   cursor: pointer;
   :hover{
@@ -51,7 +53,7 @@ export const MainLayout = styled.div`
 `;
 
 export const ItemLayout = styled.div`
-
+  border: 3px solid;
   display: flex;
   justify-content: flex-end;
   `;

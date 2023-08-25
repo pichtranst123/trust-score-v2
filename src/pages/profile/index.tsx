@@ -224,19 +224,18 @@ const CreateThread: React.FC = () => {
         <ImageWrapper>
           <Image src={Image1} alt="Profile" width={35} height={34} border-radius={24} />
         </ImageWrapper>
-            <Label htmlFor="title">
-              <div>
-                {accountId.substr(0, 8) +
-                  accountId.substr(accountId.length - 9, accountId.length)}
-              </div>
-            </Label>
+            <Label></Label>
           <Button className="copy-button">
+          <Label htmlFor="title">
+
             <div>
               {accountId.substr(0, 5) +
                 '...' +
                 accountId.substr(accountId.length - 4, accountId.length)}{' '}
                 <CopyIcon />
             </div>
+            </Label>
+
           </Button>
         </InputWrapper>
         <EditButton type="button" onClick={handleEditProfileClick}>

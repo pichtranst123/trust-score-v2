@@ -9,20 +9,28 @@ import Image from 'next/image';
 
 const Threaddetail = [
     {
+      yes:88,
+      no:12,
+      stake:1000,
       contractName: "HelloNear333.testnet",
       title: "This is title",
-      description: "this is description",
+      description: "this is description descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription",
     }];
 
+    const FlexWrapper = styled.div`
+    display: flex;
+    justify-content: space-between; /* Adjust the spacing between containers */
+  `;
 
  const FlexContainer = styled.div`
+
     display: flex;
     align-items: center;
     gap: 10px;
   `;
 
 const CenteredForm = styled.form`
-  margin-top:30%;
+  margin-top:10%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,23 +40,22 @@ const BackIcon = styled(BiArrowBack)`
   margin-right: 5px;
 `;
 
-const InputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-`;
+const Container = styled.div`
+  width:800px;
+  height:500px;
+  border-radius: 14px;
+  border: 3px solid;
+  padding: 20px;
+  margin: 20px;
+  overflow: hidden; /* Clip any overflow */
 
-const Label = styled.label`
-  font-weight: bold;
-  margin-bottom: 5px;
 `;
 
 const Button = styled.button`
-  margin-right: 240px;
+  margin-right: 980px;
   padding: 10px 20px;
-  border: 1px solid;
   color: black;
-  border: none;
+  background: none;
   border-radius: 13px;
   cursor: pointer;
   :hover{
@@ -56,15 +63,27 @@ const Button = styled.button`
   }
 `;
 
-const ButtonVote = styled.button`
+const Container2 = styled.div`
+  width: 50%; /* Set the width to 50% of the parent container */
+  height: 300px;
+  border-radius: 14px;
+  border: 3px solid;
+  padding: 20px;
+  margin: 20px;
+  overflow: hidden; /* Clip any overflow */
+`;
 
-  width:300px;
+  const ButtonVote2 = styled.button`
+  margin-bottom:5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:100%;
   height:40px;
   padding: 10px 20px;
-  border: 1px solid;
+  border: 3px solid;
   color: ${props => (props.selected ? 'white' : 'black')};
-  background-color: ${props => (props.selected ? '#CCC' : 'transparent')};
-  border: none;
+  background-color: ${props => (props.selected ? '#45ab00' : 'transparent')};
   border-radius: 13px;
   cursor: pointer;
   display: flex;
@@ -74,15 +93,64 @@ const ButtonVote = styled.button`
     background: linear-gradient(90deg, rgba(243, 243, 243, 1) 0%, rgba(159, 232, 241, 1) 12%, rgba(0, 186, 207, 1) 42%, rgba(46, 117, 126, 1) 83%, rgba(6, 23, 27, 1) 100%);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
   }
-
-  
-
   .checkmark {
     display: ${props => (props.selected ? 'block' : 'none')};
     margin-left: 5px;
     color: green;
   }
 `;
+
+const ButtonVote = styled.button`
+  margin-bottom:5px;
+  width:100%;
+  height:40px;
+  padding: 10px 20px;
+  border: 3px solid;
+  color: ${props => (props.selected ? 'white' : 'black')};
+  background-color: ${props => (props.selected ? '#6bed86' : 'transparent')};
+  border-radius: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: relative;
+  :hover {
+    background: linear-gradient(90deg, rgba(243, 243, 243, 1) 0%, rgba(159, 232, 241, 1) 12%, rgba(0, 186, 207, 1) 42%, rgba(46, 117, 126, 1) 83%, rgba(6, 23, 27, 1) 100%);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
+  }
+  .checkmark {
+    display: ${props => (props.selected ? 'block' : 'none')};
+    margin-left: 5px;
+    color: green;
+  }
+`;
+
+const Title = styled.p`
+  font-weight:bold;
+  font-size:22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;`;
+
+  const Yes = styled.p`
+  font-weight:bold;
+  font-size:20px;`;
+
+  const No = styled.p`
+  font-weight:bold;
+  font-size:20px;
+`;
+
+  const Stake = styled.p`
+  color: green;
+  font-weight:bold;
+  font-size:22px;
+  margin-left: 0px;
+  `;
+
+const Description = styled.p`
+  width:100%;
+  white-space: normal;
+  display: flex;`;
 
 const StyledImage = styled(Image)`
   border-radius: 50%;
@@ -113,45 +181,63 @@ const CreateThread: React.FC = () => {
     };
   
     return (
-        <div>
-          <h1>Create New Thread</h1>
-          <CenteredForm onSubmit={handleSubmit}>
-            {/* ... */}
-            <Button type="button" onClick={handleBackClick}>
-              <BackIcon /> Back
-            </Button>
+      <div>
+        <h1>Create New Thread</h1>
+        <CenteredForm onSubmit={handleSubmit}>
+          {/* ... */}
+          <Button type="button" onClick={handleBackClick}>
+            <BackIcon /> Back
+          </Button>
+          <FlexWrapper>
+
+          <Container>
             {Threaddetail.map((thread, index) => (
               <div key={index}>
-                <h1> {thread.title}</h1>
+                <Title> {thread.title}</Title>
                 <FlexContainer>
-                <StyledImage src={Image1} alt="Profile" width={25} height={25} border-radius={24} />
-                <p>{thread.contractName}</p>
+                  <StyledImage src={Image1} alt="Profile" width={25} height={25} border-radius={24} />
+                  <p>{thread.contractName}</p>
                 </FlexContainer>
+  
+                <Description>{thread.description}</Description>
+                <br /> <br /> <br /> <br /> <br /> <br /> <br />
 
-                <p>{thread.description}</p>
+                <ButtonVote
+                  type="button"
+                  selected={selectedOption === 'Choose1'}
+                  onClick={() => handleOptionClick('Choose1')}
+                >
+                  Yes<span className="checkmark">✓</span>
+                </ButtonVote>
+                <ButtonVote
+                  type="button"
+                  selected={selectedOption === 'Choose2'}
+                  onClick={() => handleOptionClick('Choose2')}
+                >
+                  No<span className="checkmark">✓</span>
+                </ButtonVote>
               </div>
             ))}
-            <ButtonVote
-              type="button"
-              selected={selectedOption === 'Choose1'}
-              onClick={() => handleOptionClick('Choose1')}
-            >
-              Yes<span className="checkmark">✓</span>
-            </ButtonVote>
-            <br />
-            <ButtonVote
-              type="button"
-              selected={selectedOption === 'Choose2'}
-              onClick={() => handleOptionClick('Choose2')}
-            >
-              No<span className="checkmark">✓</span>
-            </ButtonVote>
-            <br /><br />
-            <ButtonVote type="submit" disabled={!selectedOption}>Vote</ButtonVote>
-            <br /><br />
-          </CenteredForm>
-        </div>
-      );
+              <ButtonVote2 type="submit" disabled={!selectedOption}>Vote</ButtonVote2>
+          </Container>
+          <Container2>
+          {Threaddetail.map((thread, index) => (
+              <Stake key={index}>{thread.stake} Stack Thread</Stake>
+            ))}
+          <hr />
+          <h4>Result</h4>
+          <hr />
+          {Threaddetail.map((thread, index) => (
+          <Yes key={index}>Yes:{thread.yes}%</Yes>))}
+          <hr />
+          {Threaddetail.map((thread, index) => (
+          <No key={index}>No:{thread.no}%</No>))}
+          
+        </Container2>
+        </FlexWrapper>
+        </CenteredForm>
+      </div>
+    );
   };
   
   export default CreateThread;

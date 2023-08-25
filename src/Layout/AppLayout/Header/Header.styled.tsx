@@ -46,8 +46,8 @@ export const LogoContainer = styled.div<{ back: any; top: boolean }>`
     content: "";
     left: -200px;
     top: -20px;
-    width: 580px;
-    height: 200px;
+    width: 20px;
+    height: 20px;
     background-image: url(${({ back }: any) => back});
     background-repeat: no-repeat;
     background-position: 50% 50%;
