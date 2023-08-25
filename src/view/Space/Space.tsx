@@ -93,8 +93,8 @@ export default function index() {
           image: Image5,
           title: item.space_name,
           description: "Learn to earn",
-          trustpoint: 2000,
-          follower: "33,000 Followers",
+          trustpoint: Math.floor(Math.random() * 10000),
+          follower: `${Math.floor(Math.random() * 10000)} Followers`,
           connect: [{ icon: FaPlus, link: "#" }],
         },)
       });
