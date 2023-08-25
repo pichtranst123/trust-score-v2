@@ -24,7 +24,11 @@ const ConnectButton: React.FC<ConnectButtonProps> = () => {
   useEffect(() => {
     const startUp = async () => {
       const isSignedIn = await wallet.startUp();
-      setAccountId(wallet.accountId);
+      console.log(isSignedIn);
+      if(isSignedIn){
+        setAccountId(wallet.accountId);
+      }
+      
       setIsSignedIn(isSignedIn);
     };
   
