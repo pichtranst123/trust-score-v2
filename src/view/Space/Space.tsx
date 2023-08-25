@@ -96,7 +96,7 @@ export default function index() {
           description: "Learn to earn",
           trustpoint: Math.floor(Math.random() * 10000),
           follower: `${Math.floor(Math.random() * 10000)} Followers`,
-          connect: [{ icon: FaPlus, link: "#" }],
+          connect: [{ icon: FaPlus, link: `/space/${item.space_id}` }],
         },)
       });
       setSpaces(spaceArr)
