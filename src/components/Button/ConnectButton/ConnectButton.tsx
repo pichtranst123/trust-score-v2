@@ -14,10 +14,10 @@ const ConnectButton: React.FC<ConnectButtonProps> = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [accountId, setAccountId] = useState(false);
-  const CONTRACT_ADDRESS = "dev-1692890433237-45573031471653";
+  const contractId = "dev-1692873860524-71333580447043";
   // When creating the wallet you can optionally ask to create an access key
   // Having the key enables to call non-payable methods without interrupting the user to sign
-  const wallet = new Wallet({ createAccessKeyFor: CONTRACT_ADDRESS });
+  const wallet = new Wallet({ createAccessKeyFor: contractId });
 
  
  

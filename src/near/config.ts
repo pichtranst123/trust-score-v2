@@ -1,4 +1,4 @@
-const CONTRACT_NAME = "trustcore.testnet";
+const CONTRACT_NAME = "dev-1692890433237-45573031471653";
 
 const getConfig = (env: string) => {
   switch (env) {
