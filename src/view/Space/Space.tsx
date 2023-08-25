@@ -1,8 +1,8 @@
-import React from "react";
+import {React,useEffect,useState} from "react";
 
 // @styled-component
 import { Layout, MainLayout, ItemLayout, Title } from "./Space.styled";
-
+import { Wallet } from "near/near-wallet";
 // @component
 import { Spaces } from "components/Items";
 import Container from "components/Container/Container";
@@ -77,6 +77,30 @@ const Spaceinfo = [
 Spaceinfo.sort((a, b) => b.trustpoint - a.trustpoint);
 
 export default function index() {
+  // When creating the wallet you can optionally ask to create an access key
+  // Having the key enables to call non-payable methods without interrupting the user to sign
+  const [valueFromBlockchain, setValueFromBlockchain] = useState();
+  const CONTRACT_ADDRESS = "dev-1692890433237-45573031471653";
+  const wallet = new Wallet({ createAccessKeyFor: CONTRACT_ADDRESS });
+  useEffect(() => {
+    const startUp = async () => {
+      const isSignedIn = await wallet.startUp();
+      const a = await getSpaces();
+      console.log(a);
+    };
+
+    startUp()
+      .catch(console.error);
+  }, [])
+
+
+  async function getSpaces() {
+    // use the wallet to query the contract's greeting
+    console.log(wallet.accountId);
+    return wallet.viewMethod({ method: "get_all_spaces", args: { account_id: wallet.accountId } ,CONTRACT_ADDRESS });
+  }
+
+
   return (
     <Layout id="space">
       <Container>
