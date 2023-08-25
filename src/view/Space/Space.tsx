@@ -79,14 +79,27 @@ Spaceinfo.sort((a, b) => b.trustpoint - a.trustpoint);
 export default function index() {
   // When creating the wallet you can optionally ask to create an access key
   // Having the key enables to call non-payable methods without interrupting the user to sign
-  const [valueFromBlockchain, setValueFromBlockchain] = useState();
-  const CONTRACT_ADDRESS = "dev-1692890433237-45573031471653";
-  const wallet = new Wallet({ createAccessKeyFor: CONTRACT_ADDRESS });
+
+  const [spaces, setSpaces] = useState(null);
+  const contractId = "dev-1692873860524-71333580447043";
+  const wallet = new Wallet({ createAccessKeyFor: contractId  });
   useEffect(() => {
     const startUp = async () => {
       const isSignedIn = await wallet.startUp();
-      const a = await getSpaces();
-      console.log(a);
+      const spacesData = await wallet.viewMethod({ method: "get_all_spaces",contractId});
+      const spaceArr = []
+      spacesData.forEach(item => {
+        spaceArr.push(  {
+          image: Image5,
+          title: item.space_name,
+          description: "Learn to earn",
+          trustpoint: 2000,
+          follower: "33,000 Followers",
+          connect: [{ icon: FaPlus, link: "#" }],
+        },)
+      });
+      setSpaces(spaceArr)
+      console.log(spaceArr);
     };
 
     startUp()
@@ -94,11 +107,6 @@ export default function index() {
   }, [])
 
 
-  async function getSpaces() {
-    // use the wallet to query the contract's greeting
-    console.log(wallet.accountId);
-    return wallet.viewMethod({ method: "get_all_spaces", args: { account_id: wallet.accountId } ,CONTRACT_ADDRESS });
-  }
 
 
   return (
@@ -107,7 +115,7 @@ export default function index() {
         <Title>Spaces</Title>
 
         <MainLayout>
-          {Spaceinfo.map((item, index) => (
+          {spaces  && spaces.map((item, index) => (
             <ItemLayout key={index}>
               <Spaces data={item} />
             </ItemLayout>
