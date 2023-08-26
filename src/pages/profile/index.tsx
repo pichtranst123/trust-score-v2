@@ -8,12 +8,86 @@ import Space2 from "assets/png/pancakeswap.png";
 import Space3 from "assets/png/uniswap.webp";
 
 import Image from 'next/image';
+import { ButtonGroup } from 'Layout/AppLayout/Header/Header.styled';
 
+const Space = styled.div`
+display: flex;
+align-items: center;
+`;
+
+const SpaceItem = styled.div`
+display: flex;
+align-items: center;
+margin-right: 20px; /* Add some space between items */
+`;
+
+const SpaceTitle = styled.p`
+font-weight: bold;
+margin-left: 10px;
+`;
+
+const User = [
+  {
+    trustpoint: 2250,
+    threadCreate: 3
+  }];
+const Followinfo = [
+  {
+    image: Image1,
+    title: "Space1",
+    id: 2,
+    trustpoint: 12000,
+  },
+  {
+    image: Image1,
+    title: "Space2",
+    id: 1,
+    trustpoint: 4000,
+  }];
+
+const ThreadCreated = [
+  {
+    image: Image1,
+    title: "Thread1",
+    type:"Basic Vote",
+    id: 3,
+    stake: 11000,
+  },
+  {
+    image: Image1,
+    title: "Thread2",
+    type:"Fraud Vote",
+
+    id: 2,
+    stake: 10000,
+  }];
 
 const Container = styled.div`
   display: flex;
   justify-content: space-between; /* Align items side by side with space between */
   padding: 20px; /* Add some padding for spacing */
+`;
+
+
+const CenteredForm3 = styled.form`
+  margin-top:200px;
+
+  flex: 1; /* Take up available space */
+  margin-left: 10px; /* Add spacing between the forms */
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-left: 20px;
+  margin-top: 200px;
+  height:400px;
+  flex-direction: column;
+  border: 2px solid;
+  border-radius: 12px;
+`;
+const FormContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  /* Add any other styles for spacing, alignment, etc. */
 `;
 
 // ModalStyles.js
@@ -54,9 +128,6 @@ const CloseButton = styled.button`
   }
 `;
 
-const SpaceImage = styled(Image)`
-  margin-right: 10px; /* Add some spacing between images */
-`;
 
 const CenteredForm = styled.form`
   width:600px;
@@ -67,8 +138,15 @@ const CenteredForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid #ccc;
+  border: 2px solid;
   border-radius: 12px;
+`;
+
+const TrustPoint = styled.p`
+  font-weight: bold;
+  font-size: 18px;
+  color: #2e7a7e;
+  margin-left: 10px;
 `;
 
 const CenteredForm2 = styled.form`
@@ -79,24 +157,12 @@ const CenteredForm2 = styled.form`
   padding: 10px;
   margin-left: 20px;
   margin-top: 200px;
-  height:150px;
+  height:400px;
   flex-direction: column;
-  border: 2px solid #ccc;
+  border: 2px solid;
   border-radius: 12px;
 `;
 
-const H1 = styled.form`
-  margin-right: 300px;
-`;
-const Editprofile = styled.form`
-  justify-content: center;
-`;
-const StyledImage = styled(Image)`
-  border-radius: 50%;
-  width:35px;
-  height: 35px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
-  `;
 
 const CopyIcon = styled(BiCopy)`
   margin-right: 5px;
@@ -133,10 +199,8 @@ const TextArea = styled.textarea`
 `;
 
 const Button = styled.button`
-  width: 150px;
-  height: 40px;
-  margin-bottom: 20px;
-  padding: 10px 20px;
+  width: 160px;
+  height: 35px;
   color: black;
   border-radius: 13px;
   cursor: pointer;
@@ -147,7 +211,8 @@ const Button = styled.button`
 
 
 const SaveButton = styled.button`
-  width: 150px;
+  margin-right:220px;
+  width: 120px;
   height: 40px;
   margin-bottom: 20px;
   padding: 10px 20px;
@@ -180,7 +245,21 @@ const EditButton = styled.button`
     box-shadow: 0 8px 16px rgba(0, 0, 0, 8);  }
 `;
 
+const ButtonGr = styled.button`
+  width: 100%;
+  height: 40px;
+  padding: 10px 20px;
+  border: none;
+  color: black;
+  background: none;
+  cursor: pointer;
+  :hover {
+    background: linear-gradient(90deg, rgba(243, 243, 243, 1) 0%, rgba(159, 232, 241, 1) 12%, rgba(0, 186, 207, 1) 42%, rgba(46, 117, 126, 1) 83%, rgba(6, 23, 27, 1) 100%);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);  }
+`;
+
 const ImageWrapper = styled.div`
+  margin-right:260px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -189,67 +268,101 @@ const ImageWrapper = styled.div`
   height: 45px;
   border-radius: 50%;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  gap: 10px; /* Add some space between the image and text */
 
 `;
 
 
 const CreateThread: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const router = useRouter();
-  const isSignedIn = window?.walletConnection?.isSignedIn();
-  const accountId = window.accountId;
-  const [description, setDescription] = useState('');
 
+      const [isModalOpen, setIsModalOpen] = useState(false);
+      const [selectedTab, setSelectedTab] = useState('about'); // Add state to track selected tab
+      const router = useRouter();
+      const isSignedIn = window?.walletConnection?.isSignedIn();
+      const accountId = window.accountId;
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    console.log('accountID', accountId);
-    console.log('space:', description);
-  };
+      const handleTabClick = (tab: string) => {
+        setSelectedTab(tab);
+      };
+      const handleSubmit = (event: React.FormEvent) => {
+        event.preventDefault();
+        console.log('accountID', accountId);
+      };
 
-  const handleEditProfileClick = () => {
-    setIsModalOpen(true);
-  };
+      const handleEditProfileClick = () => {
+        setIsModalOpen(true);
+      };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+      const handleCloseModal = () => {
+        setIsModalOpen(false);
+      };
 
   return (
     <div>
     <Container>
       <CenteredForm onSubmit={handleSubmit}>
         <InputWrapper>
+
         <ImageWrapper>
-          <Image src={Image1} alt="Profile" width={35} height={34} border-radius={24} />
-          
+          <Image src={Image1} alt="Profile" width={35} height={34} border-radius={24} />  
         </ImageWrapper>
           <Button className="copy-button">
           <Label htmlFor="title">
 
             <div>
-              {accountId.substr(0, 5) +
-                '...' +
-                accountId.substr(accountId.length - 4, accountId.length)}{' '}
+              {accountId.substr(0, 9) +
+                accountId.substr(accountId.length - 9, accountId.length)}{' '}
                 <CopyIcon />
             </div>
             </Label>
 
           </Button>
+          {User.map((user, index) => (
+    <div key={index}>
+          <TrustPoint>{user.trustpoint} TRUST</TrustPoint>
+          <TrustPoint>Thread Created: {user.threadCreate}</TrustPoint>
+
+          </div>
+            ))}
         </InputWrapper>
         <EditButton type="button" onClick={handleEditProfileClick}>
-          Edit profile
-        </EditButton>
+            Edit profile
+          </EditButton>
+        <ButtonGr onClick={() => handleTabClick('about')}>About</ButtonGr>
+        <ButtonGr onClick={() => handleTabClick('activity')}>Activity</ButtonGr>
+
       </CenteredForm>
+      <FormContainer>
+
       <CenteredForm2>
       <h4>Following Space</h4>
-      <SpaceImage src={Space1} alt="Space 1" width={50} height={100} /><SpaceImage src={Space2} alt="Space 2" width={50} height={100} /><SpaceImage src={Space3} alt="Space 3" width={50} height={100} />
+      <Space>
+    {Followinfo.map((info, index) => (
+      <SpaceItem key={index}>
+        <Image src={info.image} alt="Space" width={35} height={34} style={{ marginRight: '10px' }} />
+        <SpaceTitle>{info.title}</SpaceTitle>
+        <TrustPoint>{info.trustpoint} TRUST</TrustPoint>
 
+      </SpaceItem>
+    ))}
+  </Space>
       </CenteredForm2>
+       <CenteredForm3>
+      <h4>Threads Created </h4>
+
+      <Space>
+    {ThreadCreated.map((info, index) => (
+      <SpaceItem key={index}>
+        <Image src={info.image} alt="Thread" width={35} height={34} style={{ marginRight: '10px' }} />
+        <SpaceTitle>{info.title}</SpaceTitle>
+        <SpaceTitle>{info.stake}Stake</SpaceTitle>
+        <SpaceTitle>{info.type}</SpaceTitle>
+
+      </SpaceItem>
+    ))}
+  </Space>        </CenteredForm3>
+        </FormContainer>
       </Container>
-
-
-
       {isModalOpen && (
         <ModalContainer>
           <ModalContent>

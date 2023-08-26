@@ -83,8 +83,8 @@ export const TP = styled.div`
   top: 0;
   right: 0; /* Đặt bên phải */
   margin-top: 0px;
-
-  color: black;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  color: #4efaa9;
   font-size: 20px;
   font-weight: 600;
 `;
