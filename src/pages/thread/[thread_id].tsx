@@ -98,7 +98,6 @@ const CreateThread: React.FC = () => {
         const isSignedIn = await wallet.startUp();
         if (isSignedIn) {
             const threadDetailData = await wallet.viewMethod({ method: "get_thread_metadata_by_thread_id",args:{"thread_id": thread_id},contractId});
-            console.log(threadDetailData);
             const ThreadArr = [
                 {
                   contractName: threadDetailData.thread_id,
@@ -116,7 +115,7 @@ const CreateThread: React.FC = () => {
     }, [])
 
     const handleBackClick = () => {
-      router.push('/thread');
+      router.push(`/space/${space_id}`);
     };
 
   

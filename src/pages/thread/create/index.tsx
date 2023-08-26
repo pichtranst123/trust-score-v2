@@ -143,19 +143,18 @@ const Option = styled.option`
     
 
       const handleBackClick = () => {
-        router.push('/thread');
+        router.push(`/space/${router.query.space_id}`);
       };
 
       const [title, setTitle] = useState('');
       const [stake, setStake] = useState('');
-      const [ThreadID, setThreadID] = useState('');
       const [description, setDescription] = useState('');
       const [voteType, setVoteType] = useState('Basic');
       const [contractIdFraud, setContractIdFraud] = useState('');
       
       const contractId = "dev-1692873860524-71333580447043";
       const wallet = new Wallet({ createAccessKeyFor: contractId  });
-    console.log(router.query);
+
       useEffect(() => {
         const startUp = async () => {
           const isSignedIn = await wallet.startUp();
@@ -173,13 +172,21 @@ const Option = styled.option`
         console.log(spaceData);
 
         if (voteType == "Basic") {
-            const voteAction =  await wallet.callMethod({ method: "create_thread",args:{"title": title, "content": description, "media_link":"bafkreifko42xz73mizlglr235icoexdicld5xqutbsymwph4fvnoktvnym", "init_point": parseInt(stake), "space_name": spaceData.space_name, "start_time": Math.floor(+new Date() / 1000).toString() , "end_time":(Math.floor(+new Date() / 1000) + 1 * 24 * 60 * 60).toString(), "options": ["No", "Yes"], "thread_mode": 1},contractId})
+            const voteAction =  await wallet.callMethod({ method: "create_thread",args:{"title": title, "content": description, "media_link":"bafkreifko42xz73mizlglr235icoexdicld5xqutbsymwph4fvnoktvnym", "init_point": parseInt(stake), "space_name": spaceData.space_name, "start_time": Date.now().toString(), "end_time":(Date.now() + 60*60*1000).toString(), "options": ["No", "Yes"], "thread_mode": 1},contractId})
             console.log(voteAction);
             router.push(`/thread/${voteAction.thread_id}`);
         }
         if (voteType == "Fraud") {
+            console.log("acheck");
+            const userData = await wallet.viewMethod({ method: "get_user_metadata_by_user_id",args:{"user_id": contractIdFraud},contractId});
+            console.log(userData);
+            if(userData){
+                const voteAction =  await wallet.callMethod({ method: "create_thread",args:{"title": title, "content": description, "media_link":"bafkreifko42xz73mizlglr235icoexdicld5xqutbsymwph4fvnoktvnym", "init_point": parseInt(stake), "space_name": spaceData.space_name, "start_time": Date.now().toString() , "end_time":(Date.now() + 60*60*1000).toString(), "options": [contractIdFraud, wallet.accountId] , "partner_id":contractIdFraud , "thread_mode": 0},contractId})
+                console.log(voteAction);
+                router.push(`/thread/${voteAction.thread_id}`);
+            }
             //check user Exist before create 
-            const voteAction =  await wallet.callMethod({ method: "create_thread",args:{"title": title, "content": description, "media_link":"bafkreifko42xz73mizlglr235icoexdicld5xqutbsymwph4fvnoktvnym", "init_point": stake, "space_name": spaceData.space_name, "start_time": Math.floor(+new Date() / 1000) , "end_time":Math.floor(+new Date() / 1000) + 1 * 24 * 60 * 60, "options": [contractIdFraud, wallet.accountId] , "partner_id":contractIdFraud , "thread_mode": 0},contractId})
+           
         }   
       };
 
@@ -199,9 +206,6 @@ const Option = styled.option`
         </InputWrapper>
         <InputWrapper>
           <Input placeholder='Stake' type="number" id="Stake" value={stake} onChange={(e) => setStake(e.target.value)} />
-        </InputWrapper>
-        <InputWrapper>
-          <Input placeholder='ThreadID' type="number" id="ThreadID" value={ThreadID} onChange={(e) => setThreadID(e.target.value)} />
         </InputWrapper>
         <InputWrapper>
           <TextArea placeholder='Description' id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
