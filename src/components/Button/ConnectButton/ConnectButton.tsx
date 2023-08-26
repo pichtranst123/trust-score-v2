@@ -14,7 +14,7 @@ const ConnectButton: React.FC<ConnectButtonProps> = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [accountId, setAccountId] = useState(false);
-  const contractId = "dev-1692873860524-71333580447043";
+  const contractId = "dev-1693051165842-29900861144051";
   // When creating the wallet you can optionally ask to create an access key
   // Having the key enables to call non-payable methods without interrupting the user to sign
   const wallet = new Wallet({ createAccessKeyFor: contractId });
@@ -28,11 +28,18 @@ const ConnectButton: React.FC<ConnectButtonProps> = () => {
       if(isSignedIn){
         setAccountId(wallet.accountId);
         const checkUserExist = await wallet.viewMethod({ method: "get_user_metadata_by_user_id",args:{"user_id":wallet.accountId},contractId})
-        console.log(checkUserExist);
+
+        
         if(!checkUserExist){
             await wallet.callMethod({ method: "create_user",args:{"nickname":"","first_name":"","last_name":"", "bio":"this is my bio" ,"avatar":"bafkreibnaelo4monu6jpndqtb3pmza22j7k77gcak3xrux6mrkdq5fakuu"},contractId})
-            await wallet.callMethod({ method: "active_user_role",args:{"user_id":wallet.accountId},contractId});
+            if(checkUserExist.metadata.role == "Unverified"){
+              await wallet.callMethod({ method: "active_user_role",args:{"user_id":wallet.accountId},contractId});
+            } 
             console.log("register done");
+        }else{
+          if(checkUserExist.metadata.role == "Unverified"){
+            await wallet.callMethod({ method: "active_user_role",args:{"user_id":wallet.accountId},contractId});
+          }
         }
       }
       

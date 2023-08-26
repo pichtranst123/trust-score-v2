@@ -82,14 +82,11 @@ const Title = styled.p`
   align-items: center;
   justify-content: center;`;
 
-const Yes = styled.p`
+const voted = styled.p`
   font-weight:bold;
   font-size:20px;`;
 
-const No = styled.p`
-  font-weight:bold;
-  font-size:20px;
-`;
+
 
 const Stake = styled.p`
   color: green;
@@ -112,13 +109,14 @@ const StyledImage = styled(Image)`
 const CreateThread: React.FC = () => {
   const [threadDetail, setThreadDetail] = useState(null);
   const [choice, setChoice] = useState(null);
+  const [choicesRate, setChoicesRate] = useState(null);
   const [selectedOption, setSelectedOption] = useState<string>("");
   const router = useRouter();
   const {
     query: { thread_id },
   } = router;
 
-  const contractId = "dev-1692873860524-71333580447043";
+  const contractId = "dev-1693051165842-29900861144051";
   const wallet = new Wallet({ createAccessKeyFor: contractId });
 
   useEffect(() => {
@@ -157,6 +155,17 @@ const CreateThread: React.FC = () => {
             choices_map.push({ [key] : threadDetailData.choices_map[key]});
         })
         setChoice(choices_map);
+
+        if(threadDetailData.choices_rating){
+            const voteData = [];
+            Object.keys(threadDetailData.choices_map).forEach((key, index) => {
+                const a = threadDetailData.choices_map[key];
+                voteData.push({ [a] : threadDetailData.choices_rating[index]});
+            })
+            console.log(voteData);
+            setChoicesRate(voteData);
+        }
+
       }
     };
 
@@ -164,7 +173,7 @@ const CreateThread: React.FC = () => {
   }, []);
 
   const handleBackClick = () => {
-    alert('a');
+    //alert('a');
     //router.push(`/space/${space_id}`);
   };
 
@@ -199,6 +208,7 @@ const CreateThread: React.FC = () => {
                   }
               });
           }
+
     }
     
   };
@@ -258,21 +268,30 @@ const CreateThread: React.FC = () => {
             threadDetail.map((thread, index) => (
               <Stake key={index}>{thread.stake} Stack Thread</Stake>
             ))}
-          <hr />
-          <h4>Result</h4>
-          <hr />
-          {selectedOption && (
+
+                <hr />
+                <h4>Result</h4>
+                <hr />
+                {selectedOption && (
             <>
-              {threadDetail &&
-                threadDetail.map((thread, index) => (
-                  <Yes key={index}>Yes: {thread.yes}%</Yes>
+                {threadDetail &&
+            threadDetail.map((thread, index) => (
+              <Stake key={index}>{thread.stake} Stack Thread</Stake>
+            ))}
+                <hr />
+                <h4>Result</h4>
+                <hr />
+              {choicesRate &&
+                choicesRate.map((item, index) => (
+                    <>
+                <voted key={index}>{Object.keys(item)} : {Object.values(item)} TP</voted>
+                  <hr />
+                    </>
+
                 ))}
-              <hr />
-              {threadDetail.map((thread, index) => (
-                <No key={index}>No: {thread.no}%</No>
-              ))}
-            </>
+               </>
           )}
+              
         </Container>
       </CenteredForm>
     </div>
