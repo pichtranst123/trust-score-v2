@@ -118,16 +118,13 @@ const CreateThread: React.FC = () => {
     const handleBackClick = () => {
       router.push('/thread');
     };
-  
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [selectedOption, setSelectedOption] = useState<string>('');
+
   
     const handleOptionClick = async(option: number) => {
+       
         await wallet.startUp();
         const voteAction =  await wallet.callMethod({ method: "vote_thread",args:{"thread_id":thread_id, "choice_number": option, "point": 50},contractId})
-        console.log(voteAction);
-      //setSelectedOption(option);
+   
     };
   
     const handleSubmit = (event: React.FormEvent) => {
@@ -158,7 +155,7 @@ const CreateThread: React.FC = () => {
             ))}
             <ButtonVote
               type="button"
-              selected={selectedOption === 'Choose1'}
+             // selected={selectedOption === 'Choose1'}
               onClick={() => handleOptionClick(0)}
             >
               Yes<span className="checkmark">✓</span>
@@ -166,7 +163,7 @@ const CreateThread: React.FC = () => {
             <br />
             <ButtonVote
               type="button"
-              selected={selectedOption === 'Choose2'}
+             // selected={selectedOption === 'Choose2'}
               onClick={() => handleOptionClick(1)}
             >
               No<span className="checkmark">✓</span>

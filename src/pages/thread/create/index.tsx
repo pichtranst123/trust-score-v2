@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import styled from 'styled-components';
 import { BiArrowBack } from "react-icons/bi";
 import { useRouter } from 'next/router';
+import { Wallet } from "../../../near/near-wallet";
 
 const CenteredForm = styled.form`
   margin-top:20%;
@@ -147,20 +148,39 @@ const Option = styled.option`
 
       const [title, setTitle] = useState('');
       const [stake, setStake] = useState('');
-
       const [ThreadID, setThreadID] = useState('');
-
       const [description, setDescription] = useState('');
-      const [voteType, setVoteType] = useState('Basic'); 
+      const [voteType, setVoteType] = useState('Basic');
+      const [contractIdFraud, setContractIdFraud] = useState('');
+      
+      const contractId = "dev-1692873860524-71333580447043";
+      const wallet = new Wallet({ createAccessKeyFor: contractId  });
+    console.log(router.query);
+      useEffect(() => {
+        const startUp = async () => {
+          const isSignedIn = await wallet.startUp();
+        };
+      
+        startUp()
+          .catch(console.error);
+      }, [])
 
-
-      const handleSubmit = (event: React.FormEvent) => {
+      const handleSubmit = async(event: React.FormEvent) => {
         event.preventDefault();
-        console.log('Title:', title);
-        console.log('Title:', stake);
 
-        console.log('Description:', description);
-        console.log('Vote Type:', voteType);
+        await wallet.startUp();
+        const spaceData = await wallet.viewMethod({ method: "get_space_metadata_by_space_id",args:{"space_id": router.query.space_id},contractId});
+        console.log(spaceData);
+
+        if (voteType == "Basic") {
+            const voteAction =  await wallet.callMethod({ method: "create_thread",args:{"title": title, "description": description, "media_link":"bafkreifko42xz73mizlglr235icoexdicld5xqutbsymwph4fvnoktvnym", "init_point": parseInt(stake), "space_name": spaceData.space_name, "start_time": Math.floor(+new Date() / 1000).toString() , "end_time":(Math.floor(+new Date() / 1000) + 1 * 24 * 60 * 60).toString(), "options": ["No", "Yes"], "thread_mode": 1},contractId})
+            console.log(voteAction);
+            router.push(`/thread/${voteAction.thread_id}`);
+        }
+        if (voteType == "Fraud") {
+            //check user Exist before create 
+            const voteAction =  await wallet.callMethod({ method: "create_thread",args:{"title": title, "description": description, "media_link":"bafkreifko42xz73mizlglr235icoexdicld5xqutbsymwph4fvnoktvnym", "init_point": stake, "space_name": spaceData.space_name, "start_time": Math.floor(+new Date() / 1000) , "end_time":Math.floor(+new Date() / 1000) + 1 * 24 * 60 * 60, "options": [contractIdFraud, wallet.accountId] , "partner_id":contractIdFraud , "thread_mode": 0},contractId})
+        }   
       };
 
   return (
@@ -201,15 +221,11 @@ const Option = styled.option`
           <>
             <ButtonVote
               type="button"
-              selected={selectedOption === true}
-              onClick={() => handleVoteClick(true)}
             >
               Yes<span className="checkmark">✓</span>
             </ButtonVote>
             <ButtonVote
               type="button"
-              selected={selectedOption === false}
-              onClick={() => handleVoteClick(false)}
             >
               No<span className="checkmark">✓</span>
             </ButtonVote>
@@ -218,7 +234,7 @@ const Option = styled.option`
         {voteType === 'Fraud' && (
           <>
             <InputWrapper>
-              <Input placeholder='Contact Name' type="text" id="name_user_B" />
+              <Input placeholder='Contact Name' type="text" value={contractIdFraud} onChange={(e) => setContractIdFraud(e.target.value)} id="name_user_B" />
             </InputWrapper>
 
           </>

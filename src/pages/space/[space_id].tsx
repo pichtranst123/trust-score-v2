@@ -120,7 +120,7 @@ const ThreadPage: React.FC = () => {
       .catch(console.error);
   }, [])
   const handleBackClick = () => {
-    router.push('/thread/create');
+    router.push(`/thread/create?space_id=${space_id}`);
   };
 
   return (
