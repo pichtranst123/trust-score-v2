@@ -173,13 +173,13 @@ const Option = styled.option`
         console.log(spaceData);
 
         if (voteType == "Basic") {
-            const voteAction =  await wallet.callMethod({ method: "create_thread",args:{"title": title, "description": description, "media_link":"bafkreifko42xz73mizlglr235icoexdicld5xqutbsymwph4fvnoktvnym", "init_point": parseInt(stake), "space_name": spaceData.space_name, "start_time": Math.floor(+new Date() / 1000).toString() , "end_time":(Math.floor(+new Date() / 1000) + 1 * 24 * 60 * 60).toString(), "options": ["No", "Yes"], "thread_mode": 1},contractId})
+            const voteAction =  await wallet.callMethod({ method: "create_thread",args:{"title": title, "content": description, "media_link":"bafkreifko42xz73mizlglr235icoexdicld5xqutbsymwph4fvnoktvnym", "init_point": parseInt(stake), "space_name": spaceData.space_name, "start_time": Math.floor(+new Date() / 1000).toString() , "end_time":(Math.floor(+new Date() / 1000) + 1 * 24 * 60 * 60).toString(), "options": ["No", "Yes"], "thread_mode": 1},contractId})
             console.log(voteAction);
             router.push(`/thread/${voteAction.thread_id}`);
         }
         if (voteType == "Fraud") {
             //check user Exist before create 
-            const voteAction =  await wallet.callMethod({ method: "create_thread",args:{"title": title, "description": description, "media_link":"bafkreifko42xz73mizlglr235icoexdicld5xqutbsymwph4fvnoktvnym", "init_point": stake, "space_name": spaceData.space_name, "start_time": Math.floor(+new Date() / 1000) , "end_time":Math.floor(+new Date() / 1000) + 1 * 24 * 60 * 60, "options": [contractIdFraud, wallet.accountId] , "partner_id":contractIdFraud , "thread_mode": 0},contractId})
+            const voteAction =  await wallet.callMethod({ method: "create_thread",args:{"title": title, "content": description, "media_link":"bafkreifko42xz73mizlglr235icoexdicld5xqutbsymwph4fvnoktvnym", "init_point": stake, "space_name": spaceData.space_name, "start_time": Math.floor(+new Date() / 1000) , "end_time":Math.floor(+new Date() / 1000) + 1 * 24 * 60 * 60, "options": [contractIdFraud, wallet.accountId] , "partner_id":contractIdFraud , "thread_mode": 0},contractId})
         }   
       };
 
