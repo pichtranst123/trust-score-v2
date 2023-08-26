@@ -27,6 +27,13 @@ const ConnectButton: React.FC<ConnectButtonProps> = () => {
       console.log(isSignedIn);
       if(isSignedIn){
         setAccountId(wallet.accountId);
+        const checkUserExist = await wallet.viewMethod({ method: "get_user_metadata_by_user_id",args:{"user_id":wallet.accountId},contractId})
+        console.log(checkUserExist);
+        if(!checkUserExist){
+            await wallet.callMethod({ method: "create_user",args:{"nickname":"","first_name":"","last_name":"", "bio":"this is my bio" ,"avatar":"bafkreibnaelo4monu6jpndqtb3pmza22j7k77gcak3xrux6mrkdq5fakuu"},contractId})
+            await wallet.callMethod({ method: "active_user_role",args:{"user_id":wallet.accountId},contractId});
+            console.log("register done");
+        }
       }
       
       setIsSignedIn(isSignedIn);
