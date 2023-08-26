@@ -164,7 +164,8 @@ const CreateThread: React.FC = () => {
   }, []);
 
   const handleBackClick = () => {
-    router.push(`/space/${space_id}`);
+    alert('a');
+    //router.push(`/space/${space_id}`);
   };
 
   const handleOptionClick = async (option: number) => {
@@ -175,7 +176,31 @@ const CreateThread: React.FC = () => {
       args: { thread_id: thread_id, choice_number: option, point: 50 },
       contractId,
     });
-    console.log(voteAction);
+    if (voteAction == 'OK') {
+        const threadDetailData = await wallet.viewMethod({
+            method: "get_thread_metadata_by_thread_id",
+            args: { thread_id: thread_id },
+            contractId,
+          });
+          console.log(threadDetailData);
+          
+          const ThreadArr = [
+            {
+              contractName: threadDetailData.thread_id,
+              title: threadDetailData.title,
+              description: threadDetailData.content,
+            },
+          ];
+          setThreadDetail(ThreadArr);
+          if(threadDetailData.user_votes_map[wallet.accountId]){
+              threadDetailData.user_votes_map[wallet.accountId].forEach((item,index) => {
+                  if (item>0) {
+                      setSelectedOption(index);
+                  }
+              });
+          }
+    }
+    
   };
 
   const handleSubmit = (event: React.FormEvent) => {
