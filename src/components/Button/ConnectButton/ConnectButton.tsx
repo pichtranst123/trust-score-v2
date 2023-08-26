@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MenuPlaceholder from "./MenuPlaceholer";
 
 // @styled-components
-import { Layout } from "./ConnectButton.styled";
+import { Button } from "./ConnectButton.styled";
 
 // @near
 import { login } from "near/utils";
@@ -17,10 +17,10 @@ const ConnectButton: React.FC<ConnectButtonProps> = () => {
 
   const handleLogin = () => {
     if (isSignedIn) {
-      setIsMenuOpen(!isMenuOpen); // Đảo ngược trạng thái mở/đóng khi nhấn nút "Wallet Connect"
+      setIsMenuOpen(!isMenuOpen);
     } else {
-      setIsMenuOpen(!isMenuOpen); // Mở menu placeholder khi chưa đăng nhập và nhấn nút "Wallet Connect"
-      login(); // Thực hiện login khi nhấn nút "Wallet Connect"
+      setIsMenuOpen(!isMenuOpen); 
+      login(); 
     }
   };
 
@@ -29,7 +29,7 @@ const ConnectButton: React.FC<ConnectButtonProps> = () => {
   };
 
   return (
-    <Layout>
+    <Button>
       <div onClick={handleLogin}>
         {isSignedIn ? (
           <div>
@@ -42,7 +42,7 @@ const ConnectButton: React.FC<ConnectButtonProps> = () => {
         )}
       </div>
       {isMenuOpen && isSignedIn && <MenuPlaceholder isOpen={isMenuOpen} onClose={handleMenuClose} />} {}
-    </Layout>
+    </Button>
   );
 };
 

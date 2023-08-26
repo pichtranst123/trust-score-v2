@@ -4,10 +4,11 @@ import { BiArrowBack } from "react-icons/bi";
 import { useRouter } from 'next/router';
 
 const CenteredForm = styled.form`
-  margin-top:20%;
+  margin-top:5  %;
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 `;
 
 const BackIcon = styled(BiArrowBack)`
@@ -28,6 +29,8 @@ const Input = styled.input`
   padding: 5px;
   border: 2px solid;
   border-radius: 4px;
+  background: #ccc;
+
 `;
 
 const TextArea = styled.textarea`
@@ -35,12 +38,15 @@ const TextArea = styled.textarea`
   padding: 5px;
   border: 2px solid;
   border-radius: 4px;
+  background: #ccc;
+
 `;
 
 const Select = styled.select`
   padding: 5px;
   border: 2px solid;
   border-radius: 8px;
+  background: #ccc;
 `;
 
 const ContainerWithBorder = styled.div`
@@ -49,49 +55,57 @@ const ContainerWithBorder = styled.div`
   padding: 20px;
   border-radius: 10px;
   margin-top: 20px;
+  --bg-color: #7efefe;
+  --main-color: #323232;
+    box-shadow: 4px 4px var(--main-color);
+  background: var(--bg-color);
+  border: 2px solid var(--main-color);
 `;  
 
 const ButtonCreate = styled.button`
-  margin-right: 380px;
+  margin-right: 340px;
   padding: 10px 20px;
   border: 3px solid;
   color: black;
-  background:none;
   border-radius: 13px;
   cursor: pointer;
-  :hover {
-    background: linear-gradient(
-      90deg,
-      rgba(243, 243, 243, 1) 0%,
-      rgba(159, 232, 241, 1) 12%,
-      rgba(0, 186, 207, 1) 42%,
-      rgba(46, 117, 126, 1) 83%,
-      rgba(6, 23, 27, 1) 100%
-    );
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
+  &:active {
+    box-shadow: none;
+    transform: translate(3px, 3px);
   }
+    font-size: 14px;
+  color: black;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 24px;
+  border: 2px solid;
+  background: #7efefe;
+  box-shadow: 5px 5px black;
+  cursor: pointer;
+
+&:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
 `;
 
 
 
 const Button = styled.button`
   margin-right: 405px;
-  padding: 10px 20px;
-  border: 3px solid;
+  font-size: 14px;
   color: black;
-  background: none;
-  border-radius: 13px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 24px;
+  border: 2px solid;
+  background: #7efefe;
+  box-shadow: 5px 5px black;
   cursor: pointer;
-  :hover {
-    background: linear-gradient(
-      90deg,
-      rgba(243, 243, 243, 1) 0%,
-      rgba(159, 232, 241, 1) 12%,
-      rgba(0, 186, 207, 1) 42%,
-      rgba(46, 117, 126, 1) 83%,
-      rgba(6, 23, 27, 1) 100%
-    );
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
+  margin-top: 55px;
+
+&:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
   }
 `;
 
@@ -101,26 +115,18 @@ const ButtonVote = styled.button`
   height: 33px;
   padding: 10px 20px;
   border: 2px solid;
-  color: ${props => (props.selected ? 'white' : 'black')};
-  background-color: ${props => (props.selected ? '#CCC' : 'transparent')};
+  color: ${props => (props.selected ? 'black' : 'black')};
+  background-color: ${props => (props.selected ? 'Green' : '#ccc')};
   border-radius: 13px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center; /* Canh giữa nội dung trong nút */
+  justify-content: center;
   position: relative;
-  :hover {
-    background: linear-gradient(
-      90deg,
-      rgba(243, 243, 243, 1) 0%,
-      rgba(159, 232, 241, 1) 12%,
-      rgba(0, 186, 207, 1) 42%,
-      rgba(46, 117, 126, 1) 83%,
-      rgba(6, 23, 27, 1) 100%
-    );
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
-  }
-
+  &:active {
+    box-shadow: none;
+    transform: translate(3px, 3px);
+    }
   .checkmark {
     display: ${props => (props.selected ? 'block' : 'none')};
     margin-left: 5px;
@@ -128,7 +134,7 @@ const ButtonVote = styled.button`
   }
 }`;
 
-const Option = styled.option`
+const Option = styled.option` 
 `;
 
       const CreateThread: React.FC = () => {
@@ -227,7 +233,8 @@ const Option = styled.option`
         <br />
         <ButtonCreate type="submit">Create Thread</ButtonCreate>
       </CenteredForm>
-      <br /><br />
+      <br /><br />      <br /><br />
+
     </div>
   );
 };

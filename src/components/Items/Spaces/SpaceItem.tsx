@@ -36,7 +36,7 @@ const Container: React.FC<{ data: Props }> = ({ data }) => {
       </ImageLayout>
       <Title>{data.title}</Title>
       <Des>{data.description}</Des>
-      <TP>{data.trustpoint} TP</TP>
+      <TP>{data.trustpoint} Trust</TP>
       <Detail>
         <Follower>{data.follower}</Follower>
         <Icons >              

@@ -6,16 +6,17 @@ import { useRouter } from 'next/router';
 const Button = styled.button`
   cursor: pointer;
   position: relative;
-  padding: 10px 24px;
   font-size: 18px;
   color: black;
-  border: 2px solid;
-  border-radius: 34px;
-  background-color: transparent;
+  border-radius: 10px;
   font-weight: 600;
   transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
   overflow: hidden;
+  position: absolute;
+  margin-bottom: 20px;
 
+  bottom: 0;
+  left: 10;
   &::before {
     content: '';
     position: absolute;
@@ -29,7 +30,6 @@ const Button = styled.button`
     background: linear-gradient(90deg, rgba(243, 243, 243, 1) 0%, rgba(159, 232, 241, 1) 12%, rgba(0, 186, 207, 1) 42%, rgba(46, 117, 126, 1) 83%, rgba(6, 23, 27, 1) 100%);
     transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
   }
-
   &:hover::before {
     transform: scale(3);
   }
@@ -43,6 +43,19 @@ const Button = styled.button`
   &:active {
     transform: scale(1);
   }
+  font-size: 14px;
+  color: black;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 24px;
+  border: 2px solid;
+  background: #7efefe;
+  box-shadow: 5px 5px black;
+  cursor: pointer;
+
+&:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
 `;
 
 // @styled-components

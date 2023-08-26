@@ -7,7 +7,6 @@ const backgroundImageUrl = bg.src;
 
 export const Layout = styled.div`
   width: 100%;
-  background-image: url(${backgroundImageUrl});
   background-size: cover;
   background-position: center top;
   padding: 320px 0px 150px 0px;
@@ -62,53 +61,23 @@ export const Text = styled.div`
 `;
 
 export const Button = styled.div`
-  position: relative;
-  border-radius:24px;
-  transition: all 0.4s ease-in-out;
-  border: 2px solid;
-  height: 56px;
+  width:2ê0px;
   display: flex;
-  justify-content: center;
   align-items: center;
-
+  gap: 10px;
+  font-size: 14px;
   color: black;
-  background: white;
-  font-size: 20px;
-
-  & > *:not(:last-child) {
-    margin-right: 20px;
-  }
-
-  padding: 0px 45px 0px 35px;
-
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 24px;
+  border: 2px solid;
+  background: #7efefe;
+  box-shadow: 5px 5px black;
   cursor: pointer;
 
-  :hover,
-  :focus {
-    color: black;
-    background: linear-gradient(90deg, rgba(243,243,243,1) 0%, rgba(159,232,241,1) 12%, rgba(0,186,207,1) 42%, rgba(46,117,126,1) 83%, rgba(6,23,27,1) 100%);      transform: scaleX(1);
-    box-shadow: 0 16px 20px rgba(0, 0, 0, 8);
-
-  }
-
-  ::before {
-    position: absolute;
-    content: "";
-    top: -10px;
-    left: -10px;
-    border: 10px solid transparent;
-    -webkit-transform: rotate(135deg);
-    transform: rotate(135deg);
-  }
-  ::after {
-    position: absolute;
-    content: "";
-    bottom: -10px;
-    right: -10px;
-    border: 10px solid transparent;
-    -webkit-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-  }
+&:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
   @media screen and (max-width: 768px) {
     width: 100%;
     background-image: url(${backgroundImageUrl});

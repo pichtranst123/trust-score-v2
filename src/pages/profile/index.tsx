@@ -8,7 +8,6 @@ import Space2 from "assets/png/pancakeswap.png";
 import Space3 from "assets/png/uniswap.webp";
 
 import Image from 'next/image';
-import { ButtonGroup } from 'Layout/AppLayout/Header/Header.styled';
 
 const Space = styled.div`
 display: flex;
@@ -70,8 +69,9 @@ const Container = styled.div`
 
 
 const CenteredForm3 = styled.form`
+  border-radius: 24px;
   margin-top:200px;
-
+  background: white;
   flex: 1; /* Take up available space */
   margin-left: 10px; /* Add spacing between the forms */
   display: flex;
@@ -82,7 +82,12 @@ const CenteredForm3 = styled.form`
   height:400px;
   flex-direction: column;
   border: 2px solid;
-  border-radius: 12px;
+  --bg-color: #fff;
+  --main-color: #323232;
+    box-shadow: 8px 8px var(--main-color);
+  background: var(--bg-color);
+  border: 1px solid var(--main-color);
+  border-radius: 10px;
 `;
 const FormContainer = styled.div`
   display: flex;
@@ -108,13 +113,14 @@ const ModalContent = styled.div`
   background-color: white;
   padding: 20px;
   border-radius: 8px;
+  background: white;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
   max-width: 80%;
   text-align: center;
 `;
 
 const CloseButton = styled.button`
-  background-color: #f0f0f0;
+  background-color: #7efefe;
   border: none;
   border-radius: 4px;
   top:0;
@@ -122,16 +128,13 @@ const CloseButton = styled.button`
   cursor: pointer;
   font-weight: bold;
   margin-left: 400px;
-
-  &:hover {
-    background-color: #ccc;
-  }
 `;
 
 
 const CenteredForm = styled.form`
-  width:600px;
-  height:400px;
+  width:400px;
+  height:317px;
+  background: white;
   flex: 1;
   margin-right: 10px;
   margin-top: 200px;
@@ -139,7 +142,14 @@ const CenteredForm = styled.form`
   flex-direction: column;
   align-items: center;
   border: 2px solid;
-  border-radius: 12px;
+  border-radius: 25px;
+  --bg-color: #fff;
+  --main-color: #323232;
+    box-shadow: 8px 8px var(--main-color);
+  background: var(--bg-color);
+  border: 1px solid var(--main-color);
+  border-radius: 26px;
+
 `;
 
 const TrustPoint = styled.p`
@@ -150,6 +160,7 @@ const TrustPoint = styled.p`
 `;
 
 const CenteredForm2 = styled.form`
+  background: white;
   flex: 1; /* Take up available space */
   margin-left: 10px; /* Add spacing between the forms */
   display: flex;
@@ -158,9 +169,16 @@ const CenteredForm2 = styled.form`
   margin-left: 20px;
   margin-top: 200px;
   height:400px;
+  width:300px;
   flex-direction: column;
   border: 2px solid;
-  border-radius: 12px;
+  border-radius: 24px;
+  --bg-color: #fff;
+  --main-color: #323232;
+    box-shadow: 8px 8px var(--main-color);
+  background: var(--bg-color);
+  border: 1px solid var(--main-color);
+  border-radius: 10px;
 `;
 
 
@@ -201,9 +219,22 @@ const TextArea = styled.textarea`
 const Button = styled.button`
   width: 160px;
   height: 35px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 8px;
+  font-weight:bold
   color: black;
-  border-radius: 13px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 24px;
+  border: 2px solid;
+  background: #7efefe;
+  box-shadow: 5px 5px black;
   cursor: pointer;
+  &:active {
+    box-shadow: none;
+    transform: translate(3px, 3px);
   :hover {
     border: 3px solid;
   }
@@ -211,47 +242,68 @@ const Button = styled.button`
 
 
 const SaveButton = styled.button`
-  margin-right:220px;
-  width: 120px;
+  margin-left:40px;
+  width: 80px;
   height: 40px;
-  margin-bottom: 20px;
-  padding: 10px 20px;
-  border: 1px solid;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
   color: black;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 24px;
   border: 2px solid;
-  background: none;
-  border-radius: 13px;
+  background: #7efefe;
+  box-shadow: 5px 5px black;
   cursor: pointer;
-  :hover {
-    border: 3px solid;
-  }
+
+&:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
 `;
 
 const EditButton = styled.button`
   width: 200px;
   height: 40px;
-  margin-left: 30px;
-  margin-right: 30px;
-  margin-bottom: 20px;
-  padding: 10px 20px;
-  border: 1px solid;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
   color: black;
-  border: 2px solid;
-  background: none;
+  text-transform: uppercase;
+  padding: 10px 20px;
   border-radius: 24px;
+  border: 2px solid;
+  background: #7efefe;
+  box-shadow: 5px 5px black;
+  cursor: pointer;
+
+&:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
+`;
+
+const ButtonGr1 = styled.button`
+  width: 100%;
+  height: 40px;
+  padding: 10px 20px;
+  border-radius: 0px 0px 26px 26px;
+  color: black;
+  border:none;
+  background: #7efefe;
   cursor: pointer;
   :hover {
     background: linear-gradient(90deg, rgba(243, 243, 243, 1) 0%, rgba(159, 232, 241, 1) 12%, rgba(0, 186, 207, 1) 42%, rgba(46, 117, 126, 1) 83%, rgba(6, 23, 27, 1) 100%);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 8);  }
 `;
-
 const ButtonGr = styled.button`
   width: 100%;
   height: 40px;
   padding: 10px 20px;
-  border: none;
   color: black;
-  background: none;
+  border:none;
+  background: #7efefe;
   cursor: pointer;
   :hover {
     background: linear-gradient(90deg, rgba(243, 243, 243, 1) 0%, rgba(159, 232, 241, 1) 12%, rgba(0, 186, 207, 1) 42%, rgba(46, 117, 126, 1) 83%, rgba(6, 23, 27, 1) 100%);
@@ -319,7 +371,6 @@ const CreateThread: React.FC = () => {
           </Button>
           {User.map((user, index) => (
     <div key={index}>
-          <TrustPoint>{user.trustpoint} TRUST</TrustPoint>
           <TrustPoint>Thread Created: {user.threadCreate}</TrustPoint>
 
           </div>
@@ -328,18 +379,18 @@ const CreateThread: React.FC = () => {
         <EditButton type="button" onClick={handleEditProfileClick}>
             Edit profile
           </EditButton>
+          <br />
         <ButtonGr onClick={() => handleTabClick('about')}>About</ButtonGr>
-        <ButtonGr onClick={() => handleTabClick('activity')}>Activity</ButtonGr>
+        <ButtonGr1 onClick={() => handleTabClick('activity')}>Activity</ButtonGr1>
 
       </CenteredForm>
       <FormContainer>
 
       <CenteredForm2>
-      <h4>Following Space</h4>
+      <TrustPoint>Following Space</TrustPoint>
       <Space>
     {Followinfo.map((info, index) => (
       <SpaceItem key={index}>
-        <Image src={info.image} alt="Space" width={35} height={34} style={{ marginRight: '10px' }} />
         <SpaceTitle>{info.title}</SpaceTitle>
         <TrustPoint>{info.trustpoint} TRUST</TrustPoint>
 
@@ -348,14 +399,13 @@ const CreateThread: React.FC = () => {
   </Space>
       </CenteredForm2>
        <CenteredForm3>
-      <h4>Threads Created </h4>
+      <TrustPoint>Threads Created </TrustPoint>
 
       <Space>
     {ThreadCreated.map((info, index) => (
       <SpaceItem key={index}>
-        <Image src={info.image} alt="Thread" width={35} height={34} style={{ marginRight: '10px' }} />
         <SpaceTitle>{info.title}</SpaceTitle>
-        <SpaceTitle>{info.stake}Stake</SpaceTitle>
+        <TrustPoint>{info.stake}Stake</TrustPoint>
         <SpaceTitle>{info.type}</SpaceTitle>
 
       </SpaceItem>
@@ -367,7 +417,7 @@ const CreateThread: React.FC = () => {
         <ModalContainer>
           <ModalContent>
           <CloseButton onClick={handleCloseModal}>x</CloseButton>
-            <h1>Edit Profile</h1>
+            <h1>EDIT PROFILE</h1>
 
             <Input type="text" placeholder='Name' />
             <br/>
@@ -379,7 +429,10 @@ const CreateThread: React.FC = () => {
         </ModalContainer>
       )}
       <br />
+      <br /><br />
+      <br /><br />
       <br />
+      
     </div>
   );
 };

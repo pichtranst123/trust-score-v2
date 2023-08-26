@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 // @styled-component
-import { Layout, MainLayout, ItemLayout, Title,  } from "./Space.styled";
+import { Layout, MainLayout, ItemLayout, Title} from "./Space.styled";
 
 // @component
 import { Spaces } from "components/Items";
@@ -19,6 +19,7 @@ import Image6 from "assets/png/op.png";
 
 const NameSpace = styled.input`
   width: 100%;
+  background: #ccc;
   padding: 8px;
   border: 2px solid;
   border-radius: 4px;
@@ -28,6 +29,7 @@ const NameSpace = styled.input`
 const IdSpace = styled.input`
   width: 100%;
   padding: 8px;
+  background: #ccc;
   border: 2px solid;
   border-radius: 4px;
   margin-bottom: 10px;
@@ -37,11 +39,14 @@ const Description = styled.textarea`
   width: 100%;
   height: 130px;
   padding: 8px;
+  background: #ccc;
   border: 2px solid;
   border-radius: 4px;
   resize: vertical;
   margin-bottom: 10px;
 `;
+
+
 
 const Modal = styled.div`
   position: fixed;
@@ -56,7 +61,7 @@ const Modal = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background-color: white;
+  background-color: #7efefe;
   border: 6px solid;
   border-radius: 8px;
   padding: 20px;
@@ -77,74 +82,56 @@ const Overlay = styled.div`
 
 
 const Button = styled.button`
-  margin-left:10px;
-  padding: 10px 20px;
-  font-weight: bold; /* Make the text bold */
-  font-size: 16px; /* Adjust the font size */
-  color: black;
-  background: transparent;
-  border: 3px solid;
-  border-radius: 13px;
-  cursor: pointer;
-  :hover {
-    background: linear-gradient(
-      90deg,
-      rgba(243, 243, 243, 1) 0%,
-      rgba(159, 232, 241, 1) 12%,
-      rgba(0, 186, 207, 1) 42%,
-      rgba(46, 117, 126, 1) 83%,
-      rgba(6, 23, 27, 1) 100%
-    );
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
-  }
+margin-left:20px;
+font-size: 14px;
+color: black;
+text-transform: uppercase;
+padding: 10px 20px;
+border-radius: 24px;
+border: 2px solid;
+background: #7efefe;
+box-shadow: 5px 5px black;
+cursor: pointer;
+margin: 35px 10px;
+
+&:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
 `;
 const ButtonCreate = styled.button`
-  font-weight: bold; /* Make the text bold */
-  font-size: 16px; /* Adjust the font size */
+  height:60px;
+  font-size: 14px;
   color: black;
-  background: transparent;
-  border: 3px solid;
-  margin-left:20px;
-  width:200px;
-  height: 50px;
-  padding: 10px 10px;
+  text-transform: uppercase;
+  padding: 10px 20px;
   border-radius: 24px;
+  border: 2px solid;
+  background: #7efefe;
+  box-shadow: 5px 5px black;
   cursor: pointer;
-  :hover {
-    background: linear-gradient(
-      90deg,
-      rgba(243, 243, 243, 1) 0%,
-      rgba(159, 232, 241, 1) 12%,
-      rgba(0, 186, 207, 1) 42%,
-      rgba(46, 117, 126, 1) 83%,
-      rgba(6, 23, 27, 1) 100%
-    );
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
-  }
-`;
+  margin: 35px 0;
 
+  &:active {
+    box-shadow: none;
+    transform: translate(3px, 3px);
+  `;
 
 const ButtonCreated = styled.button`
+margin-right:20px;
+font-size: 14px;
+color: black;
+text-transform: uppercase;
+padding: 10px 20px;
+border-radius: 24px;
+border: 2px solid;
+background: #7efefe;
+box-shadow: 5px 5px black;
+cursor: pointer;
+margin: 35px 0;
 
-  padding: 10px 10px;
-  font-weight: bold; /* Make the text bold */
-  font-size: 16px; /* Adjust the font size */
-  color: black;
-  background: transparent;
-  border: 3px solid;
-  border-radius: 13px;
-  cursor: pointer;
-  :hover {
-    background: linear-gradient(
-      90deg,
-      rgba(243, 243, 243, 1) 0%,
-      rgba(159, 232, 241, 1) 12%,
-      rgba(0, 186, 207, 1) 42%,
-      rgba(46, 117, 126, 1) 83%,
-      rgba(6, 23, 27, 1) 100%
-    );
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
-  }
+&:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
 `;
 
 const Spaceinfo = [

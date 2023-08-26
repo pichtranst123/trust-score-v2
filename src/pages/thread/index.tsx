@@ -4,23 +4,24 @@ import styled from 'styled-components';
 // -----------------------------------------------------------
 
 const Button = styled.button`
-  margin-bottom:30px;
-  padding: 10px 20px;
-  border: 2px solid;
-  color: black;
-  font-weight: bold;
-  font-size: 16px;
-  background: none;
-  border-radius: 13px;
-  cursor: pointer;
-  :hover{
-    background: linear-gradient(90deg, rgba(243,243,243,1) 0%, rgba(159,232,241,1) 12%, rgba(0,186,207,1) 42%, rgba(46,117,126,1) 83%, rgba(6,23,27,1) 100%);    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
+margin-bottom:20px;
+font-size: 14px;
+color: black;
+text-transform: uppercase;
+padding: 10px 20px;
+border-radius: 24px;
+border: 2px solid;
+background: #7efefe;
+box-shadow: 5px 5px black;
+cursor: pointer;
 
-  }
+&:active {
+box-shadow: none;
+transform: translate(3px, 3px);
 `;
 
 export const Layout = styled.div`
-  margin-top:15%;
+  margin-top:20%;
   width: 50vw;
 
   padding: 0px 0px 50px 0px;
@@ -143,7 +144,6 @@ const ThreadPage: React.FC = () => {
       <Layout id="space">
         <Container>
           <Title>Threads</Title>
-          <br /><br />
           <br /><br />
           <Button type="submit" onClick={handleBackClick}>Create thread</Button>
           <MainLayout>

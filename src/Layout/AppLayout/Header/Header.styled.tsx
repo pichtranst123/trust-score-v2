@@ -13,7 +13,7 @@ export const Layout = styled.div`
   justify-content: center;
   align-items: center;
 
-  background: white;
+  background: #e4f0fc;
   padding-top: 10px;
 
   z-index: 2;
@@ -151,7 +151,7 @@ export const MenuButton = styled.div`
   height: 56px;
   margin-left: 10px;
 
-  background: white;
+  background: #e4f0fc;
   transition: all 0.2s ease-in-out;
 
   color: black;

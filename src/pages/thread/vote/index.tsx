@@ -42,24 +42,36 @@ const Container = styled.div`
   width:600px;
   height:600px;
   border-radius: 14px;
+  background: #7efefe;
   border: 3px solid;
   padding: 20px;
   margin: 20px;
-  overflow: hidden; /* Clip any overflow */
+  overflow: hidden;
+  --bg-color: #7efefe;
+  --main-color: #323232;
+    box-shadow: 8px 8px var(--main-color);
+  background: var(--bg-color);
+  border: 2px solid var(--main-color);
+  border-radius: 10px;
 
 `;
 
 const Button = styled.button`
   margin-top: 30px;
   margin-right: 600px;
-  padding: 10px 20px;
+  font-size: 14px;
   color: black;
-  background: none;
-  border-radius: 13px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 24px;
+  border: 2px solid;
+  background: #7efefe;
+  box-shadow: 5px 5px black;
   cursor: pointer;
-  :hover{
-    background: linear-gradient(90deg, rgba(243,243,243,1) 0%, rgba(159,232,241,1) 12%, rgba(0,186,207,1) 42%, rgba(46,117,126,1) 83%, rgba(6,23,27,1) 100%);    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
-  }
+
+&:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
 `;
 
 const ButtonVote = styled.button`
@@ -69,22 +81,25 @@ const ButtonVote = styled.button`
   padding: 10px 20px;
   border: 3px solid;
   color: ${props => (props.selected ? 'white' : 'black')};
-  background-color: ${props => (props.selected ? '#6bed86' : 'transparent')};
+  background-color: ${props => (props.selected ? '#6bed86' : '#7efefe')};
   border-radius: 13px;
   cursor: pointer;
   display: flex;
   align-items: center;
   position: relative;
-  :hover {
-    background: linear-gradient(90deg, rgba(243, 243, 243, 1) 0%, rgba(159, 232, 241, 1) 12%, rgba(0, 186, 207, 1) 42%, rgba(46, 117, 126, 1) 83%, rgba(6, 23, 27, 1) 100%);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
-  }
+  box-shadow: 5px 5px black;
+  cursor: pointer;
+  &:active {
+    box-shadow: none;
+    transform: translate(3px, 3px);
   .checkmark {
     display: ${props => (props.selected ? 'block' : 'none')};
     margin-left: 5px;
     color: green;
   }
 `;
+
+
 
 const Title = styled.p`
   font-weight:bold;
@@ -116,6 +131,7 @@ const Description = styled.p`
 
 const StyledImage = styled(Image)`
   border-radius: 50%;
+  background: black;
   width:35px;
   height: 35px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
@@ -169,6 +185,7 @@ const CreateThread: React.FC = () => {
           >
             Yes<span className="checkmark">✓</span>
           </ButtonVote>
+          <br />
           <ButtonVote
             type="button"
             selected={selectedOption === 'Choose2'}
