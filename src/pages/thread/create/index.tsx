@@ -152,7 +152,7 @@ const Option = styled.option`
       const [voteType, setVoteType] = useState('Basic');
       const [contractIdFraud, setContractIdFraud] = useState('');
       
-      const contractId = "dev-1693051165842-29900861144051";
+      const contractId = "dev-1693059835951-96467869735375";
       const wallet = new Wallet({ createAccessKeyFor: contractId  });
 
       useEffect(() => {

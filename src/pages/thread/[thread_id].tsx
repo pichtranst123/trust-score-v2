@@ -110,13 +110,14 @@ const CreateThread: React.FC = () => {
   const [threadDetail, setThreadDetail] = useState(null);
   const [choice, setChoice] = useState(null);
   const [choicesRate, setChoicesRate] = useState(null);
+  const [spaceId, setSpaceId] = useState(null);
   const [selectedOption, setSelectedOption] = useState<string>("");
   const router = useRouter();
   const {
     query: { thread_id },
   } = router;
 
-  const contractId = "dev-1693051165842-29900861144051";
+  const contractId = "dev-1693059835951-96467869735375";
   const wallet = new Wallet({ createAccessKeyFor: contractId });
 
   useEffect(() => {
@@ -129,7 +130,7 @@ const CreateThread: React.FC = () => {
           contractId,
         });
         console.log(threadDetailData);
-        
+        setSpaceId(threadDetailData.space_id)
         const ThreadArr = [
           {
             contractName: threadDetailData.thread_id,
@@ -173,8 +174,7 @@ const CreateThread: React.FC = () => {
   }, []);
 
   const handleBackClick = () => {
-    //alert('a');
-    //router.push(`/space/${space_id}`);
+    router.push(`/space/${spaceId}`);
   };
 
   const handleOptionClick = async (option: number) => {

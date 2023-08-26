@@ -81,7 +81,7 @@ export default function index() {
   // Having the key enables to call non-payable methods without interrupting the user to sign
 
   const [spaces, setSpaces] = useState(null);
-  const contractId = "dev-1693051165842-29900861144051";
+  const contractId = "dev-1693059835951-96467869735375";
   const wallet = new Wallet({ createAccessKeyFor: contractId  });
   useEffect(() => {
     const startUp = async () => {
