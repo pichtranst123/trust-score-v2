@@ -59,6 +59,8 @@ const SpaceImage = styled(Image)`
 `;
 
 const CenteredForm = styled.form`
+  width:600px;
+  height:400px;
   flex: 1;
   margin-right: 10px;
   margin-top: 200px;
@@ -82,8 +84,6 @@ const CenteredForm2 = styled.form`
   border: 2px solid #ccc;
   border-radius: 12px;
 `;
-
-
 
 const H1 = styled.form`
   margin-right: 300px;
@@ -117,7 +117,7 @@ const Label = styled.label`
 
 const Input = styled.input`
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 2px solid;
   border-radius: 5px;
   width: 340px;
   box-sizing: border-box;
@@ -125,7 +125,7 @@ const Input = styled.input`
 
 const TextArea = styled.textarea`
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 2px solid;
   border-radius: 5px;
   width: 340px;
   height:100px;
@@ -137,13 +137,11 @@ const Button = styled.button`
   height: 40px;
   margin-bottom: 20px;
   padding: 10px 20px;
-  border: 1px solid;
   color: black;
-  border: none;
   border-radius: 13px;
   cursor: pointer;
   :hover {
-    border: 3px solid #ccc;
+    border: 3px solid;
   }
 `;
 
@@ -155,11 +153,12 @@ const SaveButton = styled.button`
   padding: 10px 20px;
   border: 1px solid;
   color: black;
-  border: none;
+  border: 2px solid;
+  background: none;
   border-radius: 13px;
   cursor: pointer;
   :hover {
-    border: 3px solid #ccc;
+    border: 3px solid;
   }
 `;
 
@@ -168,17 +167,17 @@ const EditButton = styled.button`
   height: 40px;
   margin-left: 30px;
   margin-right: 30px;
-
   margin-bottom: 20px;
   padding: 10px 20px;
   border: 1px solid;
   color: black;
-  border: none;
+  border: 2px solid;
+  background: none;
   border-radius: 24px;
   cursor: pointer;
   :hover {
-    border: 3px solid #ccc;
-  }
+    background: linear-gradient(90deg, rgba(243, 243, 243, 1) 0%, rgba(159, 232, 241, 1) 12%, rgba(0, 186, 207, 1) 42%, rgba(46, 117, 126, 1) 83%, rgba(6, 23, 27, 1) 100%);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);  }
 `;
 
 const ImageWrapper = styled.div`
@@ -223,8 +222,8 @@ const CreateThread: React.FC = () => {
         <InputWrapper>
         <ImageWrapper>
           <Image src={Image1} alt="Profile" width={35} height={34} border-radius={24} />
+          
         </ImageWrapper>
-            <Label></Label>
           <Button className="copy-button">
           <Label htmlFor="title">
 
@@ -257,11 +256,10 @@ const CreateThread: React.FC = () => {
           <CloseButton onClick={handleCloseModal}>x</CloseButton>
             <h1>Edit Profile</h1>
 
-            <H1>Name</H1>
-            <Input type="text" />
+            <Input type="text" placeholder='Name' />
             <br/>
-            <H1>Bio</H1>
-            <TextArea/>
+            <br />
+            <TextArea  placeholder='Description'/>
             <br />
             <SaveButton>Save</SaveButton>
             </ModalContent>
