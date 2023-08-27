@@ -5,7 +5,7 @@ export const ConnectButtonWidth = "140px";
 export const ConnectButtonHeight = "46px"; 
 
 export const Button = styled.button`
-&& {
+ {
   width:140px;
   height:50px;
   border-radius: 24px;
@@ -18,7 +18,7 @@ export const Button = styled.button`
     box-shadow: 4px 4px var(--main-color);
   background: var(--bg-color);
   border: 2px solid var(--main-color);
-
+  font-size:24px;
   transition: all 0.2s ease-out;
 
   :hover,

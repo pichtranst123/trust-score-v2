@@ -17,8 +17,6 @@ const Threaddetail = [
       description: "this is description descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription",
     }];
 
-
-
  const FlexContainer = styled.div`
 
     display: flex;
@@ -42,12 +40,12 @@ const Container = styled.div`
   width:600px;
   height:600px;
   border-radius: 14px;
-  background: #7efefe;
+  background: white;
   border: 3px solid;
   padding: 20px;
   margin: 20px;
   overflow: hidden;
-  --bg-color: #7efefe;
+  --bg-color: #ffff;
   --main-color: #323232;
     box-shadow: 8px 8px var(--main-color);
   background: var(--bg-color);
@@ -99,8 +97,6 @@ const ButtonVote = styled.button`
   }
 `;
 
-
-
 const Title = styled.p`
   font-weight:bold;
   font-size:22px;
@@ -127,7 +123,7 @@ const Title = styled.p`
 const Description = styled.p`
   width:100%;
   white-space: normal;
-  display: flex;`;
+  display: flex;`;  
 
 const StyledImage = styled(Image)`
   border-radius: 50%;

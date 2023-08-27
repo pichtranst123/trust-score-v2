@@ -86,10 +86,8 @@ export const TP = styled.div`
   right: 0;
   margin-top: 0px;
   color: #7efefe;
-  background:black;
   font-size: 20px;
   font-weight: 600;
-  border-radius: 5px;
 `;
 export const Detail = styled.div`
   position: absolute;

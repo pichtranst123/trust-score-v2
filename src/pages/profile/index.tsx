@@ -8,21 +8,31 @@ import Space2 from "assets/png/pancakeswap.png";
 import Space3 from "assets/png/uniswap.webp";
 
 import Image from 'next/image';
+const ThreadCreatedContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const Space = styled.div`
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
 `;
 
 const SpaceItem = styled.div`
-display: flex;
-align-items: center;
-margin-right: 20px; /* Add some space between items */
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Add some space between items */
+  display: block;
+  flex-direction: column;
 `;
 
 const SpaceTitle = styled.p`
-font-weight: bold;
-margin-left: 10px;
+  font-weight: bold;
+  margin-left: 10px;
+  display: block;
+  margin: 10px 0;
 `;
 
 const User = [
@@ -42,24 +52,36 @@ const Followinfo = [
     title: "Space2",
     id: 1,
     trustpoint: 4000,
-  }];
-
-const ThreadCreated = [
+  },
   {
+    image: Image1,
+    title: "Space2",
+    id: 1,
+    trustpoint: 4000,
+  },];
+
+const ThreadCreated = [,
+  { 
+    image: Image1,
+    title: "Thread1",
+    type:"Basic Vote",
+    id: 3,
+    stake: 11000,
+  },{ 
     image: Image1,
     title: "Thread1",
     type:"Basic Vote",
     id: 3,
     stake: 11000,
   },
-  {
+  { 
     image: Image1,
-    title: "Thread2",
-    type:"Fraud Vote",
-
-    id: 2,
-    stake: 10000,
-  }];
+    title: "Thread1",
+    type:"Basic Vote",
+    id: 3,
+    stake: 11000,
+  }
+  ];
 
 const Container = styled.div`
   display: flex;
@@ -69,17 +91,14 @@ const Container = styled.div`
 
 
 const CenteredForm3 = styled.form`
-  border-radius: 24px;
-  margin-top:200px;
+  white-space: nowrap; /* Ngăn các phần tử xuống dòng tự động */
+
   background: white;
-  flex: 1; /* Take up available space */
-  margin-left: 10px; /* Add spacing between the forms */
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  margin-left: 20px;
+  flex: 1;
+  margin-left: 10px;
   margin-top: 200px;
-  height:400px;
+  width: 400px; /* Đặt một chiều rộng cố định */
+  overflow-x: auto; /* Hiển thị thanh cuộn ngang khi nội dung vượt quá kích thước */
   flex-direction: column;
   border: 2px solid;
   --bg-color: #fff;
@@ -88,6 +107,9 @@ const CenteredForm3 = styled.form`
   background: var(--bg-color);
   border: 1px solid var(--main-color);
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
 `;
 const FormContainer = styled.div`
   display: flex;
@@ -157,19 +179,18 @@ const TrustPoint = styled.p`
   font-size: 18px;
   color: #2e7a7e;
   margin-left: 10px;
+  display: block;
 `;
 
 const CenteredForm2 = styled.form`
+white-space: nowrap; /* Ngăn các phần tử xuống dòng tự động */
+
   background: white;
-  flex: 1; /* Take up available space */
-  margin-left: 10px; /* Add spacing between the forms */
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  margin-left: 20px;
+  flex: 1;
+  margin-left: 10px;
   margin-top: 200px;
-  height:400px;
-  width:300px;
+  width: 400px; /* Đặt một chiều rộng cố định */
+  overflow-x: auto; /* Hiển thị thanh cuộn ngang khi nội dung vượt quá kích thước */
   flex-direction: column;
   border: 2px solid;
   border-radius: 24px;
@@ -179,6 +200,9 @@ const CenteredForm2 = styled.form`
   background: var(--bg-color);
   border: 1px solid var(--main-color);
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
 `;
 
 
@@ -385,7 +409,7 @@ const CreateThread: React.FC = () => {
 
       </CenteredForm>
       <FormContainer>
-
+<ThreadCreatedContainer>
       <CenteredForm2>
       <TrustPoint>Following Space</TrustPoint>
       <Space>
@@ -398,6 +422,8 @@ const CreateThread: React.FC = () => {
     ))}
   </Space>
       </CenteredForm2>
+      </ThreadCreatedContainer>
+      <ThreadCreatedContainer>
        <CenteredForm3>
       <TrustPoint>Threads Created </TrustPoint>
 
@@ -409,8 +435,10 @@ const CreateThread: React.FC = () => {
         <SpaceTitle>{info.type}</SpaceTitle>
 
       </SpaceItem>
-    ))}
-  </Space>        </CenteredForm3>
+      ))}
+      </Space>        
+      </CenteredForm3>
+      </ThreadCreatedContainer>
         </FormContainer>
       </Container>
       {isModalOpen && (
@@ -432,7 +460,8 @@ const CreateThread: React.FC = () => {
       <br /><br />
       <br /><br />
       <br />
-      
+      <br /><br /><br /><br /><br />
+      <br /><br /><br /><br /><br /><br /><br /><br />
     </div>
   );
 };

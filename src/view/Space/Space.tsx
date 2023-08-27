@@ -19,7 +19,7 @@ import Image6 from "assets/png/op.png";
 
 const NameSpace = styled.input`
   width: 100%;
-  background: #ccc;
+  background: white;
   padding: 8px;
   border: 2px solid;
   border-radius: 4px;
@@ -29,7 +29,7 @@ const NameSpace = styled.input`
 const IdSpace = styled.input`
   width: 100%;
   padding: 8px;
-  background: #ccc;
+  background: white;
   border: 2px solid;
   border-radius: 4px;
   margin-bottom: 10px;
@@ -39,7 +39,7 @@ const Description = styled.textarea`
   width: 100%;
   height: 130px;
   padding: 8px;
-  background: #ccc;
+  background: #fff;
   border: 2px solid;
   border-radius: 4px;
   resize: vertical;
@@ -61,7 +61,7 @@ const Modal = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background-color: #7efefe;
+  background-color: white;
   border: 6px solid;
   border-radius: 8px;
   padding: 20px;

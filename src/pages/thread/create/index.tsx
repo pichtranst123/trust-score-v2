@@ -4,7 +4,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { useRouter } from 'next/router';
 
 const CenteredForm = styled.form`
-  margin-top:5  %;
+  margin-top:5%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,15 +21,11 @@ const InputWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-const Label = styled.label`
-  font-weight: bold;
-`;
-
 const Input = styled.input`
   padding: 5px;
   border: 2px solid;
   border-radius: 4px;
-  background: #ccc;
+  background: #ffff;
 
 `;
 
@@ -38,7 +34,7 @@ const TextArea = styled.textarea`
   padding: 5px;
   border: 2px solid;
   border-radius: 4px;
-  background: #ccc;
+  background: #fff;
 
 `;
 
@@ -46,7 +42,7 @@ const Select = styled.select`
   padding: 5px;
   border: 2px solid;
   border-radius: 8px;
-  background: #ccc;
+  background: #ffff;
 `;
 
 const ContainerWithBorder = styled.div`
@@ -55,7 +51,7 @@ const ContainerWithBorder = styled.div`
   padding: 20px;
   border-radius: 10px;
   margin-top: 20px;
-  --bg-color: #7efefe;
+  --bg-color: white;
   --main-color: #323232;
     box-shadow: 4px 4px var(--main-color);
   background: var(--bg-color);
@@ -88,8 +84,6 @@ const ButtonCreate = styled.button`
   transform: translate(3px, 3px);
 `;
 
-
-
 const Button = styled.button`
   margin-right: 405px;
   font-size: 14px;
@@ -116,7 +110,7 @@ const ButtonVote = styled.button`
   padding: 10px 20px;
   border: 2px solid;
   color: ${props => (props.selected ? 'black' : 'black')};
-  background-color: ${props => (props.selected ? 'Green' : '#ccc')};
+  background-color: ${props => (props.selected ? 'Green' : '#ffff')};
   border-radius: 13px;
   cursor: pointer;
   display: flex;
@@ -153,9 +147,7 @@ const Option = styled.option`
 
       const [title, setTitle] = useState('');
       const [stake, setStake] = useState('');
-
       const [ThreadID, setThreadID] = useState('');
-
       const [description, setDescription] = useState('');
       const [voteType, setVoteType] = useState('Basic'); 
 
@@ -229,7 +221,7 @@ const Option = styled.option`
 
           </>
         )}
-</ContainerWithBorder>
+        </ContainerWithBorder>
         <br />
         <ButtonCreate type="submit">Create Thread</ButtonCreate>
       </CenteredForm>

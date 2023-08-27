@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 // -----------------------------------------------------------
-import bg from "assets/png/bg-hero.png";
-const backgroundImageUrl = bg.src;
 
 
 export const Layout = styled.div`
@@ -80,7 +78,6 @@ export const Button = styled.div`
   transform: translate(3px, 3px);
   @media screen and (max-width: 768px) {
     width: 100%;
-    background-image: url(${backgroundImageUrl});
     background-size: cover;
     background-position: center top;
   }
