@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
 // -----------------------------------------------------------
-import video from "assets/mp4";
+import bg from "assets/gif/bg-hero.gif";
+const backgroundImageUrl = bg.src;
 
 export const Layout = styled.div`
   width: 100%;
   background-size: cover;
   background-position: center top;
   padding: 320px 0px 150px 0px;
+  background-image: url(${backgroundImageUrl}); /* Thêm dòng này */
 
   display: flex;
   justify-content: center;
