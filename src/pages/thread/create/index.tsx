@@ -104,7 +104,7 @@ const Button = styled.button`
   }
 `;
 
-const ButtonVote = styled.button`
+const ButtonVote = styled.button<{selected: boolean}>`
   margin-bottom: 5px;
   width: 450px; 
   height: 33px;
@@ -152,7 +152,7 @@ const Option = styled.option`
       const [voteType, setVoteType] = useState('Basic');
       const [contractIdFraud, setContractIdFraud] = useState('');
       
-      const contractId = process.env.NEXT_PUBLIC_CONTRACT_NAME;
+      const contractId:any = process.env.NEXT_PUBLIC_CONTRACT_NAME;
       const wallet = new Wallet({ createAccessKeyFor: contractId  });
 
       useEffect(() => {
@@ -223,16 +223,13 @@ const Option = styled.option`
 
         {voteType === 'Basic' && (
           <>
-            <ButtonVote
-              type="button"
+            <Button
             >
               Yes<span className="checkmark">✓</span>
-            </ButtonVote>
-            <ButtonVote
-              type="button"
-            >
+            </Button>
+            <Button>
               No<span className="checkmark">✓</span>
-            </ButtonVote>
+            </Button>
           </>
         )}
         {voteType === 'Fraud' && (
