@@ -12,24 +12,20 @@ import Container from "components/Container/Container";
 import Image1 from "assets/png/profile.webp";
 
 const Button = styled.button`
-  margin-bottom: 30px;
-  padding: 10px 20px;
-  border: 1px solid;
-  color: black;
-  border: none;
-  border-radius: 13px;
-  cursor: pointer;
-  :hover {
-    background: linear-gradient(
-      90deg,
-      rgba(243, 243, 243, 1) 0%,
-      rgba(159, 232, 241, 1) 12%,
-      rgba(0, 186, 207, 1) 42%,
-      rgba(46, 117, 126, 1) 83%,
-      rgba(6, 23, 27, 1) 100%
-    );
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
-  }
+margin-bottom:20px;
+font-size: 14px;
+color: black;
+text-transform: uppercase;
+padding: 10px 20px;
+border-radius: 24px;
+border: 2px solid;
+background: #7efefe;
+box-shadow: 5px 5px black;
+cursor: pointer;
+
+&:active {
+box-shadow: none;
+transform: translate(3px, 3px);
 `;
 
 export const Layout = styled.div`

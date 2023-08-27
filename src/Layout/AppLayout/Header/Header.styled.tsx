@@ -19,11 +19,12 @@ export const Layout = styled.div`
   z-index: 2;
 
   @media screen and (max-width: 1024px) {
-    display: none;
+    display: none;Ư
   }
 `;
 
 export const MainLayout = styled.div`
+  height:100px;
   display: flex;
   align-items: center;
   justify-content: space-between;

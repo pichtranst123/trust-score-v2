@@ -445,7 +445,7 @@
     "@near-wallet-selector/core" "7.9.3"
     "@near-wallet-selector/wallet-utils" "7.9.3"
 
-"@near-wallet-selector/near-wallet@^7.0.0":
+"@near-wallet-selector/near-wallet@^7.9.3":
   version "7.9.3"
   resolved "https://registry.npmjs.org/@near-wallet-selector/near-wallet/-/near-wallet-7.9.3.tgz"
   integrity sha512-oAtqC0ERhJZ7pVlUJZDmWU4AcTeNW+C4eab3eQCNWToH6gx1/OsKa7nSvcAzomaARBqE1ttE9KhAQUzvRXd07A==
@@ -471,7 +471,7 @@
     "@near-wallet-selector/wallet-utils" "7.9.3"
     is-mobile "^3.1.1"
 
-"@near-wallet-selector/sender@^7.0.0":
+"@near-wallet-selector/sender@^7.9.3":
   version "7.9.3"
   resolved "https://registry.npmjs.org/@near-wallet-selector/sender/-/sender-7.9.3.tgz"
   integrity sha512-rO+3giHJYF0SbyzxcapVcFlvscDB2reMOlKyZSLpbtxX80EyYBU2Qk1vqO3M1GAA8dsh9ZPwTPM63wDhyyxWMg==
@@ -479,7 +479,7 @@
     "@near-wallet-selector/core" "7.9.3"
     is-mobile "^3.1.1"
 
-"@near-wallet-selector/wallet-connect@^7.0.0":
+"@near-wallet-selector/wallet-connect@^7.9.3":
   version "7.9.3"
   resolved "https://registry.npmjs.org/@near-wallet-selector/wallet-connect/-/wallet-connect-7.9.3.tgz"
   integrity sha512-Fo0RWnH6NJoKj9AoxcC+CigUTIhuoRctcMReoXhHiO49PhPpXwNKW9rLHkVLjaJ8XbFncFI6KZNlnUwxaWRs5w==
