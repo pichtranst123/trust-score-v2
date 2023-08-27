@@ -27,7 +27,7 @@ export default function index() {
 
   
   useEffect(() => {
-    const contractId = "dev-1693105604198-31429410070805";
+    const contractId = "dev-1693129289263-20526325787540";
     const wallet = new Wallet({ createAccessKeyFor: contractId  });
     setWalletState(wallet);
     const startUp = async () => {
@@ -41,7 +41,7 @@ export default function index() {
           image: Image5,
           title: item.space_name,
           description: "Learn to earn",
-          trustpoint: Math.floor(Math.random() * 10000),
+          trustpoint: item.total_point,
           follower: `${Math.floor(Math.random() * 10000)} Followers`,
           connect: [{ icon: FaPlus, link: `/space/${item.space_id}` }],
         },)

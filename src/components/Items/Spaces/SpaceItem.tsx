@@ -31,7 +31,7 @@ type Props = {
 
 const Container: React.FC<{ data , wallet : Props }> = ({ data , wallet}) => {
   const router = useRouter();
-  const contractId = "dev-1693105604198-31429410070805";
+  const contractId = "dev-1693129289263-20526325787540";
   const [userFollow, setUserFollow] = useState(false);
   useEffect(() => {
     const getUserFollow = async () => {
@@ -45,17 +45,8 @@ const Container: React.FC<{ data , wallet : Props }> = ({ data , wallet}) => {
           setUserFollow(true);
         }
       });
-      const thread = await wallet.viewMethod({
-        method: "get_all_threads_of_space_by_space_id",
-        args: {"space_id":data.id},
-        contractId,
-      });
-      if(thread){
-        thread.forEach(item => {
-          thread.initPoint
-        });
-      }
-      console.log(thread);
+
+
 
     };
     getUserFollow().catch(console.error);

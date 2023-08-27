@@ -259,17 +259,53 @@ const CreateThread: React.FC = () => {
       const [isModalOpen, setIsModalOpen] = useState(false);
       const [selectedTab, setSelectedTab] = useState('about'); // Add state to track selected tab
       const [threadCreated, setThreadCreated] = useState(null);
+      const [spaceInfo, setSpaceInfo] = useState(null);
       const [user, setUser] = useState(null);
       const [userName, setUserName] = useState('');
       const router = useRouter();
-      const contractId = "dev-1693105604198-31429410070805";
+      const contractId = "dev-1693129289263-20526325787540";
       const wallet = new Wallet({ createAccessKeyFor: contractId });
       
       useEffect(() => {
         const startUp = async () => {
           const isSignedIn = await wallet.startUp();
           if (isSignedIn) {
-            const userData = await wallet.viewMethod({
+              const spaces = await wallet.viewMethod({
+                method: "get_all_spaces",
+                contractId,
+              });
+              const followSpace = [];
+              spaces.forEach(async(item) => {
+                
+                const userFollow = await wallet.viewMethod({
+                  method: "get_followed_user_of_space_by_space_id",
+                  args: { space_id: item.space_id },
+                  contractId,
+                });
+                            
+                userFollow.forEach(async(userFollowData) => {
+                  console.log(wallet.accountId);
+                  if(userFollowData == wallet.accountId){    
+                    followSpace.push(item.space_id)
+                  }
+                });
+    
+
+              });
+              const followSpaceData = [];
+              await followSpace.forEach(async(item) => {
+                const spaceInfo = await wallet.viewMethod({
+                  method: "get_space_metadata_by_space_id",
+                  args: { space_id: item },
+                  contractId,
+                });
+                followSpaceData.push(spaceInfo);
+              });
+              console.log(followSpace);
+              console.log(followSpaceData);
+              setSpaceInfo(followSpaceData);
+            
+              const userData = await wallet.viewMethod({
                 method: "get_user_metadata_by_user_id",
                 args: { user_id: wallet.accountId },
                 contractId,
@@ -280,8 +316,6 @@ const CreateThread: React.FC = () => {
                 args: { user_id: wallet.accountId },
                 contractId,
               });
-              console.log(userData);
-              console.log(userThread);
               setUser(userData)
               setThreadCreated(userThread)
           }
@@ -348,10 +382,10 @@ const CreateThread: React.FC = () => {
       </CenteredForm>
       <FormContainer>
 
-      {/* <CenteredForm2>
+      <CenteredForm2>
       <h4>Following Space</h4>
       <Space>
-    {Followinfo.map((info, index) => (
+    {spaceInfo && spaceInfo.map((info, index) => (
       <SpaceItem key={index}>
         <Image src={info.image} alt="Space" width={35} height={34} style={{ marginRight: '10px' }} />
         <SpaceTitle>{info.title}</SpaceTitle>
@@ -360,7 +394,7 @@ const CreateThread: React.FC = () => {
       </SpaceItem>
     ))}
   </Space>
-      </CenteredForm2> */}
+      </CenteredForm2> 
        <CenteredForm3>
       <h4>Threads Created </h4>
 

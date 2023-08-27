@@ -91,7 +91,7 @@ const ThreadPage: React.FC = () => {
     query: { space_id },
   } = router
   const [threads, setThreads] = useState(null);
-  const contractId = "dev-1693105604198-31429410070805";
+  const contractId = "dev-1693129289263-20526325787540";
   const wallet = new Wallet({ createAccessKeyFor: contractId  });
   useEffect(() => {
     const startUp = async () => {

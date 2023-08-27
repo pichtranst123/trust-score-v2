@@ -8,7 +8,7 @@ import { Wallet } from "near/near-wallet";
 interface ButtonLogoutProps {}
 
 const ButtonLogout: React.FC<ButtonLogoutProps> = () => {
-  const contractId = "dev-1693105604198-31429410070805";
+  const contractId = "dev-1693129289263-20526325787540";
   const wallet = new Wallet({ createAccessKeyFor: contractId });
   useEffect(() => {
     const startUp = async () => {
