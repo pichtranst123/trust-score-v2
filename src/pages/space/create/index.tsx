@@ -64,7 +64,7 @@ const Button = styled.button`
 `;
 
 const CreateSpace: React.FC = () => {
-  const contractId = process.env.NEXT_PUBLIC_CONTRACT_NAME;
+  const contractId:any = process.env.NEXT_PUBLIC_CONTRACT_NAME;
   const wallet = new Wallet({ createAccessKeyFor: contractId });
 
   const router = useRouter();
