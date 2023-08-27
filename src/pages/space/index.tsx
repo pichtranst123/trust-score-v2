@@ -156,7 +156,7 @@ const ThreadPage: React.FC = () => {
             Create thread
           </Button>
           <MainLayout>
-            {Spaceinfo.map((item) => (
+            {Spaceinfo.map((item:any) => (
               <Threads data={item} />
             ))}
           </MainLayout>
