@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { useRouter } from 'next/router';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { useRouter } from "next/router";
 import { BiCopy } from "react-icons/bi";
 import Image1 from "assets/png/profile.png";
 import Space1 from "assets/png/educadao.webp";
 import Space2 from "assets/png/pancakeswap.png";
 import Space3 from "assets/png/uniswap.webp";
 
-import Image from 'next/image';
+import Image from "next/image";
 const ThreadCreatedContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -38,8 +38,9 @@ const SpaceTitle = styled.p`
 const User = [
   {
     trustpoint: 2250,
-    threadCreate: 3
-  }];
+    threadCreate: 3,
+  },
+];
 const Followinfo = [
   {
     image: Image1,
@@ -58,37 +59,39 @@ const Followinfo = [
     title: "Space2",
     id: 1,
     trustpoint: 4000,
-  },];
+  },
+];
 
-const ThreadCreated = [,
-  { 
+const ThreadCreated = [
+  ,
+  {
     image: Image1,
     title: "Thread1",
-    type:"Basic Vote",
-    id: 3,
-    stake: 11000,
-  },{ 
-    image: Image1,
-    title: "Thread1",
-    type:"Basic Vote",
+    type: "Basic Vote",
     id: 3,
     stake: 11000,
   },
-  { 
+  {
     image: Image1,
     title: "Thread1",
-    type:"Basic Vote",
+    type: "Basic Vote",
     id: 3,
     stake: 11000,
-  }
-  ];
+  },
+  {
+    image: Image1,
+    title: "Thread1",
+    type: "Basic Vote",
+    id: 3,
+    stake: 11000,
+  },
+];
 
 const Container = styled.div`
   display: flex;
   justify-content: space-between; /* Align items side by side with space between */
   padding: 20px; /* Add some padding for spacing */
 `;
-
 
 const CenteredForm3 = styled.form`
   white-space: nowrap; /* Ngăn các phần tử xuống dòng tự động */
@@ -103,7 +106,7 @@ const CenteredForm3 = styled.form`
   border: 2px solid;
   --bg-color: #fff;
   --main-color: #323232;
-    box-shadow: 8px 8px var(--main-color);
+  box-shadow: 8px 8px var(--main-color);
   background: var(--bg-color);
   border: 1px solid var(--main-color);
   border-radius: 10px;
@@ -145,17 +148,16 @@ const CloseButton = styled.button`
   background-color: #7efefe;
   border: none;
   border-radius: 4px;
-  top:0;
-  right:2;
+  top: 0;
+  right: 2;
   cursor: pointer;
   font-weight: bold;
   margin-left: 400px;
 `;
 
-
 const CenteredForm = styled.form`
-  width:400px;
-  height:317px;
+  width: 400px;
+  height: 317px;
   background: white;
   flex: 1;
   margin-right: 10px;
@@ -167,11 +169,10 @@ const CenteredForm = styled.form`
   border-radius: 25px;
   --bg-color: #fff;
   --main-color: #323232;
-    box-shadow: 8px 8px var(--main-color);
+  box-shadow: 8px 8px var(--main-color);
   background: var(--bg-color);
   border: 1px solid var(--main-color);
   border-radius: 26px;
-
 `;
 
 const TrustPoint = styled.p`
@@ -183,7 +184,7 @@ const TrustPoint = styled.p`
 `;
 
 const CenteredForm2 = styled.form`
-white-space: nowrap; /* Ngăn các phần tử xuống dòng tự động */
+  white-space: nowrap; /* Ngăn các phần tử xuống dòng tự động */
 
   background: white;
   flex: 1;
@@ -196,7 +197,7 @@ white-space: nowrap; /* Ngăn các phần tử xuống dòng tự động */
   border-radius: 24px;
   --bg-color: #fff;
   --main-color: #323232;
-    box-shadow: 8px 8px var(--main-color);
+  box-shadow: 8px 8px var(--main-color);
   background: var(--bg-color);
   border: 1px solid var(--main-color);
   border-radius: 10px;
@@ -204,7 +205,6 @@ white-space: nowrap; /* Ngăn các phần tử xuống dòng tự động */
   align-items: center;
   padding: 10px;
 `;
-
 
 const CopyIcon = styled(BiCopy)`
   margin-right: 5px;
@@ -236,7 +236,7 @@ const TextArea = styled.textarea`
   border: 2px solid;
   border-radius: 5px;
   width: 340px;
-  height:100px;
+  height: 100px;
   box-sizing: border-box;
 `;
 
@@ -263,7 +263,6 @@ const Button = styled.button`
     border: 3px solid;
   }
 `;
-
 
 const SaveButton = styled.button`
   margin-left:40px;
@@ -314,28 +313,44 @@ const ButtonGr1 = styled.button`
   padding: 10px 20px;
   border-radius: 0px 0px 26px 26px;
   color: black;
-  border:none;
+  border: none;
   background: #7efefe;
   cursor: pointer;
   :hover {
-    background: linear-gradient(90deg, rgba(243, 243, 243, 1) 0%, rgba(159, 232, 241, 1) 12%, rgba(0, 186, 207, 1) 42%, rgba(46, 117, 126, 1) 83%, rgba(6, 23, 27, 1) 100%);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);  }
+    background: linear-gradient(
+      90deg,
+      rgba(243, 243, 243, 1) 0%,
+      rgba(159, 232, 241, 1) 12%,
+      rgba(0, 186, 207, 1) 42%,
+      rgba(46, 117, 126, 1) 83%,
+      rgba(6, 23, 27, 1) 100%
+    );
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
+  }
 `;
 const ButtonGr = styled.button`
   width: 100%;
   height: 40px;
   padding: 10px 20px;
   color: black;
-  border:none;
+  border: none;
   background: #7efefe;
   cursor: pointer;
   :hover {
-    background: linear-gradient(90deg, rgba(243, 243, 243, 1) 0%, rgba(159, 232, 241, 1) 12%, rgba(0, 186, 207, 1) 42%, rgba(46, 117, 126, 1) 83%, rgba(6, 23, 27, 1) 100%);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);  }
+    background: linear-gradient(
+      90deg,
+      rgba(243, 243, 243, 1) 0%,
+      rgba(159, 232, 241, 1) 12%,
+      rgba(0, 186, 207, 1) 42%,
+      rgba(46, 117, 126, 1) 83%,
+      rgba(6, 23, 27, 1) 100%
+    );
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
+  }
 `;
 
 const ImageWrapper = styled.div`
-  margin-right:260px;
+  margin-right: 260px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -345,104 +360,108 @@ const ImageWrapper = styled.div`
   border-radius: 50%;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
   gap: 10px; /* Add some space between the image and text */
-
 `;
 
 const CreateThread: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTab, setSelectedTab] = useState("about"); // Add state to track selected tab
+  const [threadCreated, setThreadCreated] = useState(null);
+  const [user, setUser] = useState(null);
+  const [userName, setUserName] = useState("");
+  const router = useRouter();
+  const contractId = "dev-1693105604198-31429410070805";
+  const wallet = new Wallet({ createAccessKeyFor: contractId });
 
-      const [isModalOpen, setIsModalOpen] = useState(false);
-      const [selectedTab, setSelectedTab] = useState('about'); // Add state to track selected tab
-      const [threadCreated, setThreadCreated] = useState(null);
-      const [user, setUser] = useState(null);
-      const [userName, setUserName] = useState('');
-      const router = useRouter();
-      const contractId = "dev-1693105604198-31429410070805";
-      const wallet = new Wallet({ createAccessKeyFor: contractId });
-      
-      useEffect(() => {
-        const startUp = async () => {
-          const isSignedIn = await wallet.startUp();
-          if (isSignedIn) {
-            const userData = await wallet.viewMethod({
-                method: "get_user_metadata_by_user_id",
-                args: { user_id: wallet.accountId },
-                contractId,
-              });
-              
-              const userThread = await wallet.viewMethod({
-                method: "get_all_threads_per_user_own",
-                args: { user_id: wallet.accountId },
-                contractId,
-              });
-              console.log(userData);
-              console.log(userThread);
-              setUser(userData)
-              setThreadCreated(userThread)
-          }
-        }
-       startUp().catch(console.error);
-    },[])
-      const handleTabClick = (tab: string) => {
-        setSelectedTab(tab);
-      };
-      const handleSubmit = (event: React.FormEvent) => {
-        event.preventDefault();
-        console.log('accountID', accountId);
-      };
-      const handleUpdateProfile = async() => {
-        event.preventDefault();
-        await wallet.startUp();
-        await wallet.callMethod({
-          method: "update_user_information",
-          args: {"nickname":userName},
+  useEffect(() => {
+    const startUp = async () => {
+      const isSignedIn = await wallet.startUp();
+      if (isSignedIn) {
+        const userData = await wallet.viewMethod({
+          method: "get_user_metadata_by_user_id",
+          args: { user_id: wallet.accountId },
           contractId,
         });
-        
-       
 
-        setIsModalOpen(false);
-      };
-      const handleEditProfileClick = () => {
-        setIsModalOpen(true);
-      };
+        const userThread = await wallet.viewMethod({
+          method: "get_all_threads_per_user_own",
+          args: { user_id: wallet.accountId },
+          contractId,
+        });
+        console.log(userData);
+        console.log(userThread);
+        setUser(userData);
+        setThreadCreated(userThread);
+      }
+    };
+    startUp().catch(console.error);
+  }, []);
+  const handleTabClick = (tab: string) => {
+    setSelectedTab(tab);
+  };
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    console.log("accountID", accountId);
+  };
+  const handleUpdateProfile = async () => {
+    event.preventDefault();
+    await wallet.startUp();
+    await wallet.callMethod({
+      method: "update_user_information",
+      args: { nickname: userName },
+      contractId,
+    });
 
-      const handleCloseModal = () => {
-        setIsModalOpen(false);
-      };
+    setIsModalOpen(false);
+  };
+  const handleEditProfileClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div>
-    <Container>
-      <CenteredForm onSubmit={handleSubmit}>
-        <InputWrapper>
-
-        <ImageWrapper>
-          <Image src={Image1} alt="Profile" width={35} height={34} border-radius={24} />  
-        </ImageWrapper>
-          <Button className="copy-button">
-          <Label htmlFor="title">
-
-            <div>
-              {accountId.substr(0, 9) +
-                accountId.substr(accountId.length - 9, accountId.length)}{' '}
-                <CopyIcon />
-            </div>
-            </Label>
-
-          </Button>
-          <TrustPoint>{user && user.total_point} Trust Point</TrustPoint>
-          <TrustPoint>Thread Created: {user && user.threads_owned}</TrustPoint>
-        </InputWrapper>
-        <EditButton type="button" onClick={handleEditProfileClick}>
+      <Container>
+        <CenteredForm onSubmit={handleSubmit}>
+          <InputWrapper>
+            <ImageWrapper>
+              <Image
+                src={Image1}
+                alt="Profile"
+                width={35}
+                height={34}
+                border-radius={24}
+              />
+            </ImageWrapper>
+            <Button className="copy-button">
+              <Label htmlFor="title">
+                <div>
+                  {accountId.substr(0, 9) +
+                    accountId.substr(
+                      accountId.length - 9,
+                      accountId.length
+                    )}{" "}
+                  <CopyIcon />
+                </div>
+              </Label>
+            </Button>
+            <TrustPoint>{user && user.total_point} Trust Point</TrustPoint>
+            <TrustPoint>
+              Thread Created: {user && user.threads_owned}
+            </TrustPoint>
+          </InputWrapper>
+          <EditButton type="button" onClick={handleEditProfileClick}>
             Edit profile
           </EditButton>
-        <ButtonGr onClick={() => handleTabClick('about')}>About</ButtonGr>
-        <ButtonGr onClick={() => handleTabClick('activity')}>Activity</ButtonGr>
-
-      </CenteredForm>
-      <FormContainer>
-
-      {/* <CenteredForm2>
+          <ButtonGr onClick={() => handleTabClick("about")}>About</ButtonGr>
+          <ButtonGr onClick={() => handleTabClick("activity")}>
+            Activity
+          </ButtonGr>
+        </CenteredForm>
+        <FormContainer>
+          {/* <CenteredForm2>
       <h4>Following Space</h4>
       <Space>
     {Followinfo.map((info, index) => (
@@ -455,44 +474,51 @@ const CreateThread: React.FC = () => {
     ))}
   </Space>
       </CenteredForm2> */}
-            <ThreadCreatedContainer>
-
-       <CenteredForm3>
-      <h4>Threads Created </h4>
-
-      <Space>
-    {threadCreated && threadCreated.map((info, index) => (
-      <SpaceItem key={index}>
-        <SpaceTitle>{info.thread_id}</SpaceTitle>
-        <SpaceTitle>{info.init_point} Stake TP</SpaceTitle>
-        <SpaceTitle>{info.thread_mode ? "Fraud" : "Basic"}</SpaceTitle>
-
-      </SpaceItem>
-    ))}
-  </Space>        </CenteredForm3>
-  </ThreadCreatedContainer>
-
+          <ThreadCreatedContainer>
+            <CenteredForm3>
+              <h4>Threads Created </h4>
+              <Space>
+                {threadCreated &&
+                  threadCreated.map((info, index) => (
+                    <SpaceItem key={index}>
+                      <SpaceTitle>{info.thread_id}</SpaceTitle>
+                      <SpaceTitle>{info.init_point} Stake TP</SpaceTitle>
+                      <SpaceTitle>
+                        {info.thread_mode ? "Fraud" : "Basic"}
+                      </SpaceTitle>
+                    </SpaceItem>
+                  ))}
+              </Space>{" "}
+            </CenteredForm3>
+          </ThreadCreatedContainer>
         </FormContainer>
       </Container>
       {isModalOpen && (
         <ModalContainer>
           <ModalContent>
-          <CloseButton onClick={handleCloseModal}>x</CloseButton>
+            <CloseButton onClick={handleCloseModal}>x</CloseButton>
             <h1>Edit Profile</h1>
-            <Input type="text" placeholder='Name' value={userName} onChange={(e) => setUserName(e.target.value)}/>
-            <br/>
+            <Input
+              type="text"
+              placeholder="Name"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+            />
             <br />
-            <TextArea  placeholder='Description'/>
+            <br />
+            <TextArea placeholder="Description" />
             <br />
             <SaveButton onClick={() => handleUpdateProfile()}>Save</SaveButton>
-            </ModalContent>
+          </ModalContent>
         </ModalContainer>
       )}
       <br />
       <br />
       <br />
-      <br /><br />
-      <br /><br />
+      <br />
+      <br />
+      <br />
+      <br />
       <br />
     </div>
   );

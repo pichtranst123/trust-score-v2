@@ -9,8 +9,6 @@ import {
   Row,
 } from "./Hero.styled";
 
-
-
 // @component
 import Container from "components/Container/Container";
 
@@ -24,10 +22,10 @@ export default function index() {
       <Container>
         <MainLayout>
           <Collection data-aos="fade-up" data-aos-duration="1000">
-          TrustScore is a social network that believes in the power of trust.
+            TrustScore is a social network that believes in the power of trust.
           </Collection>
           <Text data-aos="fade-up">
-           We are committed to creating a safe and secure environment. 
+            We are committed to creating a safe and secure environment.
           </Text>
           <Row>
             <div data-aos="zoom-in-up" data-aos-duration="2000">

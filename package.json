@@ -12,6 +12,7 @@
     "aos": "^2.3.4",
     "near-api-js": "^0.45.1",
     "next": "12.1.6",
+    "prettier": "^3.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-headroom": "^3.2.0",

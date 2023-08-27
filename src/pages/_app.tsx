@@ -48,9 +48,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, []);
 
-
-
-
   const handleHover = () => {
     if (isConnected) {
       setIsHovered(!isHovered);

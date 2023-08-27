@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 // @styled-component
@@ -17,60 +17,57 @@ import Image4 from "assets/png/theopendao.webp";
 import Image5 from "assets/png/Edu.png";
 import Image6 from "assets/png/op.png";
 
+const NameSpace = styled.input`
+  width: 100%;
+  background: white;
+  padding: 8px;
+  border: 2px solid;
+  border-radius: 4px;
+  margin-bottom: 10px;
+`;
 
+const IdSpace = styled.input`
+  width: 100%;
+  padding: 8px;
+  background: white;
+  border: 2px solid;
+  border-radius: 4px;
+  margin-bottom: 10px;
+`;
 
-    const NameSpace = styled.input`
-      width: 100%;
-      background: white;
-      padding: 8px;
-      border: 2px solid;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    `;
+const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-    const IdSpace = styled.input`
-      width: 100%;
-      padding: 8px;
-      background: white;
-      border: 2px solid;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    `;
+const ModalContent = styled.div`
+  background-color: white;
+  border: 6px solid;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+`;
 
-    const Modal = styled.div`
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    `;
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-    const ModalContent = styled.div`
-      background-color: white;
-      border: 6px solid;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-    `;
-
-    const Overlay = styled.div`
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    `;
-
-
-    const Button = styled.button`
+const Button = styled.button`
     margin-left:20px;
     font-size: 14px;
     color: black;
@@ -87,7 +84,7 @@ import Image6 from "assets/png/op.png";
       box-shadow: none;
       transform: translate(3px, 3px);
     `;
-    const ButtonCreate = styled.button`
+const ButtonCreate = styled.button`
       height:60px;
       font-size: 14px;
       color: black;
@@ -105,7 +102,7 @@ import Image6 from "assets/png/op.png";
         transform: translate(3px, 3px);
       `;
 
-    const ButtonCreated = styled.button`
+const ButtonCreated = styled.button`
     margin-right:20px;
     font-size: 14px;
     color: black;
@@ -122,7 +119,6 @@ import Image6 from "assets/png/op.png";
       box-shadow: none;
       transform: translate(3px, 3px);
     `;
-
 
 export default function index() {
   // When creating the wallet you can optionally ask to create an access key
@@ -141,37 +137,34 @@ export default function index() {
   const [spaces, setSpaces] = useState(null);
   const [walletState, setWalletState] = useState(null);
 
-  
   useEffect(() => {
     const contractId = "dev-1693105604198-31429410070805";
-    const wallet = new Wallet({ createAccessKeyFor: contractId  });
+    const wallet = new Wallet({ createAccessKeyFor: contractId });
     setWalletState(wallet);
     const startUp = async () => {
       const isSignedIn = await wallet.startUp();
-      const spacesData = await wallet.viewMethod({ method: "get_all_spaces",contractId});
-      const spaceArr = []
-      spacesData.forEach(item => {
-        
-        spaceArr.push(  {
-          id:item.space_id,
+      const spacesData = await wallet.viewMethod({
+        method: "get_all_spaces",
+        contractId,
+      });
+      const spaceArr = [];
+      spacesData.forEach((item) => {
+        spaceArr.push({
+          id: item.space_id,
           image: Image5,
           title: item.space_name,
           description: "Learn to earn",
           trustpoint: Math.floor(Math.random() * 10000),
           follower: `${Math.floor(Math.random() * 10000)} Followers`,
           connect: [{ icon: FaPlus, link: `/space/${item.space_id}` }],
-        },)
+        });
       });
-      setSpaces(spaceArr)
+      setSpaces(spaceArr);
       console.log(spaceArr);
     };
 
-    startUp()
-      .catch(console.error);
-  }, [])
-
-
-
+    startUp().catch(console.error);
+  }, []);
 
   return (
     <Layout id="space">
@@ -179,13 +172,15 @@ export default function index() {
         <Title>Spaces</Title>
         <ButtonCreate onClick={openModal}>Create Space</ButtonCreate>
         <br />
-        <br /><br />
+        <br />
+        <br />
         <MainLayout>
-          {spaces  && spaces.map((item, index) => (
-            <ItemLayout key={index}>
-              <Spaces data={item} wallet={walletState} />
-            </ItemLayout>
-          ))}
+          {spaces &&
+            spaces.map((item, index) => (
+              <ItemLayout key={index}>
+                <Spaces data={item} wallet={walletState} />
+              </ItemLayout>
+            ))}
         </MainLayout>
       </Container>
       {isModalOpen && (

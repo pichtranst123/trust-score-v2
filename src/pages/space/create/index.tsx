@@ -1,11 +1,11 @@
-import React, { useState , useEffect} from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import { BiArrowBack } from "react-icons/bi";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import { Wallet } from "../../../near/near-wallet";
 
 const CenteredForm = styled.form`
-  margin-top:30%;
+  margin-top: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,57 +39,64 @@ const TextArea = styled.textarea`
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 340px;
-  height:300px;
+  height: 300px;
   box-sizing: border-box;
 `;
 
 const Button = styled.button`
-
   padding: 10px 20px;
   border: 1px solid;
   color: black;
   border: none;
   border-radius: 13px;
   cursor: pointer;
-  :hover{
-    background: linear-gradient(90deg, rgba(243,243,243,1) 0%, rgba(159,232,241,1) 12%, rgba(0,186,207,1) 42%, rgba(46,117,126,1) 83%, rgba(6,23,27,1) 100%);    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
-
+  :hover {
+    background: linear-gradient(
+      90deg,
+      rgba(243, 243, 243, 1) 0%,
+      rgba(159, 232, 241, 1) 12%,
+      rgba(0, 186, 207, 1) 42%,
+      rgba(46, 117, 126, 1) 83%,
+      rgba(6, 23, 27, 1) 100%
+    );
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
   }
 `;
 
 const CreateSpace: React.FC = () => {
   const contractId = "dev-1693105604198-31429410070805";
-  const wallet = new Wallet({ createAccessKeyFor: contractId  });
+  const wallet = new Wallet({ createAccessKeyFor: contractId });
 
-    const router = useRouter();
+  const router = useRouter();
 
-    const handleBackClick = () => {
-        router.push('/Space');
-      };
-  
+  const handleBackClick = () => {
+    router.push("/Space");
+  };
 
-  const [spaceName, setSpaceName] = useState('');
+  const [spaceName, setSpaceName] = useState("");
 
-  const handleSubmit = async(event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     await wallet.startUp();
     await wallet.callMethod({
       method: "create_space",
-      args: {"space_name":spaceName},
+      args: { space_name: spaceName },
       contractId,
     });
-    console.log('name:', spaceName);
+    console.log("name:", spaceName);
   };
 
   return (
     <div>
       <h1>Create New Space</h1>
       <CenteredForm onSubmit={handleSubmit}>
-      <InputWrapper>      <Button type="submit" onClick={handleBackClick}>
-      <BackIcon />
- Back</Button>
-</InputWrapper>
-
+        <InputWrapper>
+          {" "}
+          <Button type="submit" onClick={handleBackClick}>
+            <BackIcon />
+            Back
+          </Button>
+        </InputWrapper>
 
         <InputWrapper>
           <Label htmlFor="title">Name:</Label>
