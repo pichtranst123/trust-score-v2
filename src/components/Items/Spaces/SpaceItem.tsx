@@ -36,7 +36,7 @@ const Container: React.FC<{ data , wallet : Props }> = ({ data , wallet}) => {
     const getUserFollow = async () => {
       const userFollow = await wallet.viewMethod({
         method: "get_followed_user_of_space_by_space_id",
-        args: {"space_id":data.id},
+        args: {"space_id":data.space_id},
         contractId,
       });
       userFollow.forEach(user => {
@@ -46,7 +46,7 @@ const Container: React.FC<{ data , wallet : Props }> = ({ data , wallet}) => {
       });
       const thread = await wallet.viewMethod({
         method: "get_all_threads_of_space_by_space_id",
-        args: {"space_id":data.id},
+        args: {"space_id":data.space_id},
         contractId,
       });
       if(thread){
@@ -80,6 +80,7 @@ const Container: React.FC<{ data , wallet : Props }> = ({ data , wallet}) => {
                     args: {"space_id":data.space_id},
                     contractId,
                   });
+      
                 }else{
                   router.push(`/space/${data.space_id}`);
                 }
