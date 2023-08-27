@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-
+import { useRouter } from 'next/router';
 // @styled-components
 import {
   Layout,
@@ -29,8 +29,11 @@ type Props = {
 //----------------------------------------------------------------
 
 const Container: React.FC<{ data: Props }> = ({ data }) => {
+  const router = useRouter();
   return (
-    <Layout>
+    <Layout onClick={()=>{
+      router.push(`/thread/${data.id}`);
+    }}>
       <ImageLayout>
         <Image src={data.image} alt="No Image" layout="fill" style={{ borderRadius: '200px' }} />
       </ImageLayout>

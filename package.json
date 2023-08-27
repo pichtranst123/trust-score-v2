@@ -15,7 +15,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-headroom": "^3.2.0",
-    "react-icons": "^4.4.0",
+    "react-icons": "^4.10.1",
     "react-loader-spinner": "^5.1.5",
     "react-numeric-input": "^2.2.3",
     "styled-components": "^5.3.5",
@@ -32,6 +32,18 @@
     "babel-plugin-styled-components": "^2.0.7",
     "eslint": "8.16.0",
     "eslint-config-next": "12.1.6",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "@near-wallet-selector/core": "^7.0.0",
+    "@near-wallet-selector/ledger": "^7.0.0",
+    "@near-wallet-selector/math-wallet": "^7.0.0",
+    "@near-wallet-selector/meteor-wallet": "^7.0.0",
+    "@near-wallet-selector/modal-ui": "^7.0.0",
+    "@near-wallet-selector/my-near-wallet": "^7.0.0",
+    "@near-wallet-selector/near-wallet": "^7.0.0",
+    "@near-wallet-selector/nightly": "^7.0.0",
+    "@near-wallet-selector/nightly-connect": "^7.0.0",
+    "@near-wallet-selector/sender": "^7.0.0",
+    "@near-wallet-selector/wallet-connect": "^7.0.0",
+    "near-api-js": "^0.44.2"
   }
 }

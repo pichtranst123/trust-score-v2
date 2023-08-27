@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import Image from "next/image";
+import { useRouter } from 'next/router';
 
 // @styled-components
 import {
@@ -28,7 +29,29 @@ type Props = {
 
 //----------------------------------------------------------------
 
-const Container: React.FC<{ data: Props }> = ({ data }) => {
+const Container: React.FC<{ data , wallet : Props }> = ({ data , wallet}) => {
+  const router = useRouter();
+  const contractId = "dev-1693129289263-20526325787540";
+  const [userFollow, setUserFollow] = useState(false);
+  useEffect(() => {
+    const getUserFollow = async () => {
+      const userFollow = await wallet.viewMethod({
+        method: "get_followed_user_of_space_by_space_id",
+        args: {"space_id":data.id},
+        contractId,
+      });
+      userFollow.forEach(user => {
+        if(user == wallet.accountId){
+          setUserFollow(true);
+        }
+      });
+
+
+
+    };
+    getUserFollow().catch(console.error);
+    
+  },[])
   return (
     <Layout>
       <ImageLayout>
@@ -41,9 +64,19 @@ const Container: React.FC<{ data: Props }> = ({ data }) => {
         <Follower>{data.follower}</Follower>
         <Icons >              
           {data.connect.map((item, index) => (
-                <IconButton  key={index} href={item.link} target="_blank">
-              Join Now&nbsp;
-                  <item.icon />
+                <IconButton  key={index}  onClick={ async() => {
+                if (!userFollow) {
+                  await wallet.callMethod({
+                    method: "follow_space",
+                    args: {"space_id":data.id},
+                    contractId,
+                  });
+                }else{
+                  router.push(`/space/${data.id}`);
+                }
+                }} >
+                  {userFollow ? "Join" : "Follow "}
+                  {userFollow ? "" : <item.icon />} 
                 </IconButton>
               ))}
             </Icons>
