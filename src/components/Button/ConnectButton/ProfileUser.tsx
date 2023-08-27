@@ -1,4 +1,4 @@
-import {React,useEffect} from "react";
+import {useEffect} from "react";
 // @styled-components
 import { Layout } from "./ProfileUser.styled";
 import { BiUserCircle } from "react-icons/bi";
@@ -10,7 +10,7 @@ interface ButtonLogoutProps {}
 
 const ButtonLogout: React.FC<ButtonLogoutProps> = () => {
   const contractId = process.env.NEXT_PUBLIC_CONTRACT_NAME;
-  const wallet = new Wallet({ createAccessKeyFor: contractId });
+  const wallet = new Wallet({ createAccessKeyFor: contractId as any });
   const router = useRouter();
   useEffect(() => {
     const startUp = async () => {

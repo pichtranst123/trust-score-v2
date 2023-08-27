@@ -367,15 +367,15 @@ const ImageWrapper = styled.div`
 
 const CreateThread: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTab, setSelectedTab] = useState("about"); // Add state to track selected tab
-  const [threadCreated, setThreadCreated] = useState(null);
-  const [user, setUser] = useState(null);
-  const [spaces, setSpaces] = useState(null);
+  const [selectedTab, setSelectedTab] = useState("about");
+  const [threadCreated, setThreadCreated] = useState([]);
+  const [user, setUser] = useState({total_point:"",threads_owned:""});
+  const [spaces, setSpaces] = useState([]);
   const [userName, setUserName] = useState("");
   const router = useRouter();
-  const contractId = process.env.NEXT_PUBLIC_CONTRACT_NAME;
+  const contractId:any = process.env.NEXT_PUBLIC_CONTRACT_NAME;
   const wallet = new Wallet({ createAccessKeyFor: contractId });
-
+  const {accountId} = wallet
   useEffect(() => {
     const startUp = async () => {
       const isSignedIn = await wallet.startUp();
@@ -386,8 +386,8 @@ const CreateThread: React.FC = () => {
           contractId,
         });
         setUser(userData);
-        const spaceMetadata = [];
-        userData.followed_space_list.forEach(async (item) => {
+        const spaceMetadata:any = [];
+        userData.followed_space_list.forEach(async (item:any) => {
           const spaceData = await wallet.viewMethod({
             method: "get_space_metadata_by_space_id",
             args: { space_id: item },
@@ -414,10 +414,9 @@ const CreateThread: React.FC = () => {
   };
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("accountID", accountId);
   };
   const handleUpdateProfile = async () => {
-    event.preventDefault();
+    event?.preventDefault();
     await wallet.startUp();
     await wallet.callMethod({
       method: "update_user_information",
@@ -450,7 +449,7 @@ const CreateThread: React.FC = () => {
               />
             </ImageWrapper>
             <Button className="copy-button">
-              <Label htmlFor="title">
+              <Label htmlFor="title"> 
                 <div>
                   {accountId.substr(0, 9) +
                     accountId.substr(
@@ -480,7 +479,7 @@ const CreateThread: React.FC = () => {
             <h4>Following Space</h4>
             <Space>
               {spaces &&
-                spaces.map((space, index) => (
+                spaces.map((space:any, index:any) => (
                   <SpaceItem key={index}>
                     {/* <Image src={space.image} alt="Space" width={35} height={34} style={{ marginRight: '10px' }} /> */}
                     <SpaceTitle>{space.space_name}</SpaceTitle>
@@ -494,7 +493,7 @@ const CreateThread: React.FC = () => {
               <h4>Threads Created </h4>
               <Space>
                 {threadCreated &&
-                  threadCreated.map((info, index) => (
+                  threadCreated.map((info:any, index:any) => (
                     <SpaceItem key={index}>
                       <SpaceTitle>{info.thread_id}</SpaceTitle>
                       <SpaceTitle>{info.init_point} Stake TP</SpaceTitle>

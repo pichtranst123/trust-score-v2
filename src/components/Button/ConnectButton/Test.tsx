@@ -10,7 +10,7 @@ interface ButtonLogoutProps {}
 
 const ButtonLogout: React.FC<ButtonLogoutProps> = () => {
     const contractId = process.env.NEXT_PUBLIC_CONTRACT_NAME;
-    const wallet = new Wallet({ createAccessKeyFor: contractId });
+    const wallet = new Wallet({ createAccessKeyFor: contractId as any });
     useEffect(() => {
         const startUp = async () => {
           const isSignedIn = await wallet.startUp();

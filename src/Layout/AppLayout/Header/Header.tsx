@@ -21,6 +21,7 @@ import {
 // @assets
 import LogoImage from "assets/png/Logo.png";
 import { BiMenu } from "react-icons/bi";
+import LogoBg from "assets/png/logo-bg.gif";
 
 // @component
 import { ConnectButton } from "components/Button";
@@ -89,13 +90,13 @@ const Header: React.FC = () => {
       <Layout>
         <Container>
           <MainLayout>
-            <LogoContainer
+          <LogoContainer
               onClick={() => {
                 router.push("/");
               }}
+              back={LogoBg.src}
               top={scrollY == 0}
-            >
-              <LogoImageStyled src={LogoImage} alt="No Image" layout="fill" />
+            >              <LogoImageStyled src={LogoImage} alt="No Image" layout="fill" />
               <LogoOverlay />
             </LogoContainer>
             <Menu>
@@ -130,7 +131,12 @@ const Header: React.FC = () => {
       <MobileLayout>
         <Container>
           <MobileMainLayout>
-            <LogoContainer top={scrollY == 0}>
+            <LogoContainer onClick={() => {
+                router.push("/");
+              }}
+              back={LogoBg.src}
+              top={scrollY == 0}
+            >
               <Image src={LogoImage} alt="No Image" layout="fill" />
             </LogoContainer>
 

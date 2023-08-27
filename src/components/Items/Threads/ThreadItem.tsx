@@ -68,28 +68,23 @@ const Button = styled.button`
 &:active {
   box-shadow: none;
   transform: translate(3px, 3px);
-`;
-
-
+}`;
 // @type
 type Props = {
   image: any;
   title: string;
-  contractName: string;
   endTime: string;
   description: string;
   trustpoint: number;
   follower: string;
+  thread_id: string;
   connect: { icon: any; link: string }[];
 };
-
-
 //----------------------------------------------------------------
-
 const Container: React.FC<{ data: Props }> = ({ data }) => {
   const router = useRouter();
   const handleBackClick = () => {
-    router.push(`/thread/${data.id}`);
+    router.push(`/thread/${data.thread_id}`);
   };
   return (
     <Layout>
@@ -98,7 +93,7 @@ const Container: React.FC<{ data: Props }> = ({ data }) => {
       </ImageLayout>
       <Time>{data.endTime}</Time>
       <TP>{data.trustpoint} TP&nbsp;</TP>
-      <Contract>{data.contractName}</Contract>
+      <Contract>{data.thread_id}</Contract>
       <Title>{data.title}</Title>
       <Des>{data.description}</Des>
       <Button onClick={handleBackClick}>View thread</Button>

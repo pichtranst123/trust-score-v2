@@ -121,99 +121,99 @@ const ButtonCreated = styled.button`
       transform: translate(3px, 3px);
     `;
 
-export default function index() {
-  // When creating the wallet you can optionally ask to create an access key
-  // Having the key enables to call non-payable methods without interrupting the user to sign
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [spaceName, setSpaceName] = useState("");
-  const contractId = process.env.NEXT_PUBLIC_CONTRACT_NAME;
-  const wallet = new Wallet({ createAccessKeyFor: contractId });
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-  const createSpace = async() => {
-    await wallet.startUp();
-    await wallet.callMethod({
-      method: "create_space",
-      args: { space_name: spaceName },
-      contractId,
-    });
-    const spacesData = await wallet.viewMethod({
-      method: "get_all_spaces",
-      contractId,
-    });
-    const spaceArr = [];
-    spacesData.forEach((item) => {
-      spaceArr.push({
-        ...item,
-        image: Image5,
-        connect: [{ icon: FaPlus, link: `/space/${item.space_id}` }],
-      });
-    });
-    setSpaces(spaceArr);
-    setIsModalOpen(false);
-  };
-  const [spaces, setSpaces] = useState(null);
-  const [walletState, setWalletState] = useState(null);
-
-  useEffect(() => {
-    const contractId = process.env.NEXT_PUBLIC_CONTRACT_NAME;
-    const wallet = new Wallet({ createAccessKeyFor: contractId });
-    setWalletState(wallet);
-    const startUp = async () => {
-      const isSignedIn = await wallet.startUp();
-      const spacesData = await wallet.viewMethod({
-        method: "get_all_spaces",
-        contractId,
-      });
-      const spaceArr = [];
-      spacesData.forEach((item) => {
-        spaceArr.push({
-          ...item,
-          image: Image5,
-          connect: [{ icon: FaPlus, link: `/space/${item.space_id}` }],
+    export default function index() {
+      // When creating the wallet you can optionally ask to create an access key
+      // Having the key enables to call non-payable methods without interrupting the user to sign
+    
+      const [isModalOpen, setIsModalOpen] = useState(false);
+      const [spaceName, setSpaceName] = useState("");
+      const contractId: any = process.env.NEXT_PUBLIC_CONTRACT_NAME;
+      const wallet = new Wallet({ createAccessKeyFor: contractId as any });
+      const openModal = () => {
+        setIsModalOpen(true);
+      };
+    
+      const closeModal = () => {
+        setIsModalOpen(false);
+      };
+      const createSpace = async() => {
+        await wallet.startUp();
+        await wallet.callMethod({
+          method: "create_space",
+          args: { space_name: spaceName },
+          contractId,
         });
-      });
-      setSpaces(spaceArr);
-      console.log(spaceArr);
-    };
-
-    startUp().catch(console.error);
-  }, []);
-
-  return (
-    <Layout id="space">
-      <Container>
-        <Title>Spaces</Title>
-        <ButtonCreate onClick={openModal}>Create Space</ButtonCreate>
-        <br />
-        <br />
-        <br />
-        <MainLayout>
-          {spaces &&
-            spaces.map((item, index) => (
-              <ItemLayout key={index}>
-                <Spaces data={item} wallet={walletState} />
-              </ItemLayout>
-            ))}
-        </MainLayout>
-      </Container>
-      {isModalOpen && (
-        <Overlay id="modalOverlay">
-          <Modal>
-            <ModalContent>
-              <NameSpace type="text" placeholder="Name" value={spaceName} onChange={(e) => setSpaceName(e.target.value)}/>
-              <ButtonCreated onClick={createSpace} >Create</ButtonCreated>
-              <Button onClick={closeModal}>Cancel</Button>
-            </ModalContent>
-          </Modal>
-        </Overlay>
-      )}
-    </Layout>
-  );
-}
+        const spacesData = await wallet.viewMethod({
+          method: "get_all_spaces",
+          contractId,
+        });
+        const spaceArr: any = [];
+        spacesData.forEach((item:any) => {
+          spaceArr.push({
+            ...item,
+            image: Image5,
+            connect: [{ icon: FaPlus, link: `/space/${item.space_id}` }],
+          });
+        });
+        setSpaces(spaceArr);
+        setIsModalOpen(false);
+      };
+      const [spaces, setSpaces] = useState([]);
+      const [walletState, setWalletState] = useState(null);
+    
+      useEffect(() => {
+        const contractId: any = process.env.NEXT_PUBLIC_CONTRACT_NAME;
+        const wallet = new Wallet({ createAccessKeyFor: contractId });
+        setWalletState(wallet as any);
+        const startUp = async () => {
+          const isSignedIn = await wallet.startUp();
+          const spacesData = await wallet.viewMethod({
+            method: "get_all_spaces",
+            contractId,
+          });
+          const spaceArr: any = [];
+          spacesData.forEach((item:any) => {
+            spaceArr.push({
+              ...item,
+              image: Image5,
+              connect: [{ icon: FaPlus, link: `/space/${item.space_id}` }],
+            });
+          });
+          setSpaces(spaceArr);
+        };
+    
+        startUp().catch(console.error);
+      }, []);
+    
+      return (
+        <Layout id="space">
+          <Container>
+            <Title>Spaces</Title>
+            <ButtonCreate onClick={openModal}>Create Space</ButtonCreate>
+            <br />
+            <br />
+            <br />
+            <MainLayout>
+              {spaces &&
+                spaces.map((item:any, index:any) => (
+                  <ItemLayout key={index}>
+                    <Spaces data={item} wallet={walletState} />
+                  </ItemLayout>
+                ))}
+            </MainLayout>
+          </Container>
+          {isModalOpen && (
+            <Overlay id="modalOverlay">
+              <Modal>
+                <ModalContent>
+                  <NameSpace type="text" placeholder="Name" value={spaceName} onChange={(e) => setSpaceName(e.target.value)}/>
+                  <ButtonCreated onClick={createSpace} >Create</ButtonCreated>
+                  <Button onClick={closeModal}>Cancel</Button>
+                </ModalContent>
+              </Modal>
+            </Overlay>
+          )}
+        </Layout>
+      );
+    }
+    

@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from "react";
+import React, {useEffect } from "react";
 // @styled-components
 import { Layout } from "./ButtonLogout.styled";
 import { FiLogOut } from "react-icons/fi";
@@ -11,8 +11,8 @@ interface ButtonLogoutProps {}
 const ButtonLogout: React.FC<ButtonLogoutProps> = () => {
 // When creating the wallet you can optionally ask to create an access key
 // Having the key enables to call non-payable methods without interrupting the user to sign
-const contractId = process.env.NEXT_PUBLIC_CONTRACT_NAME;
-const wallet = new Wallet({ createAccessKeyFor: contractId });
+const contractId = process.env.NEXT_PUBLIC_CONTRACT_NAME || "";
+const wallet = new Wallet({ createAccessKeyFor: contractId as any });
 
   useEffect(() => {
     const startUp = async () => {

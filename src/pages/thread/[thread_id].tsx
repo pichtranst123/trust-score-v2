@@ -8,17 +8,6 @@ import Image from "next/image";
 import { Wallet } from "../../near/near-wallet";
 import { test } from "node:test";
 
-const Threaddetail = [
-  {
-    yes: 88,
-    no: 12,
-    stake: 1000,
-    contractName: "HelloNear333.testnet",
-    title: "This is title",
-    description:
-      "this is description descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription",
-  },
-];
 
 const FlexContainer = styled.div`
   display: flex;
@@ -73,7 +62,7 @@ box-shadow: none;
 transform: translate(3px, 3px);
 `;
 
-const ButtonVote = styled.button`
+const ButtonVote = styled.button<{selected: boolean}>`
 margin-bottom:5px;
 width:100%;
 height:40px;
@@ -136,18 +125,18 @@ const StyledImage = styled(Image)`
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
 `;
 const CreateThread: React.FC = () => {
-  const [threadDetail, setThreadDetail] = useState(null);
-  const [choice, setChoice] = useState(null);
-  const [choicesRate, setChoicesRate] = useState(null);
-  const [spaceId, setSpaceId] = useState(null);
+  const [threadDetail, setThreadDetail] = useState([]);
+  const [choice, setChoice] = useState([]);
+  const [choicesRate, setChoicesRate] = useState([]);
+  const [spaceId, setSpaceId] = useState([]);
   const [selectedOption, setSelectedOption] = useState<string>("");
   const router = useRouter();
   const {
     query: { thread_id },
   } = router;
 
-  const contractId = process.env.NEXT_PUBLIC_CONTRACT_NAME;
-  const wallet = new Wallet({ createAccessKeyFor: contractId });
+  const contractId: any = process.env.NEXT_PUBLIC_CONTRACT_NAME;
+  const wallet = new Wallet({ createAccessKeyFor: contractId as any });
 
   useEffect(() => {
     const startUp = async () => {
@@ -160,9 +149,9 @@ const CreateThread: React.FC = () => {
         });
         console.log(threadDetailData);
         setSpaceId(threadDetailData.space_id);
-        const ThreadArr = [
+        const ThreadArr: any = [
           {
-            contractName: threadDetailData.thread_id,
+            thread_id: threadDetailData.thread_id,
             title: threadDetailData.title,
             description: threadDetailData.content,
           },
@@ -170,28 +159,28 @@ const CreateThread: React.FC = () => {
         setThreadDetail(ThreadArr);
         if (threadDetailData.user_votes_map[wallet.accountId]) {
           threadDetailData.user_votes_map[wallet.accountId].forEach(
-            (item, index) => {
+            (item:any, index:any) => {
               if (item > 0) {
                 setSelectedOption(index);
               }
             }
           );
         }
-        const trustPointPercent = [];
+        const trustPointPercent: any = [];
         Object.keys(threadDetailData.user_votes_map).forEach((key, index) => {
           trustPointPercent.push({
             [index]: threadDetailData.user_votes_map[key],
           });
         });
         console.log(trustPointPercent);
-        const choices_map = [];
+        const choices_map: any = [];
         Object.keys(threadDetailData.choices_map).forEach((key, index) => {
           choices_map.push({ [key]: threadDetailData.choices_map[key] });
         });
         setChoice(choices_map);
 
         if (threadDetailData.choices_rating) {
-          const voteData = [];
+          const voteData: any = [];
           Object.keys(threadDetailData.choices_map).forEach((key, index) => {
             const a = threadDetailData.choices_map[key];
             voteData.push({ [a]: threadDetailData.choices_rating[index] });
@@ -227,15 +216,15 @@ const CreateThread: React.FC = () => {
 
       const ThreadArr = [
         {
-          contractName: threadDetailData.thread_id,
+          thread_id: threadDetailData.thread_id,
           title: threadDetailData.title,
           description: threadDetailData.content,
         },
       ];
-      setThreadDetail(ThreadArr);
+      setThreadDetail(ThreadArr as any);
       if (threadDetailData.user_votes_map[wallet.accountId]) {
         threadDetailData.user_votes_map[wallet.accountId].forEach(
-          (item, index) => {
+          (item:any, index:any) => {
             if (item > 0) {
               setSelectedOption(index);
             }
@@ -260,7 +249,7 @@ const CreateThread: React.FC = () => {
 
         <Container>
           {threadDetail &&
-            threadDetail.map((thread, index) => (
+            threadDetail.map((thread:any, index:any) => (
               <div key={index}>
                 <Title> {thread.title}</Title>
                 <FlexContainer>
@@ -271,14 +260,14 @@ const CreateThread: React.FC = () => {
                     height={25}
                     border-radius={24}
                   />
-                  <p>{thread.contractName}</p>
+                  <p>{thread.thread_id}</p>
                 </FlexContainer>
 
                 <Description>{thread.content}</Description>
               </div>
             ))}
           {choice &&
-            choice.map((item, index) => (
+            choice.map((item:any, index:any) => (
               <>
                 <ButtonVote
                   type="button"
@@ -293,7 +282,7 @@ const CreateThread: React.FC = () => {
             ))}
 
           {threadDetail &&
-            threadDetail.map((thread, index) => (
+            threadDetail.map((thread:any, index:any) => (
               <Stake key={index}>{thread.stake} Stack Thread</Stake>
             ))}
 
@@ -303,18 +292,18 @@ const CreateThread: React.FC = () => {
           {selectedOption && (
             <>
               {threadDetail &&
-                threadDetail.map((thread, index) => (
+                threadDetail.map((thread:any, index:any) => (
                   <Stake key={index}>{thread.stake} Stack Thread</Stake>
                 ))}
               <hr />
               <h4>Result</h4>
               <hr />
               {choicesRate &&
-                choicesRate.map((item, index) => (
+                choicesRate.map((item:any, index:any) => (
                   <>
-                    <voted key={index}>
+                    <Yes key={index}>
                       {Object.keys(item)} : {Object.values(item)} TP
-                    </voted>
+                    </Yes>
                     <hr />
                   </>
                 ))}
