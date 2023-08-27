@@ -65,11 +65,11 @@ const Container: React.FC<{ data , wallet : Props }> = ({ data , wallet}) => {
       <ImageLayout>
         <Image src={data.image} alt="No Image" layout="fill" style={{ borderRadius: '12px' }} />
       </ImageLayout>
-      <Title>{data.title}</Title>
+      <Title>{data.space_name}</Title>
       <Des>{data.description}</Des>
-      <TP>{data.trustpoint} TP</TP>
+      <TP>{data.total_point} TP</TP>
       <Detail>
-        <Follower>{data.follower}</Follower>
+        <Follower>{data.followed_users?.length} follower(s)</Follower>
         <Icons >              
           {data.connect.map((item, index) => (
                 <IconButton  key={index}  onClick={ async() => {
@@ -77,11 +77,11 @@ const Container: React.FC<{ data , wallet : Props }> = ({ data , wallet}) => {
                   await wallet.startUp("")
                   await wallet.callMethod({
                     method: "follow_space",
-                    args: {"space_id":data.id},
-                    contractId,
+                    args: {"space_id":data.space_id},
+                    contractspace_id,
                   });
                 }else{
-                  router.push(`/space/${data.id}`);
+                  router.push(`/space/${data.space_id}`);
                 }
                 }} >
                   {userFollow ? "Join" : "Follow "}

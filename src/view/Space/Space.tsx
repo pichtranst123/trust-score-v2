@@ -150,12 +150,8 @@ export default function index() {
       const spaceArr = [];
       spacesData.forEach((item) => {
         spaceArr.push({
-          id: item.space_id,
+          ...item,
           image: Image5,
-          title: item.space_name,
-          description: "Learn to earn",
-          trustpoint: Math.floor(Math.random() * 10000),
-          follower: `${Math.floor(Math.random() * 10000)} Followers`,
           connect: [{ icon: FaPlus, link: `/space/${item.space_id}` }],
         });
       });
