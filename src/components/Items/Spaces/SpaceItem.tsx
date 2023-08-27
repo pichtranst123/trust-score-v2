@@ -80,7 +80,8 @@ const Container: React.FC<{ data , wallet : Props }> = ({ data , wallet}) => {
                     args: {"space_id":data.space_id},
                     contractId,
                   });
-      
+                  setUserFollow(true);
+                  router.push(`/space/${data.space_id}`);
                 }else{
                   router.push(`/space/${data.space_id}`);
                 }
