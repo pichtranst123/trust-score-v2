@@ -23,8 +23,9 @@ const wallet = new Wallet({ createAccessKeyFor: "dev-1693105604198-3142941007080
       .catch(console.error);;
   }, [])
 
-  const handleLogout = () => {
-    wallet.signOut();
+  const handleLogout = async() => {
+    await wallet.startUp();
+    await wallet.signOut();
   };
 
   return <Layout onClick={handleLogout}><FiLogOut />&nbsp;Logout</Layout>;
