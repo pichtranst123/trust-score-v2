@@ -16,6 +16,7 @@ import Image3 from "assets/png/pancakeswap.png";
 import Image4 from "assets/png/theopendao.webp";
 import Image5 from "assets/png/Edu.png";
 import Image6 from "assets/png/op.png";
+import { create } from "domain";
 
 const NameSpace = styled.input`
   width: 100%;
@@ -125,7 +126,9 @@ export default function index() {
   // Having the key enables to call non-payable methods without interrupting the user to sign
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [spaceName, setSpaceName] = useState("");
+  const contractId = process.env.NEXT_PUBLIC_CONTRACT_NAME;
+  const wallet = new Wallet({ createAccessKeyFor: contractId });
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -133,7 +136,28 @@ export default function index() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+  const createSpace = async() => {
+    await wallet.startUp();
+    await wallet.callMethod({
+      method: "create_space",
+      args: { space_name: spaceName },
+      contractId,
+    });
+    const spacesData = await wallet.viewMethod({
+      method: "get_all_spaces",
+      contractId,
+    });
+    const spaceArr = [];
+    spacesData.forEach((item) => {
+      spaceArr.push({
+        ...item,
+        image: Image5,
+        connect: [{ icon: FaPlus, link: `/space/${item.space_id}` }],
+      });
+    });
+    setSpaces(spaceArr);
+    setIsModalOpen(false);
+  };
   const [spaces, setSpaces] = useState(null);
   const [walletState, setWalletState] = useState(null);
 
@@ -183,9 +207,8 @@ export default function index() {
         <Overlay id="modalOverlay">
           <Modal>
             <ModalContent>
-              <NameSpace type="text" placeholder="Name" />
-              <IdSpace type="text" placeholder="ID" />
-              <ButtonCreated>Create</ButtonCreated>
+              <NameSpace type="text" placeholder="Name" value={spaceName} onChange={(e) => setSpaceName(e.target.value)}/>
+              <ButtonCreated onClick={createSpace} >Create</ButtonCreated>
               <Button onClick={closeModal}>Cancel</Button>
             </ModalContent>
           </Modal>
