@@ -6,6 +6,7 @@ const backgroundImageUrl = bg.src;
 
 export const Layout = styled.div`
   width: 100%;
+  height: 920px;
   background-size: cover;
   background-position: center top;
   padding: 320px 0px 150px 0px;
@@ -61,7 +62,8 @@ export const Text = styled.div`
 `;
 
 export const Button = styled.div`
-  width:2ê0px;
+  width:100%;
+  margin-top:120px;
   display: flex;
   align-items: center;
   gap: 10px;

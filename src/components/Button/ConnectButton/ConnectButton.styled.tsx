@@ -5,8 +5,8 @@ export const ConnectButtonWidth = "180px"; // Giá trị width của button conn
 export const ConnectButtonHeight = "56px"; // Giá trị height của button connect
 
 
-export const Layout = styled.div`
-&& {
+export const Layout = styled.button`
+ {
   width:140px;
   height:50px;
   border-radius: 24px;
@@ -19,7 +19,7 @@ export const Layout = styled.div`
     box-shadow: 4px 4px var(--main-color);
   background: var(--bg-color);
   border: 2px solid var(--main-color);
-
+  font-size:24px;
   transition: all 0.2s ease-out;
 
   :hover,
@@ -44,4 +44,5 @@ export const Layout = styled.div`
     border: 10px solid transparent;
     transform: rotate(-45deg);
   }
-}`;
+}
+`;

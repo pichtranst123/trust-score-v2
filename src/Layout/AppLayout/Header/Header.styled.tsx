@@ -13,7 +13,7 @@ export const Layout = styled.div`
   justify-content: center;
   align-items: center;
 
-  background: #e4f0fc;
+  background: #f9faff;
   padding-top: 10px;
 
   z-index: 2;

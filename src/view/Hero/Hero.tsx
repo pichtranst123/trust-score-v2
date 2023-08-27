@@ -22,10 +22,8 @@ export default function index() {
       <Container>
         <MainLayout>
           <Collection data-aos="fade-up" data-aos-duration="1000">
-            TrustScore is a social network that believes in the power of trust.
           </Collection>
           <Text data-aos="fade-up">
-            We are committed to creating a safe and secure environment.
           </Text>
           <Row>
             <div data-aos="zoom-in-up" data-aos-duration="2000">
