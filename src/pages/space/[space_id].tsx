@@ -90,8 +90,8 @@ const ThreadPage: React.FC = () => {
   const {
     query: { space_id },
   } = router;
-  const [threads, setThreads] = useState(null);
-  const contractId = process.env.NEXT_PUBLIC_CONTRACT_NAME;
+  const [threads, setThreads] = useState([]);
+  const contractId:any = process.env.NEXT_PUBLIC_CONTRACT_NAME;
   const wallet = new Wallet({ createAccessKeyFor: contractId });
   useEffect(() => {
     const startUp = async () => {
@@ -101,8 +101,8 @@ const ThreadPage: React.FC = () => {
         args: { space_id: space_id },
         contractId,
       });
-      const threadArr = [];
-      threadsData.forEach(async (item) => {
+      const threadArr:any = [];
+      threadsData.forEach(async (item:any) => {
         const threadDetail = await wallet.viewMethod({
           method: "get_thread_metadata_by_thread_id",
           args: { thread_id: item },
