@@ -35,6 +35,7 @@ export default function index() {
       const spacesData = await wallet.viewMethod({ method: "get_all_spaces",contractId});
       const spaceArr = []
       spacesData.forEach(item => {
+        
         spaceArr.push(  {
           id:item.space_id,
           image: Image5,
@@ -47,16 +48,6 @@ export default function index() {
       });
       setSpaces(spaceArr)
       console.log(spaceArr);
-
-      
-      const userFollow = await wallet.viewMethod({
-        method: "get_followed_user_of_space_by_space_id",
-        args: {"space_id":data.id},
-        contractId,
-      });
-
-      
-      
     };
 
     startUp()

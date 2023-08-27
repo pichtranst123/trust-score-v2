@@ -45,6 +45,18 @@ const Container: React.FC<{ data , wallet : Props }> = ({ data , wallet}) => {
           setUserFollow(true);
         }
       });
+      const thread = await wallet.viewMethod({
+        method: "get_all_threads_of_space_by_space_id",
+        args: {"space_id":data.id},
+        contractId,
+      });
+      if(thread){
+        thread.forEach(item => {
+          thread.initPoint
+        });
+      }
+      console.log(thread);
+
     };
     getUserFollow().catch(console.error);
     

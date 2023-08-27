@@ -260,6 +260,7 @@ const CreateThread: React.FC = () => {
       const [selectedTab, setSelectedTab] = useState('about'); // Add state to track selected tab
       const [threadCreated, setThreadCreated] = useState(null);
       const [user, setUser] = useState(null);
+      const [userName, setUserName] = useState('');
       const router = useRouter();
       const contractId = "dev-1693105604198-31429410070805";
       const wallet = new Wallet({ createAccessKeyFor: contractId });
@@ -283,7 +284,6 @@ const CreateThread: React.FC = () => {
               console.log(userThread);
               setUser(userData)
               setThreadCreated(userThread)
-              // get_all_threads_per_user_own '{"user_id":"gmfam.testnet"}
           }
         }
        startUp().catch(console.error);
@@ -295,8 +295,17 @@ const CreateThread: React.FC = () => {
         event.preventDefault();
         console.log('accountID', accountId);
       };
-      const handleUpdateProfile = () => {
+      const handleUpdateProfile = async() => {
         event.preventDefault();
+        await wallet.startUp();
+        await wallet.callMethod({
+          method: "update_user_information",
+          args: {"nickname":userName},
+          contractId,
+        });
+        
+       
+
         setIsModalOpen(false);
       };
       const handleEditProfileClick = () => {
@@ -327,8 +336,8 @@ const CreateThread: React.FC = () => {
             </Label>
 
           </Button>
-          <TrustPoint>{user.total_point} Trust Poinr</TrustPoint>
-          <TrustPoint>Thread Created: {threadCreated.length}</TrustPoint>
+          <TrustPoint>{user && user.total_point} Trust Point</TrustPoint>
+          <TrustPoint>Thread Created: {user && user.threads_owned}</TrustPoint>
         </InputWrapper>
         <EditButton type="button" onClick={handleEditProfileClick}>
             Edit profile
@@ -372,8 +381,7 @@ const CreateThread: React.FC = () => {
           <ModalContent>
           <CloseButton onClick={handleCloseModal}>x</CloseButton>
             <h1>Edit Profile</h1>
-
-            <Input type="text" placeholder='Name' />
+            <Input type="text" placeholder='Name' value={userName} onChange={(e) => setUserName(e.target.value)}/>
             <br/>
             <br />
             <TextArea  placeholder='Description'/>
