@@ -18,8 +18,9 @@ const ButtonLogout: React.FC<ButtonLogoutProps> = () => {
     startUp()
       .catch(console.error);;
   }, [])
-  const handleLogout = () => {
-    wallet.signOut();
+  const handleLogout = async() => {
+    await wallet.startUp();
+    await wallet.signOut();
   };
 
   return <Layout onClick={handleLogout}><BiUserCircle />&nbsp;Profile</Layout>;
