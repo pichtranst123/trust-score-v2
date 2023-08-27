@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import styled from "styled-components";
 
 // @styled-component
 import {
@@ -19,14 +20,27 @@ import {
 
 // @assets
 import LogoImage from "assets/png/Logo.png";
-import LogoBg from "assets/png/logo-bg.gif";
-import { BiMenu } from "react-icons/bi";
+import { BiMenu } from "react-icons/Bi";
 
 // @component
 import { ConnectButton } from "components/Button";
 import Container from "components/Container/Container";
 
 // --------------------------------------------------------------
+
+const LogoImageStyled = styled(Image)` // Wrap Image with a styled-component
+  pointer-events: none; // Prevent cursor change when hovering over the image
+`;
+
+const LogoOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  pointer-events: none; /* This prevents the overlay from capturing user interactions */
+`;
 
 const Header: React.FC = () => {
   const router = useRouter();
@@ -79,10 +93,10 @@ const Header: React.FC = () => {
               onClick={() => {
                 router.push("/");
               }}
-              back={LogoBg.src}
               top={scrollY == 0}
             >
-              <Image src={LogoImage} alt="No Image" layout="fill" />
+              <LogoImageStyled src={LogoImage} alt="No Image" layout="fill" />
+              <LogoOverlay />
             </LogoContainer>
             <Menu>
               <MenuItem
@@ -116,7 +130,7 @@ const Header: React.FC = () => {
       <MobileLayout>
         <Container>
           <MobileMainLayout>
-            <LogoContainer back={LogoBg.src} top={scrollY == 0}>
+            <LogoContainer top={scrollY == 0}>
               <Image src={LogoImage} alt="No Image" layout="fill" />
             </LogoContainer>
 

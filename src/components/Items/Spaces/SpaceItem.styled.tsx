@@ -4,21 +4,23 @@ import Link from "next/link";
 // -----------------------------------------------------------
 export const Layout = styled.div`
   position: relative;
-
   width: 100%;
   max-width: 350px;
   height: 350px;
-  border-radius: 20px;
   padding: 20px;
-  background: white;
+  background: #7efefe;
   overflow: hidden;
-  box-shadow: 0 16px 24px rgba(0, 0, 0, 8);
+  border-left: 14px;
+  border-bottom: 24x; 
+
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 10);
   transition: box-shadow 0.4s ease-in-out;
-  :hover {
-    /* Increase shadow on hover */
-    background: linear-gradient(90deg, rgba(243,243,243,1) 0%, rgba(159,232,241,1) 12%, rgba(0,186,207,1) 42%, rgba(46,117,126,1) 83%, rgba(6,23,27,1) 100%);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  }
+  --bg-color: #7efefe;
+  --main-color: #323232;
+    box-shadow: 8px 8px var(--main-color);
+  background: var(--bg-color);
+  border: 2px solid var(--main-color);
+  border-radius: 24px;
 `;
 export const IconButton = styled.a`
   display: inline-block;
@@ -107,13 +109,14 @@ export const Follower = styled.div`
 export const Icons = styled.div`
   margin-top: 20px;
   display: flex;
-  background: white;
-  border: 2px solid black;
+  background: #7efefe;
+  border: 3px solid black;
   padding: 5px; 
   margin-right: 10px; 
   border-radius:8px;
   :hover{
-background: linear-gradient(90deg, rgba(243,243,243,1) 0%, rgba(159,232,241,1) 12%, rgba(0,186,207,1) 42%, rgba(46,117,126,1) 83%, rgba(6,23,27,1) 100%);    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
+  background: linear-gradient(90deg, rgba(243,243,243,1) 0%, rgba(159,232,241,1) 12%, rgba(0,186,207,1) 42%, rgba(46,117,126,1) 83%, rgba(6,23,27,1) 100%);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
   }
 
 `;

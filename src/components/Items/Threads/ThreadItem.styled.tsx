@@ -8,14 +8,16 @@ export const Layout = styled.div`
   height: 220px;
   border-radius: 8px;
   padding: 20px;
-  background: white;
+  background: #7efefe;
   overflow: hidden;
-  box-shadow: 0 16px 24px rgba(0, 0, 0, 8);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   transition: box-shadow 0.4s ease-in-out;
-  :hover {
-    background: linear-gradient(90deg, rgba(243,243,243,1) 0%, rgba(159,232,241,1) 12%, rgba(0,186,207,1) 42%, rgba(46,117,126,1) 83%, rgba(6,23,27,1) 100%);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  }
+  --bg-color: #fff;
+  --main-color: #323232;
+    box-shadow: 8px 8px var(--main-color);
+  background: var(--bg-color);
+  border: 1px solid var(--main-color);
+  border-radius: 10px;
 `;
 export const IconButton = styled.a`
   display: inline-block;
@@ -81,12 +83,13 @@ export const Des = styled.div`
 export const TP = styled.div`
   position: absolute;
   top: 0;
-  right: 0; /* Đặt bên phải */
+  right: 0;
   margin-top: 0px;
-
-  color: black;
+  color: #7efefe;
+  background:black;
   font-size: 20px;
   font-weight: 600;
+  border-radius: 5px;
 `;
 export const Detail = styled.div`
   position: absolute;

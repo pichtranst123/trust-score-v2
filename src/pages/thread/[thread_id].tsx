@@ -8,97 +8,123 @@ import Image from "next/image";
 import { Wallet } from "../../near/near-wallet";
 import { test } from "node:test";
 
+const Threaddetail = [
+  {
+    yes:88,
+    no:12,
+    stake:1000,
+    contractName: "HelloNear333.testnet",
+    title: "This is title",
+    description: "this is description descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription",
+  }];
+
 const FlexContainer = styled.div`
 
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  `;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
 
 const CenteredForm = styled.form`
-  margin-top:5%;
-  width: 900px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+margin-top:5%;
+width: 900px;
+display: flex;
+flex-direction: column;
+align-items: center;
 `;
 
 const BackIcon = styled(BiArrowBack)`
-  margin-right: 5px;
+margin-right: 5px;
 `;
 
 const Container = styled.div`
-  width:600px;
-  height:600px;
-  border-radius: 14px;
-  border: 3px solid;
-  padding: 20px;
-  margin: 20px;
-  overflow: hidden; /* Clip any overflow */
+width:600px;
+height:600px;
+border-radius: 14px;
+background: white;
+border: 3px solid;
+padding: 20px;
+margin: 20px;
+overflow: hidden;
+--bg-color: #ffff;
+--main-color: #323232;
+  box-shadow: 8px 8px var(--main-color);
+background: var(--bg-color);
+border: 2px solid var(--main-color);
+border-radius: 10px;
 
 `;
 
 const Button = styled.button`
-  margin-top: 30px;
-  margin-right: 600px;
-  padding: 10px 20px;
-  color: black;
-  background: none;
-  border-radius: 13px;
-  cursor: pointer;
-  :hover{
-    background: linear-gradient(90deg, rgba(243,243,243,1) 0%, rgba(159,232,241,1) 12%, rgba(0,186,207,1) 42%, rgba(46,117,126,1) 83%, rgba(6,23,27,1) 100%);    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
-  }
+margin-top: 30px;
+margin-right: 600px;
+font-size: 14px;
+color: black;
+text-transform: uppercase;
+padding: 10px 20px;
+border-radius: 24px;
+border: 2px solid;
+background: #7efefe;
+box-shadow: 5px 5px black;
+cursor: pointer;
+
+&:active {
+box-shadow: none;
+transform: translate(3px, 3px);
 `;
 
 const ButtonVote = styled.button`
-  margin-bottom:5px;
-  width:100%;
-  height:40px;
-  padding: 10px 20px;
-  border: 3px solid;
-  color: ${(props) => (props.selected ? "white" : "black")};
-  background-color: ${(props) => (props.selected ? "#6bed86" : "transparent")};
-  border-radius: 13px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  position: relative;
-  :hover {
-    background: linear-gradient(90deg, rgba(243, 243, 243, 1) 0%, rgba(159, 232, 241, 1) 12%, rgba(0, 186, 207, 1) 42%, rgba(46, 117, 126, 1) 83%, rgba(6, 23, 27, 1) 100%);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 8);
-  }
-  .checkmark {
-    display: ${(props) => (props.selected ? "block" : "none")};
-    margin-left: 5px;
-    color: green;
-  }
+margin-bottom:5px;
+width:100%;
+height:40px;
+padding: 10px 20px;
+border: 3px solid;
+color: ${props => (props.selected ? 'white' : 'black')};
+background-color: ${props => (props.selected ? '#6bed86' : '#7efefe')};
+border-radius: 13px;
+cursor: pointer;
+display: flex;
+align-items: center;
+position: relative;
+box-shadow: 5px 5px black;
+cursor: pointer;
+&:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
+.checkmark {
+  display: ${props => (props.selected ? 'block' : 'none')};
+  margin-left: 5px;
+  color: green;
+}
 `;
 
 const Title = styled.p`
-  font-weight:bold;
-  font-size:22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;`;
+font-weight:bold;
+font-size:22px;
+display: flex;
+align-items: center;
+justify-content: center;`;
 
-const voted = styled.p`
-  font-weight:bold;
-  font-size:20px;`;
+const Yes = styled.p`
+font-weight:bold;
+font-size:20px;`;
 
-
+const No = styled.p`
+font-weight:bold;
+font-size:20px;
+`;
 
 const Stake = styled.p`
-  color: green;
-  font-weight:bold;
-  font-size:22px;
-  margin-left: 0px;
-  `;
+color: green;
+font-weight:bold;
+font-size:22px;
+margin-left: 0px;
+`;
 
 const Description = styled.p`
-  width:100%;
-  white-space: normal;
-  display: flex;`;
+width:100%;
+white-space: normal;
+display: flex;`;  
 
 const StyledImage = styled(Image)`
   border-radius: 50%;

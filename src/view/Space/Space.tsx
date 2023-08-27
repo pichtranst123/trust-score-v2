@@ -1,4 +1,5 @@
 import React,{useEffect,useState} from "react";
+import styled from "styled-components";
 
 // @styled-component
 import { Layout, MainLayout, ItemLayout, Title } from "./Space.styled";
@@ -18,9 +19,137 @@ import Image6 from "assets/png/op.png";
 
 
 
+    const NameSpace = styled.input`
+      width: 100%;
+      background: white;
+      padding: 8px;
+      border: 2px solid;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    `;
+
+    const IdSpace = styled.input`
+      width: 100%;
+      padding: 8px;
+      background: white;
+      border: 2px solid;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    `;
+
+    const Description = styled.textarea`
+      width: 100%;
+      height: 130px;
+      padding: 8px;
+      background: #fff;
+      border: 2px solid;
+      border-radius: 4px;
+      resize: vertical;
+      margin-bottom: 10px;
+    `;
+
+
+
+    const Modal = styled.div`
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    `;
+
+    const ModalContent = styled.div`
+      background-color: white;
+      border: 6px solid;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    `;
+
+    const Overlay = styled.div`
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    `;
+
+
+    const Button = styled.button`
+    margin-left:20px;
+    font-size: 14px;
+    color: black;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 24px;
+    border: 2px solid;
+    background: #7efefe;
+    box-shadow: 5px 5px black;
+    cursor: pointer;
+    margin: 35px 10px;
+
+    &:active {
+      box-shadow: none;
+      transform: translate(3px, 3px);
+    `;
+    const ButtonCreate = styled.button`
+      height:60px;
+      font-size: 14px;
+      color: black;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 24px;
+      border: 2px solid;
+      background: #7efefe;
+      box-shadow: 5px 5px black;
+      cursor: pointer;
+      margin: 35px 0;
+
+      &:active {
+        box-shadow: none;
+        transform: translate(3px, 3px);
+      `;
+
+    const ButtonCreated = styled.button`
+    margin-right:20px;
+    font-size: 14px;
+    color: black;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 24px;
+    border: 2px solid;
+    background: #7efefe;
+    box-shadow: 5px 5px black;
+    cursor: pointer;
+    margin: 35px 0;
+
+    &:active {
+      box-shadow: none;
+      transform: translate(3px, 3px);
+    `;
+
+
 export default function index() {
   // When creating the wallet you can optionally ask to create an access key
   // Having the key enables to call non-payable methods without interrupting the user to sign
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const [spaces, setSpaces] = useState(null);
   const [walletState, setWalletState] = useState(null);
@@ -61,7 +190,9 @@ export default function index() {
     <Layout id="space">
       <Container>
         <Title>Spaces</Title>
-
+        <ButtonCreate onClick={openModal}>Create Space</ButtonCreate>
+        <br />
+        <br /><br />
         <MainLayout>
           {spaces  && spaces.map((item, index) => (
             <ItemLayout key={index}>
@@ -70,6 +201,19 @@ export default function index() {
           ))}
         </MainLayout>
       </Container>
+      {isModalOpen && (
+        <Overlay id="modalOverlay">
+          <Modal>
+            <ModalContent>
+              <NameSpace type="text" placeholder="Name" />
+              <IdSpace type="text" placeholder="ID" />
+              <Description placeholder="Description" />
+              <ButtonCreated>Create</ButtonCreated>
+              <Button onClick={closeModal}>Cancel</Button>
+            </ModalContent>
+          </Modal>
+        </Overlay>
+      )}
     </Layout>
   );
 }

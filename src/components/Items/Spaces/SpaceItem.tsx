@@ -12,7 +12,6 @@ import {
   TP,
   Follower,
   Icons,
-  Icon,
   IconButton,
 } from "./SpaceItem.styled";
 
@@ -75,6 +74,7 @@ const Container: React.FC<{ data , wallet : Props }> = ({ data , wallet}) => {
           {data.connect.map((item, index) => (
                 <IconButton  key={index}  onClick={ async() => {
                 if (!userFollow) {
+                  await wallet.startUp("")
                   await wallet.callMethod({
                     method: "follow_space",
                     args: {"space_id":data.id},

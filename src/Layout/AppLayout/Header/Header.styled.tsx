@@ -13,7 +13,7 @@ export const Layout = styled.div`
   justify-content: center;
   align-items: center;
 
-  background: white;
+  background: #e4f0fc;
   padding-top: 10px;
 
   z-index: 2;
@@ -46,8 +46,8 @@ export const LogoContainer = styled.div<{ back: any; top: boolean }>`
     content: "";
     left: -200px;
     top: -20px;
-    width: 580px;
-    height: 200px;
+    width: 20px;
+    height: 20px;
     background-image: url(${({ back }: any) => back});
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -151,7 +151,7 @@ export const MenuButton = styled.div`
   height: 56px;
   margin-left: 10px;
 
-  background: white;
+  background: #e4f0fc;
   transition: all 0.2s ease-in-out;
 
   color: black;

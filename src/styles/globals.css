@@ -11,12 +11,15 @@ a {
   text-decoration: none;
 }
 
+
 * {
   box-sizing: border-box;
 }
 
 * {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Rubik', sans-serif;
+  line-height: 2.4 rem;
+  font-weight: bold;
 }
 
 body {
