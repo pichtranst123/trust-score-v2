@@ -37,19 +37,6 @@ import Image6 from "assets/png/op.png";
       margin-bottom: 10px;
     `;
 
-    const Description = styled.textarea`
-      width: 100%;
-      height: 130px;
-      padding: 8px;
-      background: #fff;
-      border: 2px solid;
-      border-radius: 4px;
-      resize: vertical;
-      margin-bottom: 10px;
-    `;
-
-
-
     const Modal = styled.div`
       position: fixed;
       top: 0;
@@ -207,7 +194,6 @@ export default function index() {
             <ModalContent>
               <NameSpace type="text" placeholder="Name" />
               <IdSpace type="text" placeholder="ID" />
-              <Description placeholder="Description" />
               <ButtonCreated>Create</ButtonCreated>
               <Button onClick={closeModal}>Cancel</Button>
             </ModalContent>

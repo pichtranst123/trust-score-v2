@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 // -----------------------------------------------------------
-
+import video from "assets/mp4"
 
 export const Layout = styled.div`
   width: 100%;
