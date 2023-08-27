@@ -117,7 +117,7 @@ const CreateThread: React.FC = () => {
     query: { thread_id },
   } = router;
 
-  const contractId = "dev-1693059835951-96467869735375";
+  const contractId = "dev-1693105604198-31429410070805";
   const wallet = new Wallet({ createAccessKeyFor: contractId });
 
   useEffect(() => {

@@ -91,7 +91,7 @@ const ThreadPage: React.FC = () => {
     query: { space_id },
   } = router
   const [threads, setThreads] = useState(null);
-  const contractId = "dev-1693059835951-96467869735375";
+  const contractId = "dev-1693105604198-31429410070805";
   const wallet = new Wallet({ createAccessKeyFor: contractId  });
   useEffect(() => {
     const startUp = async () => {
@@ -102,6 +102,7 @@ const ThreadPage: React.FC = () => {
           const threadDetail = await wallet.viewMethod({ method: "get_thread_metadata_by_thread_id",args:{"thread_id": item},contractId});
           console.log(threadDetail);
           threadArr.push({
+            id:threadDetail.thread_id,
             image: Image1,
             endTime:"1 weeks",
             contractName: threadDetail.creator_id,

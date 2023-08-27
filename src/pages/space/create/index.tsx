@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import styled from 'styled-components';
 import { BiArrowBack } from "react-icons/bi";
 import { useRouter } from 'next/router';
-
-
-
-
+import { Wallet } from "../../../near/near-wallet";
 
 const CenteredForm = styled.form`
   margin-top:30%;
@@ -60,26 +57,33 @@ const Button = styled.button`
   }
 `;
 
-const CreateThread: React.FC = () => {
+const CreateSpace: React.FC = () => {
+  const contractId = "dev-1693105604198-31429410070805";
+  const wallet = new Wallet({ createAccessKeyFor: contractId  });
+
     const router = useRouter();
 
     const handleBackClick = () => {
-        router.push('/thread');
+        router.push('/Space');
       };
   
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [spaceName, setSpaceName] = useState('');
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async(event: React.FormEvent) => {
     event.preventDefault();
-    console.log('Title:', title);
-    console.log('Description:', description);
+    await wallet.startUp();
+    await wallet.callMethod({
+      method: "create_space",
+      args: {"space_name":spaceName},
+      contractId,
+    });
+    console.log('name:', spaceName);
   };
 
   return (
     <div>
-      <h1>Create New Thread</h1>
+      <h1>Create New Space</h1>
       <CenteredForm onSubmit={handleSubmit}>
       <InputWrapper>      <Button type="submit" onClick={handleBackClick}>
       <BackIcon />
@@ -87,25 +91,16 @@ const CreateThread: React.FC = () => {
 </InputWrapper>
 
 
-
         <InputWrapper>
-          <Label htmlFor="title">Title:</Label>
+          <Label htmlFor="title">Name:</Label>
           <Input
             type="text"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            id="Name"
+            value={spaceName}
+            onChange={(e) => setSpaceName(e.target.value)}
           />
         </InputWrapper>
-        <InputWrapper>
-          <Label htmlFor="description">Description:</Label>
-          <TextArea
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </InputWrapper>
-        <Button type="submit">Create Thread</Button>
+        <Button type="submit">Create Space</Button>
       </CenteredForm>
       <br />
       <br />
@@ -113,4 +108,4 @@ const CreateThread: React.FC = () => {
   );
 };
 
-export default CreateThread;
+export default CreateSpace;

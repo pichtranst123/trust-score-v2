@@ -11,8 +11,8 @@ interface ButtonLogoutProps {}
 const ButtonLogout: React.FC<ButtonLogoutProps> = () => {
 // When creating the wallet you can optionally ask to create an access key
 // Having the key enables to call non-payable methods without interrupting the user to sign
-const contractId = "dev-1693059835951-96467869735375";
-const wallet = new Wallet({ createAccessKeyFor: "dev-1693059835951-96467869735375" });
+const contractId = "dev-1693105604198-31429410070805";
+const wallet = new Wallet({ createAccessKeyFor: "dev-1693105604198-31429410070805" });
 
   useEffect(() => {
     const startUp = async () => {
