@@ -73,7 +73,7 @@ export class Wallet {
 
   // Make a read-only call to retrieve information from the network
   async viewMethod({ contractId, method, args = {} }) {
-    const { network } = this.walletSelector.options;
+    const { network } = this.walletSelector?.options;
     const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
 
     let res = await provider.query({
@@ -116,7 +116,7 @@ export class Wallet {
 
   // Get transaction result from the network
   async getTransactionResult(txhash) {
-    const { network } = this.walletSelector.options;
+    const { network } = this.walletSelector?.options;
     const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
 
     // Retrieve transaction result from the network

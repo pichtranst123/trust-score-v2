@@ -74,11 +74,11 @@ const Container: React.FC<{ data , wallet : Props }> = ({ data , wallet}) => {
           {data.connect.map((item, index) => (
                 <IconButton  key={index}  onClick={ async() => {
                 if (!userFollow) {
-                  await wallet.startUp("")
+                  await wallet.startUp();
                   await wallet.callMethod({
                     method: "follow_space",
                     args: {"space_id":data.space_id},
-                    contractspace_id,
+                    contractId,
                   });
                 }else{
                   router.push(`/space/${data.space_id}`);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { BiCopy } from "react-icons/bi";
@@ -6,6 +6,7 @@ import Image1 from "assets/png/profile.png";
 import Space1 from "assets/png/educadao.webp";
 import Space2 from "assets/png/pancakeswap.png";
 import Space3 from "assets/png/uniswap.webp";
+import { Wallet } from "../../near/near-wallet";
 
 import Image from "next/image";
 const ThreadCreatedContainer = styled.div`
@@ -367,6 +368,7 @@ const CreateThread: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState("about"); // Add state to track selected tab
   const [threadCreated, setThreadCreated] = useState(null);
   const [user, setUser] = useState(null);
+  const [spaces, setSpaces] = useState(null);
   const [userName, setUserName] = useState("");
   const router = useRouter();
   const contractId = process.env.NEXT_PUBLIC_CONTRACT_NAME;
@@ -376,23 +378,34 @@ const CreateThread: React.FC = () => {
     const startUp = async () => {
       const isSignedIn = await wallet.startUp();
       if (isSignedIn) {
-        const userData = await wallet.viewMethod({
-          method: "get_user_metadata_by_user_id",
-          args: { user_id: wallet.accountId },
-          contractId,
-        });
-
-        const userThread = await wallet.viewMethod({
-          method: "get_all_threads_per_user_own",
-          args: { user_id: wallet.accountId },
-          contractId,
-        });
-        console.log(userData);
-        console.log(userThread);
-        setUser(userData);
-        setThreadCreated(userThread);
+        
+          const userData = await wallet.viewMethod({
+            method: "get_user_metadata_by_user_id",
+            args: { user_id: wallet.accountId },
+            contractId,
+          });
+          setUser(userData)
+          const spaceMetadata = [];
+          userData.followed_space_list.forEach(async(item) => {
+            const spaceData = await wallet.viewMethod({
+              method: "get_space_metadata_by_space_id",
+              args: { space_id: item },
+              contractId,
+            });
+            
+           spaceMetadata.push(spaceData);
+          });
+          console.log("data",spaceMetadata);
+          setSpaces(spaceMetadata);
+          
+          const userThread = await wallet.viewMethod({
+            method: "get_all_threads_per_user_own",
+            args: { user_id: wallet.accountId },
+            contractId,
+          });
+          setThreadCreated(userThread)
       }
-    };
+    }
     startUp().catch(console.error);
   }, []);
   const handleTabClick = (tab: string) => {
@@ -447,7 +460,7 @@ const CreateThread: React.FC = () => {
                 </div>
               </Label>
             </Button>
-            <TrustPoint>{user && user.total_point} Trust Point</TrustPoint>
+            <TrustPoint>{user && user.total_point}  Trust Point</TrustPoint>
             <TrustPoint>
               Thread Created: {user && user.threads_owned}
             </TrustPoint>
@@ -461,19 +474,19 @@ const CreateThread: React.FC = () => {
           </ButtonGr>
         </CenteredForm>
         <FormContainer>
-          {/* <CenteredForm2>
+          <CenteredForm2>
       <h4>Following Space</h4>
       <Space>
-    {Followinfo.map((info, index) => (
+    {spaces && spaces.map((space, index) => (
       <SpaceItem key={index}>
-        <Image src={info.image} alt="Space" width={35} height={34} style={{ marginRight: '10px' }} />
-        <SpaceTitle>{info.title}</SpaceTitle>
-        <TrustPoint>{info.trustpoint} TRUST</TrustPoint>
+        {/* <Image src={space.image} alt="Space" width={35} height={34} style={{ marginRight: '10px' }} /> */}
+        <SpaceTitle>{space.space_name}</SpaceTitle>
+        <TrustPoint>{space.total_point} TRUST</TrustPoint>
 
       </SpaceItem>
     ))}
   </Space>
-      </CenteredForm2> */}
+      </CenteredForm2>
           <ThreadCreatedContainer>
             <CenteredForm3>
               <h4>Threads Created </h4>
@@ -484,7 +497,7 @@ const CreateThread: React.FC = () => {
                       <SpaceTitle>{info.thread_id}</SpaceTitle>
                       <SpaceTitle>{info.init_point} Stake TP</SpaceTitle>
                       <SpaceTitle>
-                        {info.thread_mode ? "Fraud" : "Basic"}
+                        {info.thread_mode ? "Basic" : "Fraud"}
                       </SpaceTitle>
                     </SpaceItem>
                   ))}
