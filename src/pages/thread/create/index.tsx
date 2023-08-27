@@ -244,7 +244,10 @@ const Option = styled.option`
         <br />
         <ButtonCreate type="submit">Create Thread</ButtonCreate>
       </CenteredForm>
+      <br /><br /> <br /><br />      <br /><br /> <br /><br />
       <br /><br /> <br /><br />
+      <br /><br /> <br /><br />
+
     </div>
   );
 };

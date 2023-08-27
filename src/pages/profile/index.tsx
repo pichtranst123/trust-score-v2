@@ -450,14 +450,17 @@ const CreateThread: React.FC = () => {
             </ImageWrapper>
             <Button className="copy-button">
               <Label htmlFor="title"> 
-                <div>
-                  {accountId.substr(0, 9) +
-                    accountId.substr(
-                      accountId.length - 9,
-                      accountId.length
-                    )}{" "}
-                  <CopyIcon />
-                </div>
+              <div>
+    {wallet.accountId ? (
+      `${wallet.accountId.substr(0, 5)}...${wallet.accountId.substr(
+        wallet.accountId.length - 4,
+        wallet.accountId.length
+      )}`
+    ) : (
+      "Account ID not available"
+    )}
+    <CopyIcon />
+  </div>
               </Label>
             </Button>
             <TrustPoint>{user && user.total_point} Trust Point</TrustPoint>

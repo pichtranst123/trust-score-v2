@@ -13,7 +13,7 @@ interface ConnectButtonProps { }
 const ConnectButton: React.FC<ConnectButtonProps> = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false);
-  const [accountId, setAccountId] = useState<string | null>(null);
+  const [accountId, setAccountId]:any = useState<string | null>(null);
   const contractId:any = process.env.NEXT_PUBLIC_CONTRACT_NAME;
   // When creating the wallet you can optionally ask to create an access key
   // Having the key enables to call non-payable methods without interrupting the user to sign
@@ -73,14 +73,9 @@ const ConnectButton: React.FC<ConnectButtonProps> = () => {
       <div onClick={handleLogin}>
         {isSignedIn ? (
            <div>
-           {accountId ? (
-             `${accountId.substr(0, 5)}...${accountId.substr(
-               accountId.length - 4,
-               accountId.length
-             )}`
-           ) : (
-             "Account ID not available"
-           )}
+           {accountId.substr(0, 5) +
+             "..." +
+             accountId.substr(accountId.length - 4, accountId.length)}
          </div>
        ) : (
          "Wallet Connect"

@@ -66,11 +66,12 @@ const Button = styled.button`
 const CreateSpace: React.FC = () => {
   const contractId:any = process.env.NEXT_PUBLIC_CONTRACT_NAME;
   const wallet = new Wallet({ createAccessKeyFor: contractId });
+  const [spaceId, setSpaceId] = useState([]);
 
   const router = useRouter();
 
   const handleBackClick = () => {
-    router.push("/Space");
+    router.push(`/space/${spaceId}`);
   };
 
   const [spaceName, setSpaceName] = useState("");
