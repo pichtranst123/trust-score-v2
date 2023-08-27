@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import MenuPlaceholder from "./MenuPlaceholer";
 
 // @styled-components
@@ -7,45 +7,45 @@ import { Layout } from "./ConnectButton.styled";
 
 import { Wallet } from "near/near-wallet"
 
-interface ConnectButtonProps {}
+interface ConnectButtonProps { }
 
 
 const ConnectButton: React.FC<ConnectButtonProps> = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [accountId, setAccountId] = useState(false);
-  const contractId = "dev-1693105604198-31429410070805";
+  const contractId = process.env.NEXT_PUBLIC_CONTRACT_NAME;
   // When creating the wallet you can optionally ask to create an access key
   // Having the key enables to call non-payable methods without interrupting the user to sign
   const wallet = new Wallet({ createAccessKeyFor: contractId });
 
- 
- 
+
+
   useEffect(() => {
     const startUp = async () => {
       const isSignedIn = await wallet.startUp();
       console.log(isSignedIn);
-      if(isSignedIn){
+      if (isSignedIn) {
         setAccountId(wallet.accountId);
-        const checkUserExist = await wallet.viewMethod({ method: "get_user_metadata_by_user_id",args:{"user_id":wallet.accountId},contractId})
+        const checkUserExist = await wallet.viewMethod({ method: "get_user_metadata_by_user_id", args: { "user_id": wallet.accountId }, contractId })
 
-        
-        if(!checkUserExist){
-            await wallet.callMethod({ method: "create_user",args:{"nickname":"","first_name":"","last_name":"", "bio":"this is my bio" ,"avatar":"bafkreibnaelo4monu6jpndqtb3pmza22j7k77gcak3xrux6mrkdq5fakuu"},contractId})
-            if(checkUserExist.metadata.role == "Unverified"){
-              await wallet.callMethod({ method: "active_user_role",args:{"user_id":wallet.accountId},contractId});
-            } 
-            console.log("register done");
-        }else{
-          if(checkUserExist.metadata.role == "Unverified"){
-            await wallet.callMethod({ method: "active_user_role",args:{"user_id":wallet.accountId},contractId});
+
+        if (!checkUserExist) {
+          await wallet.callMethod({ method: "create_user", args: { "nickname": "", "first_name": "", "last_name": "", "bio": "this is my bio", "avatar": "bafkreibnaelo4monu6jpndqtb3pmza22j7k77gcak3xrux6mrkdq5fakuu" }, contractId })
+          if (checkUserExist.metadata.role == "Unverified") {
+            await wallet.callMethod({ method: "active_user_role", args: { "user_id": wallet.accountId }, contractId });
+          }
+          console.log("register done");
+        } else {
+          if (checkUserExist.metadata.role == "Unverified") {
+            await wallet.callMethod({ method: "active_user_role", args: { "user_id": wallet.accountId }, contractId });
           }
         }
       }
-      
+
       setIsSignedIn(isSignedIn);
     };
-  
+
     startUp()
       .catch(console.error);;
   }, [])
@@ -76,7 +76,7 @@ const ConnectButton: React.FC<ConnectButtonProps> = () => {
           "Wallet Connect"
         )}
       </div>
-      {isMenuOpen && isSignedIn && <MenuPlaceholder isOpen={isMenuOpen} onClose={handleMenuClose} />} {}
+      {isMenuOpen && isSignedIn && <MenuPlaceholder isOpen={isMenuOpen} onClose={handleMenuClose} />} { }
     </Layout>
   );
 };

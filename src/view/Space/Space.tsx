@@ -138,7 +138,7 @@ export default function index() {
   const [walletState, setWalletState] = useState(null);
 
   useEffect(() => {
-    const contractId = "dev-1693105604198-31429410070805";
+    const contractId = process.env.NEXT_PUBLIC_CONTRACT_NAME;
     const wallet = new Wallet({ createAccessKeyFor: contractId });
     setWalletState(wallet);
     const startUp = async () => {

@@ -30,7 +30,7 @@ type Props = {
 
 const Container: React.FC<{ data , wallet : Props }> = ({ data , wallet}) => {
   const router = useRouter();
-  const contractId = "dev-1693105604198-31429410070805";
+  const contractId = process.env.NEXT_PUBLIC_CONTRACT_NAME;
   const [userFollow, setUserFollow] = useState(false);
   useEffect(() => {
     const getUserFollow = async () => {
