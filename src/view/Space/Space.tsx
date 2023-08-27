@@ -138,7 +138,7 @@ export default function index() {
   const [walletState, setWalletState] = useState(null);
 
   useEffect(() => {
-    const contractId = "dev-1693105604198-31429410070805";
+    const contractId = process.env.NEXT_PUBLIC_CONTRACT_NAME;
     const wallet = new Wallet({ createAccessKeyFor: contractId });
     setWalletState(wallet);
     const startUp = async () => {
@@ -150,12 +150,8 @@ export default function index() {
       const spaceArr = [];
       spacesData.forEach((item) => {
         spaceArr.push({
-          id: item.space_id,
+          ...item,
           image: Image5,
-          title: item.space_name,
-          description: "Learn to earn",
-          trustpoint: Math.floor(Math.random() * 10000),
-          follower: `${Math.floor(Math.random() * 10000)} Followers`,
           connect: [{ icon: FaPlus, link: `/space/${item.space_id}` }],
         });
       });

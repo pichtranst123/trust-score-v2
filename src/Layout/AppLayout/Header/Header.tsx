@@ -20,7 +20,7 @@ import {
 
 // @assets
 import LogoImage from "assets/png/Logo.png";
-import { BiMenu } from "react-icons/Bi";
+import { BiMenu } from "react-icons/bi";
 
 // @component
 import { ConnectButton } from "components/Button";
