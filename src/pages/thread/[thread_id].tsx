@@ -244,7 +244,7 @@ const CreateThread: React.FC = () => {
       <CenteredForm onSubmit={handleSubmit}>
         {/* ... */}
         <Button type="button" onClick={handleBackClick}>
-          <BackIcon /> Back
+          <BackIcon /> Back to threads
         </Button>
 
         <Container>

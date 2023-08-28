@@ -71,6 +71,7 @@ const Button = styled.button`
 }`;
 // @type
 type Props = {
+  id: any;
   image: any;
   title: string;
   endTime: string;
