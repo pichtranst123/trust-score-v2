@@ -84,7 +84,7 @@ type Props = {
 const Container: React.FC<{ data: Props }> = ({ data }) => {
   const router = useRouter();
   const handleBackClick = () => {
-    router.push(`/thread/${data.thread_id}`);
+    router.push(`/thread/${data?.id}`);
   };
   return (
     <Layout>

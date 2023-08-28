@@ -91,7 +91,7 @@ const ThreadPage: React.FC = () => {
     query: { space_id },
   } = router;
   const [threads, setThreads] = useState([]);
-  const contractId:any = process.env.NEXT_PUBLIC_CONTRACT_NAME;
+  const contractId: any = process.env.NEXT_PUBLIC_CONTRACT_NAME;
   const wallet = new Wallet({ createAccessKeyFor: contractId });
   useEffect(() => {
     const startUp = async () => {
@@ -101,8 +101,8 @@ const ThreadPage: React.FC = () => {
         args: { space_id: space_id },
         contractId,
       });
-      const threadArr:any = [];
-      threadsData.forEach(async (item:any) => {
+      const threadArr: any = [];
+      threadsData.forEach(async (item: any) => {
         const threadDetail = await wallet.viewMethod({
           method: "get_thread_metadata_by_thread_id",
           args: { thread_id: item },
@@ -141,7 +141,10 @@ const ThreadPage: React.FC = () => {
             Create thread
           </Button>
           <MainLayout>
-            {threads && threads.map((item) => <Threads data={item} />)}
+            {threads && threads.map((item, idx) => (<div key={idx}>
+              <Threads data={item} />
+            </div>
+            ))}
           </MainLayout>
         </Container>
       </Layout>
