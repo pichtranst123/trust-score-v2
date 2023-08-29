@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from 'next/router';
 import { Wallet } from 'near/near-wallet';
+import styled from "styled-components";
+
+
 
 // @styled-components
 import {
@@ -32,8 +35,9 @@ type Props = {
 const Container: React.FC<{ data: any, wallet: any }> = ({ data, wallet }) => {
   const router = useRouter();
   const contractId: string = process.env.NEXT_PUBLIC_CONTRACT_NAME!;
-
   const [userFollow, setUserFollow] = useState<boolean>(false);
+  const [displayedProducts, setDisplayedProducts] = useState<Props[]>([]); // State để lưu danh sách sản phẩm hiển thị
+  const productsPerPage = 6;
   useEffect(() => {
     const getUserFollow = async () => {
 
@@ -65,6 +69,7 @@ const Container: React.FC<{ data: any, wallet: any }> = ({ data, wallet }) => {
   }, [])
   return (
     <Layout>
+ 
       <ImageLayout>
         <Image src={data.image} alt="No Image" layout="fill" style={{ borderRadius: '12px' }} />
       </ImageLayout>
@@ -72,6 +77,7 @@ const Container: React.FC<{ data: any, wallet: any }> = ({ data, wallet }) => {
       <Des>{data.description}</Des>
       <TP>{data.total_point} TP</TP>
       <Detail>
+
         <Follower>{data.followed_users?.length} follower(s)</Follower>
         <Icons >
           {data.connect.map((item: any, index: any) => (
@@ -94,7 +100,6 @@ const Container: React.FC<{ data: any, wallet: any }> = ({ data, wallet }) => {
             </IconButton>
           ))}
         </Icons>
-
       </Detail>
     </Layout>
   );

@@ -130,7 +130,7 @@ export const MobileLayout = styled.div`
   width: 100%;
 
   display: none;
-  background: #969696;
+  background: #fcfcfbff;
   z-index: 2;
 
   @media screen and (max-width: 1024px) {

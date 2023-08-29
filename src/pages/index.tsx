@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 
 // @component
-import { Hero, Team } from "view";
+import { Hero, Space } from "view";
 
 //--------------------------------------------------------------------
 
@@ -9,7 +9,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Hero />
-      <Team />
+      <Space />
     </div>
   );
 };
