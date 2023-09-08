@@ -3,9 +3,6 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import { BiCopy } from "react-icons/bi";
 import Image1 from "assets/png/profile.png";
-import Space1 from "assets/png/educadao.webp";
-import Space2 from "assets/png/pancakeswap.png";
-import Space3 from "assets/png/uniswap.webp";
 import { Wallet } from "../../near/near-wallet";
 
 import Image from "next/image";
@@ -19,6 +16,9 @@ const Space = styled.div`
   display: flex;
   align-items: center;
   overflow-x: auto;
+  white-space: nowrap;
+  width: 400px; 
+  overflow-x: auto; 
 `;
 
 const SpaceItem = styled.div`
@@ -36,58 +36,6 @@ const SpaceTitle = styled.p`
   margin: 10px 0;
 `;
 
-const User = [
-  {
-    trustpoint: 2250,
-    threadCreate: 3,
-  },
-];
-const Followinfo = [
-  {
-    image: Image1,
-    title: "Space1",
-    id: 2,
-    trustpoint: 12000,
-  },
-  {
-    image: Image1,
-    title: "Space2",
-    id: 1,
-    trustpoint: 4000,
-  },
-  {
-    image: Image1,
-    title: "Space2",
-    id: 1,
-    trustpoint: 4000,
-  },
-];
-
-const ThreadCreated = [
-  ,
-  {
-    image: Image1,
-    title: "Thread1",
-    type: "Basic Vote",
-    id: 3,
-    stake: 11000,
-  },
-  {
-    image: Image1,
-    title: "Thread1",
-    type: "Basic Vote",
-    id: 3,
-    stake: 11000,
-  },
-  {
-    image: Image1,
-    title: "Thread1",
-    type: "Basic Vote",
-    id: 3,
-    stake: 11000,
-  },
-];
-
 const Container = styled.div`
   display: flex;
   justify-content: space-between; /* Align items side by side with space between */
@@ -101,8 +49,7 @@ const CenteredForm3 = styled.form`
   flex: 1;
   margin-left: 10px;
   margin-top: 200px;
-  width: 400px; /* Đặt một chiều rộng cố định */
-  overflow-x: auto; /* Hiển thị thanh cuộn ngang khi nội dung vượt quá kích thước */
+  width: 400px; 
   flex-direction: column;
   border: 2px solid;
   --bg-color: #fff;
@@ -185,14 +132,12 @@ const TrustPoint = styled.p`
 `;
 
 const CenteredForm2 = styled.form`
-  white-space: nowrap; /* Ngăn các phần tử xuống dòng tự động */
-
+  
   background: white;
   flex: 1;
   margin-left: 10px;
   margin-top: 200px;
-  width: 400px; /* Đặt một chiều rộng cố định */
-  overflow-x: auto; /* Hiển thị thanh cuộn ngang khi nội dung vượt quá kích thước */
+ 
   flex-direction: column;
   border: 2px solid;
   border-radius: 24px;
@@ -372,7 +317,6 @@ const CreateThread: React.FC = () => {
   const [user, setUser] = useState({total_point:"",threads_owned:""});
   const [spaces, setSpaces] = useState([]);
   const [userName, setUserName] = useState("");
-  const router = useRouter();
   const contractId:any = process.env.NEXT_PUBLIC_CONTRACT_NAME;
   const wallet = new Wallet({ createAccessKeyFor: contractId });
   const {accountId} = wallet
@@ -479,7 +423,8 @@ const CreateThread: React.FC = () => {
         </CenteredForm>
         <FormContainer>
           <CenteredForm2>
-            <h4>Following Space</h4>
+          <h4>Following Space</h4>
+
             <Space>
               {spaces &&
                 spaces.map((space:any, index:any) => (

@@ -9,7 +9,7 @@ import { Threads } from "components/Items";
 import Container from "components/Container/Container";
 
 // @assets
-import Image1 from "assets/png/profile.webp";
+import Image1 from "assets/png/profile.png";
 
 const Button = styled.button`
 margin-bottom:20px;
@@ -146,6 +146,12 @@ const ThreadPage: React.FC = () => {
             </div>
             ))}
           </MainLayout>
+          <br /><br /><br />          <br /><br /><br />
+          <br /><br /><br />
+          <br /><br /><br />
+          <br /><br /><br />
+          <br /><br /><br />
+
         </Container>
       </Layout>
     </div>
